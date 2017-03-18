@@ -9,7 +9,7 @@ Er wurde nicht kopiert und auch nicht diktiert.
 */
 
 document.addEventListener('DOMContentLoaded', function () {
-    var eingabe : any;
+    var eingabe: any;
     eingabe = prompt("Bitte Namen eingeben");
             
       if (eingabe != null) {
