@@ -10,7 +10,7 @@ Er wurde nicht kopiert und auch nicht diktiert.
 document.addEventListener('DOMContentLoaded', function () {
     var eingabe;
     eingabe = prompt("Bitte Namen eingeben");
-    if (name == null) {
+    if (eingabe == null) {
         document.getElementsByTagName("div")[0].innerHTML = "Kein Zutritt";
     }
     else {
