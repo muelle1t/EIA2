@@ -9,9 +9,10 @@ Er wurde nicht kopiert und auch nicht diktiert.
 */
 
 document.addEventListener('DOMContentLoaded', function () {
-    var eingabe = prompt("Bitte Namen eingeben");
+    var eingabe : any;
+    eingabe = prompt("Bitte Namen eingeben");
             
       if (name != null) {
           document.getElementsByTagName("div")[0].innerHTML = "Herzlich Willkommen" + eingabe;
           }
-        });
+});

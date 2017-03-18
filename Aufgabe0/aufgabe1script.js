@@ -8,7 +8,8 @@ Hiermit versichere ich, dass ich diesen Code selbst geschrieben habe.
 Er wurde nicht kopiert und auch nicht diktiert.
 */
 document.addEventListener('DOMContentLoaded', function () {
-    var eingabe = prompt("Bitte Namen eingeben");
+    var eingabe;
+    eingabe = prompt("Bitte Namen eingeben");
     if (name != null) {
         document.getElementsByTagName("div")[0].innerHTML = "Herzlich Willkommen" + eingabe;
     }
