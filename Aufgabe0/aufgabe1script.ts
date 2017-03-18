@@ -12,7 +12,11 @@ document.addEventListener('DOMContentLoaded', function () {
     var eingabe : any;
     eingabe = prompt("Bitte Namen eingeben");
             
-      if (name != null) {
+      if (name == null) {
+          document.getElementsByTagName("div")[0].innerHTML = "Kein Zutritt";
+          }
+      
+      else {
           document.getElementsByTagName("div")[0].innerHTML = "Herzlich Willkommen" + " " + eingabe;
           }
 });
