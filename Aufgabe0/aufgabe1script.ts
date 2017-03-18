@@ -13,6 +13,6 @@ document.addEventListener('DOMContentLoaded', function () {
     eingabe = prompt("Bitte Namen eingeben");
             
       if (name != null) {
-          document.getElementsByTagName("div")[0].innerHTML = "Herzlich Willkommen" + eingabe;
+          document.getElementsByTagName("div")[0].innerHTML = "Herzlich Willkommen" + + eingabe;
           }
 });
