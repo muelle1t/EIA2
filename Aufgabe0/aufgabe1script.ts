@@ -1,6 +1,6 @@
 /*
 Aufgabe: Aufgabe 1
-Name: Annkathrin Müller
+Name: Annkathrin MÃ¼ller
 Matrikelnr.: 254868
 Datum: 18.03.2017
 
@@ -9,7 +9,7 @@ Er wurde nicht kopiert und auch nicht diktiert.
 */
 
 document.addEventListener('DOMContentLoaded', function () {
-    var eingabe: any;
+    var eingabe: string;
     eingabe = prompt("Bitte Namen eingeben");
             
       if (eingabe != null) {

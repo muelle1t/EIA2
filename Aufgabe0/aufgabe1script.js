@@ -1,6 +1,6 @@
 /*
 Aufgabe: Aufgabe 1
-Name: Annkathrin M�ller
+Name: Annkathrin Müller
 Matrikelnr.: 254868
 Datum: 18.03.2017
 
