@@ -29,7 +29,7 @@ document.addEventListener("DOMContentLoaded", function () {
     }
     countRice();
     function countRice() {
-        let square = document.getElementsByClassName("chesssquare");
+        let square = document.getElementsByClassName("square");
         let rice;
         for (var i = 0; i < square.length; i++) {
             rice = Math.pow(2, i);
