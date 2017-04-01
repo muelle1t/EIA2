@@ -1,0 +1,13 @@
+.black {
+	background-color: #000000;
+	color: #FFFFFF;
+}
+
+.white {
+	background-color: #FFFFFF;
+	color: #000000;
+}
+
+div {
+	text-align: center;
+}
