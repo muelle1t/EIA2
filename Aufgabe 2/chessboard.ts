@@ -21,11 +21,11 @@ document.addEventListener("DOMContentLoaded", function() {
         document.body.appendChild(div);
 
         
-        if (i % 8 == 0) { //nach jedem 8. div wird eine neue Zeile begonnen
+        if (i % 8 == 0) {  //nach jedem 8. div wird eine neue Zeile begonnen 
             line++;
         }
 
-        if (line % 2 == 0) { //in allen ungeraden Zeilen wird mit schwarz angefangen
+        if (line % 2 == 0) {  //in allen ungeraden Zeilen wird mit schwarz angefangen
             if (i % 2 != 0) { 
                 div.style.backgroundColor = "black";
                 div.style.color = "white";
