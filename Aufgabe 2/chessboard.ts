@@ -5,12 +5,13 @@ document.addEventListener("DOMContentLoaded", function() {
     let i: number = 0; 
     
     for (i; i < n; i++) {
-    
+        
         let div: HTMLDivElement = document.createElement("div");
         div.innerText = "" + rice;
         rice = rice * 2;
         document.body.appendChild(div);
 
+        
         if (i % 8 == 0) {
             line++;
         }
@@ -32,8 +33,7 @@ document.addEventListener("DOMContentLoaded", function() {
                 div.style.backgroundColor = "black";
                 div.style.color = "white";
             }
-        
-    }
+        }
  }
  });
     
