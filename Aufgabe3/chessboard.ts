@@ -5,8 +5,11 @@ Matrikelnr.: 254868
 Datum: 08.04.2017
 
 Hiermit versichere ich, dass ich diesen Code selbst geschrieben habe. 
-Er wurde nicht kopiert und auch nicht diktiert.*/
+Er wurde nicht kopiert und auch nicht diktiert.
+Dieser Code ist in Zusammenarbeit mit Ina Radzuweit entstanden.*/
 
+namespace Aufgabe3_chessboard {
+    
 document.addEventListener("DOMContentLoaded", function(): void {
     let n: number = 64; //Gesamtanzahl Felder auf dem Brett
     let line: number = 0; // Zeilen
@@ -77,3 +80,4 @@ document.addEventListener("DOMContentLoaded", function(): void {
     console.log(j);
 
 });
+ }
