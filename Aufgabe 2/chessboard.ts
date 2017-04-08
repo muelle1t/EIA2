@@ -7,7 +7,7 @@ Datum: 02.04.2017
 Hiermit versichere ich, dass ich diesen Code selbst geschrieben habe. 
 Er wurde nicht kopiert und auch nicht diktiert.*/
 
-document.addEventListener("DOMContentLoaded", function() {
+document.addEventListener("DOMContentLoaded", function(): void {
     let n: number = 64; //Gesamtanzahl Felder auf dem Brett
     let line: number = 0; // Zeilen
     let rice: number = 1; // Anzahl Reis
