@@ -1,0 +1,14 @@
+
+body {
+	width:900px;
+}
+div {
+	font-size: 0.6em;
+	border: solid black;
+	width:100px;
+	height:100px;
+	padding:2px;
+	text-align: left;	
+	float:left;
+	
+}

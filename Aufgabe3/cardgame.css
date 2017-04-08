@@ -1,0 +1,33 @@
+/*Nachziehstapel*/
+
+#take {
+	border: solid 2px black;
+	height: 18em;
+	width: 12em;
+	margin-top: 5em;
+	margin-left: 15em;
+	float: left;
+	background-color: blue;
+	}
+
+
+
+/*Ablagestapel*/
+
+#drop {
+	border: solid 2px black;
+	height: 18em;
+	width: 12em;
+	margin-top: 5em;
+	margin-left: 5em;
+	float: left;
+	}
+	
+/*Hand*/
+#hand {
+	height: 18em;
+	width: 80em;
+	margin-top: 5em;
+	margin-left: 10em;
+	float: left;
+}
