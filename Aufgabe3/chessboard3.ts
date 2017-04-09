@@ -2,7 +2,7 @@
 Aufgabe: Aufgabe 3a
 Name: Annkathrin Müller
 Matrikelnr.: 254868
-Datum: 08.04.2017
+Datum: 09.04.2017
 
 Hiermit versichere ich, dass ich diesen Code selbst geschrieben habe. 
 Er wurde nicht kopiert und auch nicht diktiert.
