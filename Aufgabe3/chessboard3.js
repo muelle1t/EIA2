@@ -41,19 +41,21 @@ var Aufgabe3_chessboard;
                 }
             }
         }
+        //Aufgabe 3a
         document.getElementsByTagName("div");
-        let divList = document.getElementsByTagName("div");
+        let divList = document.getElementsByTagName("div"); //List for all divs
         let j = 0;
         let firstLine = divList[j];
         let lineStyle = firstLine.style;
-        let state = true;
+        let state = true; //Boolean for Box selection 
         lineStyle.border = "solid black";
-        for (let j = 0; j < 8; j++) {
-            firstLine.addEventListener("click", markedBox);
+        for (j; j < 8; j++) {
+            firstLine.addEventListener("click", markedBox); //Schleife für erste Reihe im Schachbrett
         }
+        //Funktion für die Markierung der Boxen
         function markedBox(_event) {
             firstLine.classList.add("selected");
-            document.getElementsByClassName("selected");
+            let selected = document.getElementsByClassName("selected");
             if (state) {
                 lineStyle.border = "solid red";
                 state = false;
@@ -63,7 +65,6 @@ var Aufgabe3_chessboard;
                 state = true;
             }
         }
-        console.log(j);
     });
 })(Aufgabe3_chessboard || (Aufgabe3_chessboard = {}));
-//# sourceMappingURL=chessboard.js.map
+//# sourceMappingURL=chessboard3.js.map
