@@ -92,7 +92,7 @@ namespace Aufgabe4_Canvas {
        
         drawDaisy(500, 620, "#00BFFF");
          
-        drawTulip(270, 650, "#BF00FF");
+        drawTulip(320, 480, "#BF00FF");
          
         drawDaisy(450, 600, "#FFFFFF");
          
@@ -105,6 +105,8 @@ namespace Aufgabe4_Canvas {
         drawDaisy(470, 500, "#FFFFFF");
          
         drawTulip(300, 530, "#FFFF00");
+        
+        drawDaisy(250, 500, "#00BFFF");
          
          
         
@@ -127,8 +129,32 @@ namespace Aufgabe4_Canvas {
                     drawTulip(_x, _y, "#FFFF00");
                     break;
            }
-                 
+          
+                         
         }
+        //Bienenkorb
+         
+        crc2.beginPath();
+        crc2.moveTo(250, 650);
+        crc2.arc(250, 650, 25, 0, Math.PI, true);
+        crc2.fillStyle = "#61380B";
+        crc2.fill();
+        crc2.closePath();
+            
+        crc2.beginPath();
+        crc2.moveTo(250, 650);
+        crc2.arc(250, 620, 25, 0, Math.PI * 2);
+        crc2.fillStyle = "#61380B";
+        crc2.fill();
+        crc2.closePath();
+         
+        crc2.beginPath();
+        crc2.moveTo(250, 650);
+        crc2.arc(250, 600, 15, 0, Math.PI * 2);
+        crc2.fillStyle = "#61380B";
+        crc2.fill();
+        crc2.closePath();
+        
     }
     
     //Wolken aus 3 Kreisen
@@ -215,6 +241,7 @@ namespace Aufgabe4_Canvas {
         crc2.closePath();
         crc2.fill();
         
+               
         //Blüten
         crc2.beginPath();
         crc2.moveTo(_x, _y);
@@ -253,14 +280,12 @@ namespace Aufgabe4_Canvas {
          //Blüten 
         crc2.beginPath();
         crc2.moveTo(_x, _y - 30);
-        crc2.arc(_x, _y - 35, 20, 0, Math.PI);
+        crc2.arc(_x, _y - 35, 15, 0, Math.PI);
         crc2.fillStyle = _fillColor;
         crc2.fill();  
         crc2.closePath();
         crc2.beginPath();
-        crc2.moveTo(_x - 15, _y - 25);
-        crc2.lineTo(_x, _y - 45);
-        crc2.lineTo(_x + 15, _y - 25);
+        crc2.arc(_x, _y - 35, 7, 0, Math.PI * 2);  
         crc2.fill();  
         crc2.closePath(); 
        
