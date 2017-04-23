@@ -27,6 +27,7 @@ var Aufgabe4_Canvas;
         crc2.fill();
         crc2.fillStyle = "#78f740"; //Wiese
         crc2.fillRect(0, 350, canvas.width, canvas.height / 2);
+        //Anwendung Funktionen für Wolken, Berge und Tannenbäume
         drawCloud(640, 100);
         drawCloud(880, 50);
         drawCloud(320, 80);
@@ -78,6 +79,7 @@ var Aufgabe4_Canvas;
         crc2.arc(125, 420, 40, 0, Math.PI * 2);
         crc2.fill();
         crc2.closePath();
+        //Anwendung Funktionen der festen Blumen
         drawDaisy(500, 620, "#00BFFF");
         drawTulip(320, 480, "#BF00FF");
         drawDaisy(450, 600, "#FFFFFF");

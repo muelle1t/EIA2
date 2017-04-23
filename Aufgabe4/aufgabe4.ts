@@ -34,6 +34,8 @@ namespace Aufgabe4_Canvas {
         crc2.fillStyle = "#78f740"; //Wiese
         crc2.fillRect(0, 350, canvas.width, canvas.height / 2);
         
+        //Anwendung Funktionen für Wolken, Berge und Tannenbäume
+        
         drawCloud(640, 100);
         drawCloud(880, 50);
         drawCloud(320, 80);
@@ -90,6 +92,8 @@ namespace Aufgabe4_Canvas {
         crc2.fill();
         crc2.closePath();
        
+         //Anwendung Funktionen der festen Blumen
+         
         drawDaisy(500, 620, "#00BFFF");
          
         drawTulip(320, 480, "#BF00FF");
@@ -230,8 +234,7 @@ namespace Aufgabe4_Canvas {
         crc2.fill();
     }
 
-    
-        
+         
 
     function drawDaisy(_x: number, _y: number, _fillColor: string): void {
         //grüner Stil
@@ -240,8 +243,7 @@ namespace Aufgabe4_Canvas {
         crc2.fillRect(_x, _y - 40, 4, 40);
         crc2.closePath();
         crc2.fill();
-        
-               
+                       
         //Blüten
         crc2.beginPath();
         crc2.moveTo(_x, _y);
