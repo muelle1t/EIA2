@@ -9,9 +9,9 @@ Er wurde nicht kopiert und auch nicht diktiert.
 
 Dieser Code ist in Zusammenarbeit mit Ina Radzuweit und Alisia Steiner entstanden.*/
 
-document.addEventListener("DOMContentLoaded", function(): void {
+namespace Aufgabe3_cardgame {
 
-    let cards: string[] = ["Karo 7",
+    let cards = ["Karo 7",
         "Karo 8",
         "Karo 9",
         "Karo 10",
@@ -44,57 +44,47 @@ document.addEventListener("DOMContentLoaded", function(): void {
         "Pik König",
         "Pik As"];
 
+
+    document.addEventListener("DOMContentLoaded", init)
+    function init() {
+        let take = document.getElementById("take");
+        take.addEventListener("click", placeCardToHand)
+    }
     //Aktivität 1 Vom Nachziehstapel auf den Hanstapel
 
-    let take: HTMLElement = document.getElementById("take");
-    take.addEventListener("click", function(): void {
 
-        let cardsOnHand: number = document.getElementById("hand").childElementCount;
-
-        if (cardsOnHand < 5) {
-
-            placeCardToHand();
-
-        }
-
-    });
 
     //Funktion Karte vom Nachziestapel soll zum Handstapel
-    function placeCardToHand(): void {
-        let div: HTMLDivElement = document.createElement("div");
-        document.getElementById("hand").appendChild(div);
-        let s: CSSStyleDeclaration = div.style;
+    function placeCardToHand() {
 
-        let n: number = Math.round(Math.random() * cards.length);
+        let cardsOnHand = document.getElementById("hand");
+        if (cardsOnHand.childElementCount < 5) {
+            let div = document.createElement("div");
+            document.getElementById("hand").appendChild(div);
+            let s = div.style;
 
-        while (cards[n] == undefined) {
-            Math.round(Math.random() * cards.length);
+            let n = Math.round(Math.random() * cards.length);
+            if (cards[n] == undefined) {
+                Math.round(Math.random() * cards.length - 1);
+            }
+            div.innerText = cards[n];
+            s.border = "solid 2px black";
+            s.display = "inline-block";
+            s.width = "12em";
+            s.height = "18em";
+            s.marginLeft = "1em";
+            div.className = "cardsDrawn";
+            cards.splice(n, 1);
+            div.addEventListener("click", dropCard)
         }
-
-        div.innerText = cards[n];
-
-        s.border = "solid 2px black";
-        s.display = "inline-block";
-        s.width = "12em";
-        s.height = "18em";
-        s.marginLeft = "1em";
-
-        div.className = "cardsDrawn";
-
-        //Listener für jede Karte auf der Hand
-        div.addEventListener("click", function(): void {
-            let cardsDropped: string[] = [""];
-
-            let cardValue: string = div.innerText;
-            let amountOfDroppedCards: number = cardsDropped.push(cardValue); //Karte von der Hand soll zum Ablagestapel
-
-            document.getElementById("drop").innerText = cardValue;
-
-            div.parentNode.removeChild(div);
-
-        });
-        cards.splice(n, 1);
     }
 
-});
+    //Listener für jede Karte auf der Hand
+    function dropCard(_event: any) {
+        let target = _event.target;
+        let cardValue = target.innerText;
 
+        document.getElementById("drop").innerText = cardValue;
+        target.parentNode.removeChild(target);
+    }
+}

@@ -14,6 +14,8 @@ var Aufgabe3_chessboard;
         let line = 0; // Zeilen
         let rice = 1; // Anzahl Reis
         let i = 0;
+        let sum = 0;
+        let state = true; //Boolean for Box selection 
         for (i; i < n; i++) {
             let div = document.createElement("div"); // erstellen des Divs
             div.innerText = "" + rice; //Anzahl Reis wird in die Div geschrieben
@@ -42,29 +44,41 @@ var Aufgabe3_chessboard;
             }
         }
         //Aufgabe 3a
-        document.getElementsByTagName("div");
+        document.getElementsByTagName("div")[0];
         let divList = document.getElementsByTagName("div"); //List for all divs
         let j = 0;
+        let clickedDiv;
         let firstLine = divList[j];
-        let lineStyle = firstLine.style;
-        let state = true; //Boolean for Box selection 
-        lineStyle.border = "solid black";
-        for (j; j < 8; j++) {
+        // let lineStyle: CSSStyleDeclaration = firstLine.style;
+        //lineStyle.border = "solid black";
+        for (j; j < 9; j++) {
             firstLine.addEventListener("click", markedBox); //Schleife für erste Reihe im Schachbrett
         }
         //Funktion für die Markierung der Boxen
         function markedBox(_event) {
-            firstLine.classList.add("selected");
-            let selected = document.getElementsByClassName("selected");
-            if (state) {
-                lineStyle.border = "solid red";
-                state = false;
+            clickedDiv = _event.target;
+            if (clickedDiv.style.border != "solid red") {
+                divList[j].style.border = "solid red";
+                sum = sum + Number(divList[j].textContent);
             }
             else {
-                lineStyle.border = "solid black";
-                state = true;
+                divList[j].style.border = "solid black";
             }
+            sum = sum + Number(divList[j].textContent);
+            document.getElementById("tooltip").textContent = "Dezimalzahl: " + sum.toString() + "Hexadezimal: " + sum.toString(16);
         }
+        ;
     });
 })(Aufgabe3_chessboard || (Aufgabe3_chessboard = {}));
+document.addEventListener("mousemove", function (event) {
+    let x = event.clientX;
+    let y = event.clientY;
+    let box = document.getElementById("tooltip");
+    box.style.position = "abolute";
+    box.style.top = y + 15 + "px";
+    box.style.left = x + 15 + "px";
+    box.style.border = "2px solid black";
+    box.style.backgroundColor = "white";
+    box.style.padding = "10px";
+});
 //# sourceMappingURL=chessboard3.js.map
