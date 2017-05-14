@@ -9,21 +9,16 @@ namespace Aufgabe7_Bienen {
             this.y = _y;
         }
         
-        drawNectarFlowers(): void {
-            this.drawDaisy1();
-            this.drawDaisy2();
-            this.drawTulip1();
-            this.drawTulip2();
-            }
-
+        
         setRandomPosition(): void {
-            this.x = (Math.random() * (990 - 500)) + 500;
-            this.y = (Math.random() * (700 - 450)) + 450;
+            this.x = (Math.random() * (990 - 300)) + 300;
+            this.y = (Math.random() * (600 - 450)) + 450;
 
         }
+        
+        
         drawRandomFlower(): void {
             let flower: number = Math.floor((Math.random() * 4) + 0);
-            this.setRandomPosition();
             switch (flower) {
                 case 0:
                     this.drawDaisy1();

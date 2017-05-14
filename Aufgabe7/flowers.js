@@ -5,19 +5,12 @@ var Aufgabe7_Bienen;
             this.x = _x;
             this.y = _y;
         }
-        drawNectarFlowers() {
-            this.drawDaisy1();
-            this.drawDaisy2();
-            this.drawTulip1();
-            this.drawTulip2();
-        }
         setRandomPosition() {
-            this.x = (Math.random() * (990 - 500)) + 500;
-            this.y = (Math.random() * (700 - 450)) + 450;
+            this.x = (Math.random() * (990 - 300)) + 300;
+            this.y = (Math.random() * (600 - 450)) + 450;
         }
         drawRandomFlower() {
             let flower = Math.floor((Math.random() * 4) + 0);
-            this.setRandomPosition();
             switch (flower) {
                 case 0:
                     this.drawDaisy1();

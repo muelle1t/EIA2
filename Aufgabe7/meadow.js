@@ -58,15 +58,18 @@ var Aufgabe7_Bienen;
         drawFir(980, 330);
         drawTree(100, 500);
         //Blumenwiese
-        /*for (let i: number = 0; i < 10; i++) {
-            let f = new Flower;
-            f.drawNectarFlowers();
+        for (let i = 0; i < 10; i++) {
+            let x = (Math.random() * (990 - 300)) + 300;
+            let y = (Math.random() * (700 - 600)) + 600;
+            let f = new Aufgabe7_Bienen.Flower(x, y);
+            f.drawRandomFlower();
             nectarFlowers.push(f);
-            }*/
+        }
         //Zufällige Blumenwiese
         for (var i = 0; i < 20; i++) {
-            let f = new Aufgabe7_Bienen.Flower(0, 0);
-            f.drawRandomFlower();
+            let fr = new Aufgabe7_Bienen.Flower(0, 0);
+            fr.setRandomPosition();
+            fr.drawRandomFlower();
         }
         console.log(nectarFlowers);
         drawBeeHive(250, 650);

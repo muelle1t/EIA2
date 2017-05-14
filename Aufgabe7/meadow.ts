@@ -82,17 +82,21 @@ namespace Aufgabe7_Bienen {
                
         //Blumenwiese
         
-        /*for (let i: number = 0; i < 10; i++) {
-            let f = new Flower;
-            f.drawNectarFlowers();
+        for (let i: number = 0; i < 10; i++) {
+            let x: number = (Math.random() * (990 - 300)) + 300;
+            let y: number = (Math.random() * (700 - 600)) + 600;
+            let f: Flower = new Flower(x, y);
+            f.drawRandomFlower();
             nectarFlowers.push(f);
-            }*/
+            }
         
         //Zufällige Blumenwiese
         
         for (var i: number = 0; i < 20; i++) {
-            let f = new Flower (0, 0);
-            f.drawRandomFlower();
+            let fr: Flower = new Flower (0, 0);
+            fr.setRandomPosition();
+            fr.drawRandomFlower();
+                      
             }
         
         console.log(nectarFlowers);
@@ -105,15 +109,7 @@ namespace Aufgabe7_Bienen {
             
         }
         
-       
-
-       
-        
-       
-
-
-        
-        
+               
         // Canvas Bild abspeichern
         imgData = crc2.getImageData(0, 0, canvas.width, canvas.height);
         
