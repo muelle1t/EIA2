@@ -16,7 +16,7 @@ var Aufgabe7_Bienen;
         drawBee() {
             Aufgabe7_Bienen.crc2.beginPath();
             Aufgabe7_Bienen.crc2.moveTo(this.x, this.y);
-            //crc2.ellipse(this.x, this.y, 10, 5, 0, Math.PI * 2, 0);
+            Aufgabe7_Bienen.crc2.ellipse(this.x, this.y, 10, 5, 0, Math.PI * 2, 0);
             Aufgabe7_Bienen.crc2.arc(this.x - 5, this.y, 5, 0, Math.PI * 2);
             Aufgabe7_Bienen.crc2.fillStyle = this.color;
             Aufgabe7_Bienen.crc2.closePath();
@@ -60,8 +60,8 @@ var Aufgabe7_Bienen;
             //Flügel
             Aufgabe7_Bienen.crc2.beginPath();
             Aufgabe7_Bienen.crc2.moveTo(this.x, this.y);
-            //crc2.ellipse(this.x + 4, this.y - 8, 3, 5, 45 * Math.PI/180, Math.PI * 2, 0);
-            //crc2.ellipse(this.x + 2, this.y - 8, 3, 5, 45 * Math.PI/-180, Math.PI * 2, 0);
+            Aufgabe7_Bienen.crc2.ellipse(this.x + 4, this.y - 8, 3, 5, 45 * Math.PI/180, Math.PI * 2, 0);
+            Aufgabe7_Bienen.crc2.ellipse(this.x + 2, this.y - 8, 3, 5, 45 * Math.PI/-180, Math.PI * 2, 0);
             Aufgabe7_Bienen.crc2.fillStyle = "#CEF6F5";
             Aufgabe7_Bienen.crc2.closePath();
             Aufgabe7_Bienen.crc2.fill();
