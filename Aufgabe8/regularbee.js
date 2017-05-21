@@ -3,6 +3,12 @@ var Aufgabe8_Bienen;
     class RegularBee extends Aufgabe8_Bienen.Bees {
         constructor(_x, _y, _color) {
             super(_x, _y, _color);
+            this.setStartPosition();
+            this.setRandomDirection();
+        }
+        setStartPosition() {
+            this.x = 250;
+            this.y = 620;
         }
         drawBee() {
             Aufgabe8_Bienen.crc2.beginPath();
@@ -58,8 +64,11 @@ var Aufgabe8_Bienen;
             Aufgabe8_Bienen.crc2.fill();
         }
         move() {
-            super.x += Math.random() * 3 - 2 + this.direction;
-            super.y += Math.random() * 4 - 2;
+            this.x += Math.random() * 3 - 2 + this.direction;
+            this.y += Math.random() * 4 - 2;
+        }
+        setRandomDirection() {
+            this.direction = (Math.random() * 2);
         }
     }
     Aufgabe8_Bienen.RegularBee = RegularBee;

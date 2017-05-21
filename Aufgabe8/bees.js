@@ -12,11 +12,10 @@ var Aufgabe8_Bienen;
             this.move();
         }
         drawBee() {
-            //abstract
+            //draw
         }
         move() {
-            this.x += Math.random() * 3 - 2 + this.direction;
-            this.y += Math.random() * 4 - 2;
+            //move
         }
         setRandomStyle() {
             this.color = "hsl(" + Math.random() * 360 + ", 70%, 50%)";

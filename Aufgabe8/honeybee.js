@@ -18,7 +18,7 @@ var Aufgabe8_Bienen;
         }
         move() {
             let xDiff = this.xTarget - this.x;
-            let yDiff = this.yTarget - this.y - 22;
+            let yDiff = this.yTarget - this.y - 35;
             if (Math.abs(xDiff) < 0.5 && Math.abs(yDiff) < 0.5)
                 this.setRandomTargetPosition();
             else {

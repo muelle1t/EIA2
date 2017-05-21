@@ -29,7 +29,7 @@ namespace Aufgabe8_Bienen {
 
         move(): void {
             let xDiff: number = this.xTarget - this.x;
-            let yDiff: number = this.yTarget - this.y - 22;
+            let yDiff: number = this.yTarget - this.y - 35;
             if (Math.abs(xDiff) < 0.5 && Math.abs(yDiff) < 0.5)
                 this.setRandomTargetPosition();
             else {

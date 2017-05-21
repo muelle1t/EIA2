@@ -7,8 +7,15 @@ namespace Aufgabe8_Bienen {
 
         constructor(_x: number, _y: number, _color: string) {
             super(_x, _y, _color);
+            this.setStartPosition();
+            this.setRandomDirection();
+           
 
-
+        }
+        
+        setStartPosition(): void {
+            this.x = 250;
+            this.y = 620;
         }
 
 
@@ -72,10 +79,14 @@ namespace Aufgabe8_Bienen {
         }
 
         move(): void {
-            super.x += Math.random() * 3 - 2 + this.direction;
-            super.y += Math.random() * 4 - 2;
+            this.x += Math.random() * 3 - 2 + this.direction;
+            this.y += Math.random() * 4 - 2;
 
         }
+        
+        setRandomDirection(): void {
+            this.direction = (Math.random() * 2);
+            }
     }
 
 }

@@ -18,12 +18,11 @@ namespace Aufgabe8_Bienen {
             }
         
         drawBee(): void {
-           //abstract
+           //draw
         }
         
          move(): void {
-            this.x += Math.random() * 3 - 2 + this.direction;
-            this.y += Math.random() * 4 - 2;
+            //move
             
          }
             

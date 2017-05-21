@@ -54,6 +54,7 @@ var Aufgabe8_Bienen;
             Aufgabe8_Bienen.allBees.push(hb);
             let rb = new Aufgabe8_Bienen.RegularBee(250, 620, "hsl(" + Math.random() * 360 + ", 70%, 50%)");
             rb.drawBee();
+            rb.update();
             Aufgabe8_Bienen.allBees.push(rb);
         }
         console.log("Bees", Aufgabe8_Bienen.allBees);
@@ -64,9 +65,8 @@ var Aufgabe8_Bienen;
     }
     // Funtkion der neuen Biene 
     function addNewBee() {
-        let b = new Aufgabe8_Bienen.HoneyBee(250, 620, "hsl(" + Math.random() * 360 + ", 70%, 50%)");
-        b.drawBee();
-        Aufgabe8_Bienen.allBees.push(b);
+        Aufgabe8_Bienen.allBees.push(new Aufgabe8_Bienen.RegularBee(250, 620, "hsl(" + Math.random() * 360 + ", 70%, 50%)"));
+        n++;
     }
     // Animation der Bienen
     function animate() {
@@ -74,6 +74,7 @@ var Aufgabe8_Bienen;
         //Zufälliges Flugverhalten der einzelnen Bienen
         for (let i = 0; i < Aufgabe8_Bienen.allBees.length; i++) {
             let bees = (Aufgabe8_Bienen.allBees[i]);
+            Aufgabe8_Bienen.allBees[i].update();
             //Bienen kommen am Canvas Rand auf der anderen Seite wieder rein
             if (bees.x < 0) {
                 bees.x = 1000;
@@ -84,7 +85,6 @@ var Aufgabe8_Bienen;
             if (bees.y > 700) {
                 bees.y = 0;
             }
-            bees.update();
         }
         window.setTimeout(animate, 40);
     }

@@ -88,6 +88,7 @@ namespace Aufgabe8_Bienen {
             
             let rb: RegularBee = new RegularBee(250, 620, "hsl(" + Math.random() * 360 + ", 70%, 50%)");
             rb.drawBee();
+            rb.update();
             allBees.push(rb);
             
         }
@@ -106,9 +107,8 @@ namespace Aufgabe8_Bienen {
     }
     // Funtkion der neuen Biene 
     function addNewBee(): void {
-       let b: HoneyBee = new HoneyBee(250, 620, "hsl(" + Math.random() * 360 + ", 70%, 50%)"); 
-       b.drawBee();
-       allBees.push(b);
+       allBees.push(new RegularBee(250, 620, "hsl(" + Math.random() * 360 + ", 70%, 50%)")); 
+       n++;
       
     }
     
@@ -119,6 +119,8 @@ namespace Aufgabe8_Bienen {
         //Zufälliges Flugverhalten der einzelnen Bienen
         for (let i: number = 0; i < allBees.length; i++) {
             let bees: Bees = (allBees[i]);
+            
+            allBees[i].update();
             
             
             //Bienen kommen am Canvas Rand auf der anderen Seite wieder rein
@@ -132,8 +134,7 @@ namespace Aufgabe8_Bienen {
                 bees.y = 0;
                 }
             
-            bees.update();
-                       
+                                  
            }
         
         window.setTimeout(animate, 40);
