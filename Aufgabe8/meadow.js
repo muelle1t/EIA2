@@ -28,21 +28,35 @@ var Aufgabe8_Bienen;
             fr.setRandomPosition();
             fr.drawRandomFlower();
         }
-        console.log(Aufgabe8_Bienen.nectarFlowers);
-        // Canvas Bild abspeichern
-        imgData = Aufgabe8_Bienen.crc2.getImageData(0, 0, canvas.width, canvas.height);
         //Blumenwiese
-        for (let i = 0; i < 10; i++) {
+        for (let i = 0; i < 3; i++) {
             let x = (Math.random() * (990 - 300)) + 300;
             let y = (Math.random() * (700 - 600)) + 600;
-            let f = new Aufgabe8_Bienen.Flower(x, y);
-            f.drawRandomFlower();
-            Aufgabe8_Bienen.nectarFlowers.push(f);
+            let d1 = new Aufgabe8_Bienen.DaisyBlue(x, y);
+            d1.drawDaisyBlue();
+            Aufgabe8_Bienen.nectarFlowers.push(d1);
+            let d2 = new Aufgabe8_Bienen.DaisyWhite(x + 40, y - 4);
+            d2.drawDaisyWhite();
+            Aufgabe8_Bienen.nectarFlowers.push(d2);
+            let t1 = new Aufgabe8_Bienen.TulipPurple(x + 20, y);
+            t1.drawTulipPurple();
+            Aufgabe8_Bienen.nectarFlowers.push(t1);
+            let t2 = new Aufgabe8_Bienen.TulipYellow(x - 30, y + 3);
+            t2.drawTulipYellow();
+            Aufgabe8_Bienen.nectarFlowers.push(t2);
         }
+        console.log("nectar Flowers", Aufgabe8_Bienen.nectarFlowers);
+        // Canvas Bild abspeichern
+        imgData = Aufgabe8_Bienen.crc2.getImageData(0, 0, canvas.width, canvas.height);
         for (let i = 0; i < n; i++) {
-            let b = new Aufgabe8_Bienen.Bees(250, 620, "hsl(" + Math.random() * 360 + ", 70%, 50%)");
-            Aufgabe8_Bienen.allBees[i] = b;
+            let hb = new Aufgabe8_Bienen.HoneyBee(250, 620, "hsl(" + Math.random() * 360 + ", 70%, 50%)");
+            hb.drawBee();
+            Aufgabe8_Bienen.allBees.push(hb);
+            let rb = new Aufgabe8_Bienen.RegularBee(250, 620, "hsl(" + Math.random() * 360 + ", 70%, 50%)");
+            rb.drawBee();
+            Aufgabe8_Bienen.allBees.push(rb);
         }
+        console.log("Bees", Aufgabe8_Bienen.allBees);
         window.setTimeout(animate, 40);
         //Neue Biene bei Klick oder Touch
         canvas.addEventListener("click", addNewBee);
@@ -50,8 +64,9 @@ var Aufgabe8_Bienen;
     }
     // Funtkion der neuen Biene 
     function addNewBee() {
-        let bee = new Aufgabe8_Bienen.Bees(250, 620, "hsl(" + Math.random() * 360 + ", 70%, 50%)");
-        Aufgabe8_Bienen.allBees.push(bee);
+        let b = new Aufgabe8_Bienen.HoneyBee(250, 620, "hsl(" + Math.random() * 360 + ", 70%, 50%)");
+        b.drawBee();
+        Aufgabe8_Bienen.allBees.push(b);
     }
     // Animation der Bienen
     function animate() {
@@ -59,17 +74,17 @@ var Aufgabe8_Bienen;
         //Zufälliges Flugverhalten der einzelnen Bienen
         for (let i = 0; i < Aufgabe8_Bienen.allBees.length; i++) {
             let bees = (Aufgabe8_Bienen.allBees[i]);
-            bees.update();
             //Bienen kommen am Canvas Rand auf der anderen Seite wieder rein
-            if (this.x < 0) {
-                this.x = 1000;
+            if (bees.x < 0) {
+                bees.x = 1000;
             }
-            if (this.y < 0) {
-                this.y = 700;
+            if (bees.y < 0) {
+                bees.y = 700;
             }
-            if (this.y > 700) {
-                this.y = 0;
+            if (bees.y > 700) {
+                bees.y = 0;
             }
+            bees.update();
         }
         window.setTimeout(animate, 40);
     }

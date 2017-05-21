@@ -47,30 +47,54 @@ namespace Aufgabe8_Bienen {
                       
             }
         
-        console.log(nectarFlowers);
-
-              
-         // Canvas Bild abspeichern
-        imgData = crc2.getImageData(0, 0, canvas.width, canvas.height);  
-        
+     
         
         //Blumenwiese
         
-        for (let i: number = 0; i < 10; i++) {
+        for (let i: number = 0; i < 3; i++) {
             let x: number = (Math.random() * (990 - 300)) + 300;
             let y: number = (Math.random() * (700 - 600)) + 600;
-            let f: Flower = new Flower(x, y);
-            f.drawRandomFlower();
-            nectarFlowers.push(f);
+            
+            let d1: DaisyBlue = new DaisyBlue(x, y);
+            d1.drawDaisyBlue();
+            nectarFlowers.push(d1);
+            
+            let d2: DaisyWhite = new DaisyWhite(x + 40, y - 4);
+            d2.drawDaisyWhite();
+            nectarFlowers.push(d2);
+            
+            let t1: TulipPurple = new TulipPurple(x + 20 , y);
+            t1.drawTulipPurple();
+            nectarFlowers.push(t1);
+            
+            let t2: TulipYellow = new TulipYellow(x - 30, y + 3);
+            t2.drawTulipYellow();
+            nectarFlowers.push(t2);
             }
         
+        console.log("nectar Flowers", nectarFlowers);
         
+          // Canvas Bild abspeichern
+        imgData = crc2.getImageData(0, 0, canvas.width, canvas.height);   
+        
+        
+
         
         for (let i: number = 0; i < n; i++) {
-            let b: Bees = new Bees(250, 620, "hsl(" + Math.random() * 360 + ", 70%, 50%)");
-            allBees[i] = b;
+            
+            let hb: HoneyBee = new HoneyBee(250, 620, "hsl(" + Math.random() * 360 + ", 70%, 50%)");
+            hb.drawBee();
+            allBees.push(hb);
+            
+            let rb: RegularBee = new RegularBee(250, 620, "hsl(" + Math.random() * 360 + ", 70%, 50%)");
+            rb.drawBee();
+            allBees.push(rb);
             
         }
+        
+        console.log("Bees", allBees);
+        
+        
         
         
         window.setTimeout(animate, 40);
@@ -82,8 +106,9 @@ namespace Aufgabe8_Bienen {
     }
     // Funtkion der neuen Biene 
     function addNewBee(): void {
-       let bee: Bees = new Bees(250, 620, "hsl(" + Math.random() * 360 + ", 70%, 50%)"); 
-       allBees.push(bee);
+       let b: HoneyBee = new HoneyBee(250, 620, "hsl(" + Math.random() * 360 + ", 70%, 50%)"); 
+       b.drawBee();
+       allBees.push(b);
       
     }
     
@@ -94,18 +119,20 @@ namespace Aufgabe8_Bienen {
         //Zufälliges Flugverhalten der einzelnen Bienen
         for (let i: number = 0; i < allBees.length; i++) {
             let bees: Bees = (allBees[i]);
-            bees.update();
+            
             
             //Bienen kommen am Canvas Rand auf der anderen Seite wieder rein
-            if (this.x < 0) {
-                this.x = 1000;
+            if (bees.x < 0) {
+                bees.x = 1000;
                 }
-            if (this.y < 0) {
-                this.y = 700;
+            if (bees.y < 0) {
+                bees.y = 700;
                 }
-            if (this.y > 700) {
-                this.y = 0;
+            if (bees.y > 700) {
+                bees.y = 0;
                 }
+            
+            bees.update();
                        
            }
         

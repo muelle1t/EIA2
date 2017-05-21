@@ -19,18 +19,25 @@ namespace Aufgabe8_Bienen {
         
         drawRandomFlower(): void {
             let flower: number = Math.floor((Math.random() * 4) + 0);
+            let x: number = (Math.random() * (990 - 300)) + 300;
+            let y: number = (Math.random() * (600 - 450)) + 450;
+            let d1: DaisyBlue = new DaisyBlue(x, y);
+            let d2: DaisyWhite = new DaisyWhite(x, y);
+            let t1: TulipPurple = new TulipPurple(x, y);
+            let t2: TulipYellow = new TulipYellow(x, y);
+            
             switch (flower) {
                 case 0:
-                    this.drawDaisyBlue();
+                    d1.drawDaisyBlue();
                     break;
                 case 1:
-                    this.drawTulipPurple();
+                     d2.drawDaisyWhite();
                     break;
                 case 2:
-                    this.drawDaisyWhite();
+                     t1.drawTulipPurple();
                     break;
                 case 3:
-                    this.drawTulipYellow();
+                    t2.drawTulipYellow();
                     break;
             }
 

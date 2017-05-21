@@ -11,18 +11,24 @@ var Aufgabe8_Bienen;
         }
         drawRandomFlower() {
             let flower = Math.floor((Math.random() * 4) + 0);
+            let x = (Math.random() * (990 - 300)) + 300;
+            let y = (Math.random() * (600 - 450)) + 450;
+            let d1 = new Aufgabe8_Bienen.DaisyBlue(x, y);
+            let d2 = new Aufgabe8_Bienen.DaisyWhite(x, y);
+            let t1 = new Aufgabe8_Bienen.TulipPurple(x, y);
+            let t2 = new Aufgabe8_Bienen.TulipYellow(x, y);
             switch (flower) {
                 case 0:
-                    this.drawDaisyBlue();
+                    d1.drawDaisyBlue();
                     break;
                 case 1:
-                    this.drawTulipPurple();
+                    d2.drawDaisyWhite();
                     break;
                 case 2:
-                    this.drawDaisyWhite();
+                    t1.drawTulipPurple();
                     break;
                 case 3:
-                    this.drawTulipYellow();
+                    t2.drawTulipYellow();
                     break;
             }
         }
