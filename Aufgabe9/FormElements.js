@@ -17,23 +17,28 @@ var Form;
         "Zitrone",
         "Nuss",
         "Sahnekirsch"];
+    let inputSorten = [];
     let varianten = ["Waffel",
         "Becher"];
+    let inputVarianten = [];
     let extras = ["Sahne",
         "Buntestreusel",
         "Schokostreusel",
         "Krokantstreusel",
         "Schokosoße",
         "Erdbeersoße"];
+    let inputExtras = [];
     let lieferOptionen = ["Express",
         "Premium",
         "Standard"];
+    let inputLieferOptionen = [];
     let kontakt = ["Name",
         "Nachname",
         "Straße + Hausnr.",
         "PLZ + Ort",
         "Telefonnummer",
         "E-mail"];
+    let inputKontakt = [];
     window.addEventListener("load", init);
     function init(_event) {
         console.log("Init");
@@ -60,7 +65,8 @@ var Form;
             wrapperDiv.appendChild(eissortenP);
             wrapperDiv.appendChild(eissortenInput);
             fieldSetSorten.appendChild(wrapperDiv);
-            console.log(sorten);
+            inputSorten.push(eissortenInput);
+            console.log(inputSorten);
         }
         /*Schleife für Varianten*/
         for (let i = 0; i < varianten.length; i++) {
@@ -122,14 +128,14 @@ var Form;
         /*Schleife für Kontaktdaten*/
         for (let i = 0; i < kontakt.length; i++) {
             let wrapperDiv = document.createElement("div");
-            let variantenP = document.createElement("p");
-            variantenP.textContent = kontakt[i];
-            let variantenInput = document.createElement("input");
-            variantenInput.type = "text";
-            variantenInput.id = kontakt[i];
-            variantenInput.placeholder = "hier eintippen";
-            wrapperDiv.appendChild(variantenP);
-            wrapperDiv.appendChild(variantenInput);
+            let kontaktDatenP = document.createElement("p");
+            kontaktDatenP.textContent = kontakt[i];
+            let kontaktDatenInput = document.createElement("input");
+            kontaktDatenInput.type = "text";
+            kontaktDatenInput.id = kontakt[i];
+            kontaktDatenInput.placeholder = "hier eintippen";
+            wrapperDiv.appendChild(kontaktDatenP);
+            wrapperDiv.appendChild(kontaktDatenInput);
             fieldSetKontakt.appendChild(wrapperDiv);
             console.log(varianten);
         }
@@ -147,6 +153,28 @@ var Form;
             wrapperDiv.appendChild(lieferOptionenInput);
             fieldSetLieferOptionen.appendChild(wrapperDiv);
             console.log(extras);
+        }
+        function handleChange(_event) {
+            document.getElementById("Bestellübersicht");
+            let sum = 0;
+            let target = _event.target;
+            for (let i = 0; i < inputSorten.length; i++) {
+                sum += parseFloat(inputSorten[i].value);
+                displayOrder();
+            }
+            function displayOrder() {
+                let table = document.createElement("table");
+                table.id = "Bestellübersicht";
+                for (let i = 0; i < inputSorten.length; i++) {
+                    if (parseFloat(inputSorten[i].value) != 0) {
+                        table.appendChild(document.createElement("tr"));
+                        table.lastChild.appendChild(document.createElement("td").appendChild(document.createTextNode(sorten[i])));
+                        table.lastChild.appendChild(document.createElement("td").appendChild(document.createTextNode(inputSorten[i].value + " x 1€")));
+                        table.lastChild.appendChild(document.createElement("td").appendChild(document.createTextNode("= " + inputSorten[i].value + ",00 €")));
+                    }
+                }
+                document.getElementById("output").appendChild(table);
+            }
         }
     }
 })(Form || (Form = {}));

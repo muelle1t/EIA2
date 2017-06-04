@@ -1,17 +1,29 @@
 html {
 	background-color: #fffde7;
+	
+}
+
+img {
+	width: 900px;
 }
 body {
 	
-	float: center;
+	margin-left: 10em;
 	width: 400px;
 }
 fieldset {
 	width: 400px;
-	background-color: #ffffff;
+	background-color: #e198b5;
 	
 }
 
-Übersicht {
-	float: right;
+#Übersicht {
+	margin-left: 40em;
+	float: left;
+}
+
+svg, figure, option {
+	display: inline;
+	margin: 10px;
+	padding: 0px;
 }
