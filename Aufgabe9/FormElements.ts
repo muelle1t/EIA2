@@ -26,6 +26,8 @@ namespace Form {
 
     let inputVarianten: HTMLInputElement[] = [];
 
+
+
     let extras: string[] = ["Sahne",
         "Buntestreusel",
         "Schokostreusel",
@@ -123,7 +125,7 @@ namespace Form {
             extrasInput.type = "radio";
             extrasInput.id = extras[i];
             extrasInput.className = "styleName";
-            extrasInput.value = "0";
+
 
             wrapperDiv.appendChild(extrasP);
             wrapperDiv.appendChild(extrasInput);
@@ -209,38 +211,60 @@ namespace Form {
 
         }
 
-        function handleChange(_event: Event): void {
-            document.getElementById("Bestellübersicht");
-
-            let sum: number = 0;
-            
-            let target: HTMLInputElement = <HTMLInputElement>_event.target;
-
+        //Funktion handleChange
+        function handleChange(): void {
+            let summe: number = 0;
+            let countSorten: number = 0;
+            //Kugelanzahl/ Sorte
+            //1 € pro Kugel: entsprechenden Wert der ausgewählten Menge addieren
             for (let i: number = 0; i < inputSorten.length; i++) {
-                sum += parseFloat(inputSorten[i].value);
-                
-                displayOrder();
+                summe += parseInt(inputSorten[i].value);
             }
+            //Toppinganzahl
+            for (let i: number = 0; i < inputExtras.length; i++) {
+                //prüfen, ob Topping ausgewählt ist --> 0,50 € addieren
+                if (inputExtras[i].checked) {
+                    summe += 0.5; }
+            }
+            displayTotalSum();
 
-            function displayOrder(): void {
-                let table: HTMLTableElement = document.createElement("table");
-                table.id = "Bestellübersicht";
-                for (let i: number = 0; i < inputSorten.length; i++) {
-                    if (parseFloat(inputSorten[i].value) != 0) {
-                        table.appendChild(document.createElement("tr"));
-                        table.lastChild.appendChild(document.createElement("td").appendChild(document.createTextNode(sorten[i])));
-                        table.lastChild.appendChild(document.createElement("td").appendChild(document.createTextNode(inputSorten[i].value + " x 1€")));
-                        table.lastChild.appendChild(document.createElement("td").appendChild(document.createTextNode("= " + inputSorten[i].value + ",00 €")));
-                    }
+
+
+        } //Ende Funktion handleChange
+
+
+        //Funktion: Darstellung Summe und BEstellung --> funktioniert nicht 
+        function displayTotalSum(): void {
+
+            let bestellsumme: HTMLElement = document.getElementById("Summe");
+
+            bestellsumme.innerText = " ";
+
+            //Sorten Preisermittlung
+            for (let i: number = 0; i < inputSorten.length; i++) {
+                if (parseInt(inputSorten[i].value) > 0) {
+                    bestellsumme.innerText += sorten[i] + "" + inputSorten[i] + "€";
                 }
-
-                document.getElementById("output").appendChild(table);
             }
 
+            //Topping gewählt: addiere 0,50 € zur Summe
+            for (let i: number = 0; i < inputExtras.length; i++) {
+                if (inputExtras[i].checked) {
+                    bestellsumme.innerText += extras[i] + "0,50" + "€";
+                }
+            }
 
+            //Variante gewählt: zeige Auswahl
+            for (let i: number = 0; i < inputVarianten.length; i++) {
+                if (inputVarianten[i].checked) {
+                    bestellsumme.innerText += varianten[i];
+                }
+            }
         }
-    }
+
 }
+
+    }
 
 
 

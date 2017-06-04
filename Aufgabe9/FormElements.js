@@ -91,7 +91,6 @@ var Form;
             extrasInput.type = "radio";
             extrasInput.id = extras[i];
             extrasInput.className = "styleName";
-            extrasInput.value = "0";
             wrapperDiv.appendChild(extrasP);
             wrapperDiv.appendChild(extrasInput);
             fieldSetExtras.appendChild(wrapperDiv);
@@ -154,26 +153,45 @@ var Form;
             fieldSetLieferOptionen.appendChild(wrapperDiv);
             console.log(extras);
         }
-        function handleChange(_event) {
-            document.getElementById("Bestellübersicht");
-            let sum = 0;
-            let target = _event.target;
+        //Funktion handleChange
+        function handleChange() {
+            let summe = 0;
+            let countSorten = 0;
+            //Kugelanzahl/ Sorte
+            //1 € pro Kugel: entsprechenden Wert der ausgewählten Menge addieren
             for (let i = 0; i < inputSorten.length; i++) {
-                sum += parseFloat(inputSorten[i].value);
-                displayOrder();
+                summe += parseInt(inputSorten[i].value);
             }
-            function displayOrder() {
-                let table = document.createElement("table");
-                table.id = "Bestellübersicht";
-                for (let i = 0; i < inputSorten.length; i++) {
-                    if (parseFloat(inputSorten[i].value) != 0) {
-                        table.appendChild(document.createElement("tr"));
-                        table.lastChild.appendChild(document.createElement("td").appendChild(document.createTextNode(sorten[i])));
-                        table.lastChild.appendChild(document.createElement("td").appendChild(document.createTextNode(inputSorten[i].value + " x 1€")));
-                        table.lastChild.appendChild(document.createElement("td").appendChild(document.createTextNode("= " + inputSorten[i].value + ",00 €")));
-                    }
+            //Toppinganzahl
+            for (let i = 0; i < inputExtras.length; i++) {
+                //prüfen, ob Topping ausgewählt ist --> 0,50 € addieren
+                if (inputExtras[i].checked) {
+                    summe += 0.5;
                 }
-                document.getElementById("output").appendChild(table);
+            }
+            displayTotalSum();
+        } //Ende Funktion handleChange
+        //Funktion: Darstellung Summe und BEstellung --> funktioniert nicht 
+        function displayTotalSum() {
+            let bestellsumme = document.getElementById("Summe");
+            bestellsumme.innerText = " ";
+            //Sorten Preisermittlung
+            for (let i = 0; i < inputSorten.length; i++) {
+                if (parseInt(inputSorten[i].value) > 0) {
+                    bestellsumme.innerText += sorten[i] + "" + inputSorten[i] + "€";
+                }
+            }
+            //Topping gewählt: addiere 0,50 € zur Summe
+            for (let i = 0; i < inputExtras.length; i++) {
+                if (inputExtras[i].checked) {
+                    bestellsumme.innerText += extras[i] + "0,50" + "€";
+                }
+            }
+            //Variante gewählt: zeige Auswahl
+            for (let i = 0; i < inputVarianten.length; i++) {
+                if (inputVarianten[i].checked) {
+                    bestellsumme.innerText += varianten[i];
+                }
             }
         }
     }

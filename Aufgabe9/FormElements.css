@@ -1,29 +1,73 @@
+@import url('https://fonts.googleapis.com/css?family=Bubbler+One');
+
 html {
 	background-color: #fffde7;
+	color: #FFFFFF;
+	font-family: 'Bubbler One', 'Arial';
+	font-weight: bold;
 	
 }
+
+
+
+h1{
+	color: #e169b8;
+	margin-left: 4%;
+	}
 
 img {
-	width: 900px;
+	height: 30%;
+	width: 65%;
+	
 }
+
 body {
+	margin-left: 10%;
 	
-	margin-left: 10em;
-	width: 400px;
 }
+
 fieldset {
-	width: 400px;
+	
+	width: 63%;
 	background-color: #e198b5;
+	 -webkit-column-count: 2; 
+    -moz-column-count: 2; 
+    column-count: 2;
+				
+}
+
+#Bestelung {
+	
+	float:left;
+}
+
+#Uebersicht {
+	
+	margin-top: 1%;
+	float: left;
 	
 }
 
-#Übersicht {
-	margin-left: 40em;
-	float: left;
+button{
+	
+	color:#e131b7;
+	background-color: #fffde7;
+	border-style: solid 2px;
+	
 }
 
-svg, figure, option {
-	display: inline;
-	margin: 10px;
-	padding: 0px;
+@media only screen and (max-width: 960px) {
+    
+   fieldset {
+	
+	-webkit-column-count: 1; 
+    -moz-column-count: 1; 
+    column-count: 1;
+				
 }
+
+
+
+
+
+
