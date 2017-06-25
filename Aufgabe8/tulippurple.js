@@ -26,4 +26,4 @@ var Aufgabe8_Bienen;
     }
     Aufgabe8_Bienen.TulipPurple = TulipPurple;
 })(Aufgabe8_Bienen || (Aufgabe8_Bienen = {}));
-//# sourceMappingURL=tulipPurple.js.map
+//# sourceMappingURL=tulippurple.js.map

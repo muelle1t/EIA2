@@ -39,4 +39,4 @@ var Aufgabe8_Bienen;
     }
     Aufgabe8_Bienen.DaisyWhite = DaisyWhite;
 })(Aufgabe8_Bienen || (Aufgabe8_Bienen = {}));
-//# sourceMappingURL=daisyWhite.js.map
+//# sourceMappingURL=daisywhite.js.map

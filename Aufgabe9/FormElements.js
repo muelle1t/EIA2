@@ -7,8 +7,7 @@ Datum: 02.06.2017
 Hiermit versichere ich, dass ich diesen Code selbst geschrieben habe.
 Er wurde nicht kopiert und auch nicht diktiert.
 
-Der Code entstand wurde in Zusammenarbeit mir Alisia Steiner und Ina Radzuweit*/
-//Eissorten ohne checkboxen -> die Auswahl der Anzahl mit ID der Sorte (z.B.: Vanille) versehen
+Der Code entstand in Zusammenarbeit mir Alisia Steiner und Ina Radzuweit*/
 var Form;
 (function (Form) {
     let sorten = ["Vanille",
@@ -17,33 +16,46 @@ var Form;
         "Zitrone",
         "Nuss",
         "Sahnekirsch"];
-    let inputSorten = [];
     let varianten = ["Waffel",
         "Becher"];
-    let inputVarianten = [];
     let extras = ["Sahne",
         "Buntestreusel",
         "Schokostreusel",
         "Krokantstreusel",
         "Schokosoße",
         "Erdbeersoße"];
-    let inputExtras = [];
     let lieferOptionen = ["Express",
         "Premium",
         "Standard"];
-    let inputLieferOptionen = [];
     let kontakt = ["Name",
         "Nachname",
         "Straße + Hausnr.",
         "PLZ + Ort",
         "Telefonnummer",
         "E-mail"];
+    let inputSorten = [];
+    let inputVarianten = [];
+    let inputExtras = [];
+    let inputLieferOptionen = [];
     let inputKontakt = [];
+    let fieldSetBestellung = document.getElementById("Bestellung");
+    let fieldSetVarianten = document.getElementById("Varianten");
+    let fieldSetSorten = document.getElementById("Sorten");
+    let fieldSetExtras = document.getElementById("Extras");
+    let fieldSetÜbersicht = document.getElementById("Uebersicht");
+    let kontaktdaten = document.getElementById("Kontakt");
+    let lieferoptionen = document.getElementById("lieferoptionen");
+    let sendeButton = document.getElementById("BestellButton");
     window.addEventListener("load", init);
     function init(_event) {
         console.log("Init");
         createFieldSetBestellung();
         createFieldSetÜbersicht();
+        sendeButton.addEventListener("click", bestellungPrüfen);
+        fieldSetSorten.addEventListener("change", change);
+        fieldSetVarianten.addEventListener("change", change);
+        fieldSetExtras.addEventListener("change", change);
+        lieferoptionen.addEventListener("change", change);
     }
     function createFieldSetBestellung() {
         let fieldSetBestellung = document.getElementById("Bestellung");
@@ -52,7 +64,6 @@ var Form;
         let fieldSetExtras = document.getElementById("Extras");
         /* Schleife für Sorten */
         for (let i = 0; i < sorten.length; i++) {
-            let wrapperDiv = document.createElement("div");
             let eissortenP = document.createElement("p");
             eissortenP.textContent = sorten[i];
             let eissortenInput = document.createElement("input");
@@ -62,24 +73,23 @@ var Form;
             eissortenInput.max = "5";
             eissortenInput.min = "0";
             eissortenInput.value = "0";
-            wrapperDiv.appendChild(eissortenP);
-            wrapperDiv.appendChild(eissortenInput);
-            fieldSetSorten.appendChild(wrapperDiv);
+            fieldSetSorten.appendChild(eissortenP);
+            fieldSetSorten.appendChild(eissortenInput);
             inputSorten.push(eissortenInput);
             console.log(inputSorten);
         }
         /*Schleife für Varianten*/
         for (let i = 0; i < varianten.length; i++) {
-            let wrapperDiv = document.createElement("div");
+            let buttonLabel = document.createElement("label");
             let variantenP = document.createElement("p");
             variantenP.textContent = varianten[i];
             let variantenInput = document.createElement("input");
             variantenInput.type = "radio";
             variantenInput.id = varianten[i];
             variantenInput.value = "0";
-            wrapperDiv.appendChild(variantenP);
-            wrapperDiv.appendChild(variantenInput);
-            fieldSetVarianten.appendChild(wrapperDiv);
+            buttonLabel.appendChild(variantenP);
+            buttonLabel.appendChild(variantenInput);
+            fieldSetVarianten.appendChild(buttonLabel);
             console.log(varianten);
         }
         /* Schleife für Extras */
@@ -98,32 +108,8 @@ var Form;
         }
     }
     function createFieldSetÜbersicht() {
-        let fieldSetÜbersicht = document.getElementById("Übersicht");
-        let fieldSetBestellübersicht = document.getElementById("Bestellübersicht");
         let fieldSetKontakt = document.getElementById("Kontakt");
         let fieldSetLieferOptionen = document.getElementById("Lieferoptionen");
-        /* Schleife für Bestellübersicht
-        for (let i: number = 0; i < sorten.length; i++) {
-            let wrapperDiv: HTMLDivElement = document.createElement("div");
-
-            let eissortenP: HTMLParagraphElement = document.createElement("p");
-            eissortenP.textContent = sorten[i];
-
-            let eissortenInput: HTMLInputElement = document.createElement("input");
-            eissortenInput.type = "text";
-            eissortenInput.id = sorten[i];
-            eissortenInput.className = "styleName";
-            eissortenInput.max = "5";
-            eissortenInput.min = "0";
-            eissortenInput.value = "0";
-
-            wrapperDiv.appendChild(eissortenP);
-            wrapperDiv.appendChild(eissortenInput);
-
-            fieldSetBestellübersicht.appendChild(wrapperDiv);
-            console.log(sorten);
-
-        }*/
         /*Schleife für Kontaktdaten*/
         for (let i = 0; i < kontakt.length; i++) {
             let wrapperDiv = document.createElement("div");
@@ -153,46 +139,68 @@ var Form;
             fieldSetLieferOptionen.appendChild(wrapperDiv);
             console.log(extras);
         }
-        //Funktion handleChange
-        function handleChange() {
-            let summe = 0;
-            let countSorten = 0;
-            //Kugelanzahl/ Sorte
-            //1 € pro Kugel: entsprechenden Wert der ausgewählten Menge addieren
-            for (let i = 0; i < inputSorten.length; i++) {
-                summe += parseInt(inputSorten[i].value);
+    }
+    /* Change Funktion */
+    function change() {
+        let bestellübersichtP = document.getElementById("BestellübersichtP");
+        bestellübersichtP.innerText = "";
+        for (let i = 0; i < inputSorten.length; i++) {
+            if (inputSorten[i].checked) {
+                bestellübersichtP.innerText += sorten[i] + " " + "\n";
             }
-            //Toppinganzahl
-            for (let i = 0; i < inputExtras.length; i++) {
-                //prüfen, ob Topping ausgewählt ist --> 0,50 € addieren
-                if (inputExtras[i].checked) {
-                    summe += 0.5;
-                }
+        }
+        for (let i = 0; i < inputVarianten.length; i++) {
+            if (parseInt(inputVarianten[i].value) > 0) {
+                bestellübersichtP.innerText += varianten[i] + " " + ": " + (parseInt(inputVarianten[i].value) * 1) + "\n";
             }
-            displayTotalSum();
-        } //Ende Funktion handleChange
-        //Funktion: Darstellung Summe und BEstellung --> funktioniert nicht 
-        function displayTotalSum() {
-            let bestellsumme = document.getElementById("Summe");
-            bestellsumme.innerText = " ";
-            //Sorten Preisermittlung
-            for (let i = 0; i < inputSorten.length; i++) {
-                if (parseInt(inputSorten[i].value) > 0) {
-                    bestellsumme.innerText += sorten[i] + "" + inputSorten[i] + "€";
-                }
+        }
+        for (let i = 0; i < inputExtras.length; i++) {
+            if (parseInt(inputExtras[i].value) > 0) {
+                bestellübersichtP.innerText += extras[i] + " " + "\n";
             }
-            //Topping gewählt: addiere 0,50 € zur Summe
-            for (let i = 0; i < inputExtras.length; i++) {
-                if (inputExtras[i].checked) {
-                    bestellsumme.innerText += extras[i] + "0,50" + "€";
-                }
-            }
-            //Variante gewählt: zeige Auswahl
-            for (let i = 0; i < inputVarianten.length; i++) {
-                if (inputVarianten[i].checked) {
-                    bestellsumme.innerText += varianten[i];
-                }
-            }
+        }
+        zeigeSumme();
+        console.log("Veränderung erkannt und bearbeitet");
+    }
+    /*Gesamtsumme anzeigen */
+    function zeigeSumme() {
+        let summeP = document.getElementById("Summe");
+        let summe = 0;
+        for (let i = 0; i < inputSorten.length; i++) {
+            summe += (parseInt(inputSorten[i].value) * 0.5);
+        }
+        for (let i = 0; i < inputVarianten.length; i++) {
+            summe += (parseInt(inputVarianten[i].value) * 1);
+        }
+        for (let i = 0; i < inputExtras.length; i++) {
+            summe += (parseInt(inputExtras[i].value) * 0.5);
+        }
+        if (inputLieferOptionen[1].checked) {
+            summe += 2;
+        }
+        summeP.innerText = summe.toString() + "€";
+        console.log(summe);
+    }
+    /* Prüfung der Input-Werte: Überprüfung von Postleitzahl, Telefonnummer, Name + sind Art, Versandart, Kugelgröße ausgewählt? */
+    function bestellungPrüfen() {
+        let name = document.getElementById("Name");
+        let vorname = document.getElementById("Vorname");
+        let straße = document.getElementById("Straße");
+        let hausnummer = document.getElementById("Hausnummer");
+        let postleitzahl = document.getElementById("Postleitzahl");
+        let ort = document.getElementById("Ort");
+        let telefonnummer = document.getElementById("Telefonnummer");
+        if (hausnummer.value.length > 3) {
+            alert("Bitte überprüfen Sie die Eingabe Ihrer Hausnummer.");
+        }
+        if (postleitzahl.value.length != 5) {
+            alert("Bitte überprüfen Sie die Eingabe Ihrer Postleitzahl.");
+        }
+        if (isNaN(Number(telefonnummer.value)) == true) {
+            alert("Bitte überprüfen Sie die Eingabe Ihrer Telefonnummer.");
+        }
+        else {
+            alert("Danke für Ihre Bestellung!");
         }
     }
 })(Form || (Form = {}));

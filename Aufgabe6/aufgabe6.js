@@ -136,7 +136,7 @@ var Aufgabe6_Bienen;
     function drawBee(_x, _y, _color) {
         crc2.beginPath();
         crc2.moveTo(_x, _y);
-        crc2.ellipse(_x, _y, 10, 5, 0, Math.PI * 2, 0);
+        //crc2.ellipse(_x, _y, 10, 5, 0, Math.PI * 2, 0);
         crc2.arc(_x - 5, _y, 5, 0, Math.PI * 2);
         crc2.fillStyle = _color;
         crc2.closePath();
@@ -180,8 +180,8 @@ var Aufgabe6_Bienen;
         //Flügel
         crc2.beginPath();
         crc2.moveTo(_x, _y);
-        crc2.ellipse(_x + 4, _y - 8, 3, 5, 45 * Math.PI/180, Math.PI * 2, 0);
-        crc2.ellipse(_x + 2, _y - 8, 3, 5, 45 * Math.PI/-180, Math.PI * 2, 0);
+        //crc2.ellipse(_x + 4, _y - 8, 3, 5, 45 * Math.PI/180, Math.PI * 2, 0);
+        //crc2.ellipse(_x + 2, _y - 8, 3, 5, 45 * Math.PI/-180, Math.PI * 2, 0);
         crc2.fillStyle = "#CEF6F5";
         crc2.closePath();
         crc2.fill();

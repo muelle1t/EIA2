@@ -7,9 +7,9 @@ Datum: 02.06.2017
 Hiermit versichere ich, dass ich diesen Code selbst geschrieben habe. 
 Er wurde nicht kopiert und auch nicht diktiert. 
 
-Der Code entstand wurde in Zusammenarbeit mir Alisia Steiner und Ina Radzuweit*/
+Der Code entstand in Zusammenarbeit mir Alisia Steiner und Ina Radzuweit*/
 
-//Eissorten ohne checkboxen -> die Auswahl der Anzahl mit ID der Sorte (z.B.: Vanille) versehen
+
 
 namespace Form {
     let sorten: string[] = ["Vanille",
@@ -19,12 +19,12 @@ namespace Form {
         "Nuss",
         "Sahnekirsch"];
 
-    let inputSorten: HTMLInputElement[] = [];
+
 
     let varianten: string[] = ["Waffel",
         "Becher"];
 
-    let inputVarianten: HTMLInputElement[] = [];
+
 
 
 
@@ -35,13 +35,13 @@ namespace Form {
         "Schokosoße",
         "Erdbeersoße"];
 
-    let inputExtras: HTMLInputElement[] = [];
+
 
     let lieferOptionen: string[] = ["Express",
         "Premium",
         "Standard"];
 
-    let inputLieferOptionen: HTMLInputElement[] = [];
+
 
     let kontakt: string[] = ["Name",
         "Nachname",
@@ -49,7 +49,22 @@ namespace Form {
         "PLZ + Ort",
         "Telefonnummer",
         "E-mail"];
+
+
+    let inputSorten: HTMLInputElement[] = [];
+    let inputVarianten: HTMLInputElement[] = [];
+    let inputExtras: HTMLInputElement[] = [];
+    let inputLieferOptionen: HTMLInputElement[] = [];
     let inputKontakt: HTMLInputElement[] = [];
+
+    let fieldSetBestellung: HTMLFieldSetElement = <HTMLFieldSetElement>document.getElementById("Bestellung");
+    let fieldSetVarianten: HTMLFieldSetElement = <HTMLFieldSetElement>document.getElementById("Varianten");
+    let fieldSetSorten: HTMLFieldSetElement = <HTMLFieldSetElement>document.getElementById("Sorten");
+    let fieldSetExtras: HTMLFieldSetElement = <HTMLFieldSetElement>document.getElementById("Extras");
+    let fieldSetÜbersicht: HTMLFieldSetElement = <HTMLFieldSetElement>document.getElementById("Uebersicht");
+    let kontaktdaten: HTMLFieldSetElement = <HTMLFieldSetElement>document.getElementById("Kontakt");
+    let lieferoptionen: HTMLFieldSetElement = <HTMLFieldSetElement>document.getElementById("lieferoptionen");
+    let sendeButton: HTMLElement = document.getElementById("BestellButton");
 
 
     window.addEventListener("load", init);
@@ -58,7 +73,15 @@ namespace Form {
         console.log("Init");
         createFieldSetBestellung();
         createFieldSetÜbersicht();
+
+        sendeButton.addEventListener("click", bestellungPrüfen);
+        fieldSetSorten.addEventListener("change", change);
+        fieldSetVarianten.addEventListener("change", change);
+        fieldSetExtras.addEventListener("change", change);
+        lieferoptionen.addEventListener("change", change);
     }
+
+
 
     function createFieldSetBestellung(): void {
         let fieldSetBestellung: HTMLFieldSetElement = <HTMLFieldSetElement>document.getElementById("Bestellung");
@@ -70,7 +93,7 @@ namespace Form {
 
         /* Schleife für Sorten */
         for (let i: number = 0; i < sorten.length; i++) {
-            let wrapperDiv: HTMLDivElement = document.createElement("div");
+            
 
             let eissortenP: HTMLParagraphElement = document.createElement("p");
             eissortenP.textContent = sorten[i];
@@ -83,10 +106,10 @@ namespace Form {
             eissortenInput.min = "0";
             eissortenInput.value = "0";
 
-            wrapperDiv.appendChild(eissortenP);
-            wrapperDiv.appendChild(eissortenInput);
+            fieldSetSorten.appendChild(eissortenP);
+            fieldSetSorten.appendChild(eissortenInput);
 
-            fieldSetSorten.appendChild(wrapperDiv);
+            
             inputSorten.push(eissortenInput);
             console.log(inputSorten);
 
@@ -94,8 +117,9 @@ namespace Form {
 
         /*Schleife für Varianten*/
         for (let i: number = 0; i < varianten.length; i++) {
+            let buttonLabel: HTMLLabelElement = document.createElement("label");
 
-            let wrapperDiv: HTMLDivElement = document.createElement("div");
+
 
             let variantenP: HTMLParagraphElement = document.createElement("p");
             variantenP.textContent = varianten[i];
@@ -106,10 +130,10 @@ namespace Form {
             variantenInput.value = "0";
 
 
-            wrapperDiv.appendChild(variantenP);
-            wrapperDiv.appendChild(variantenInput);
+            buttonLabel.appendChild(variantenP);
+            buttonLabel.appendChild(variantenInput);
 
-            fieldSetVarianten.appendChild(wrapperDiv);
+            fieldSetVarianten.appendChild(buttonLabel);
             console.log(varianten);
         }
 
@@ -135,36 +159,13 @@ namespace Form {
 
         }
     }
+
     function createFieldSetÜbersicht(): void {
-        let fieldSetÜbersicht: HTMLFieldSetElement = <HTMLFieldSetElement>document.getElementById("Übersicht");
-        let fieldSetBestellübersicht: HTMLFieldSetElement = <HTMLFieldSetElement>document.getElementById("Bestellübersicht");
+
         let fieldSetKontakt: HTMLFieldSetElement = <HTMLFieldSetElement>document.getElementById("Kontakt");
         let fieldSetLieferOptionen: HTMLFieldSetElement = <HTMLFieldSetElement>document.getElementById("Lieferoptionen");
 
 
-
-        /* Schleife für Bestellübersicht 
-        for (let i: number = 0; i < sorten.length; i++) {
-            let wrapperDiv: HTMLDivElement = document.createElement("div");
-
-            let eissortenP: HTMLParagraphElement = document.createElement("p");
-            eissortenP.textContent = sorten[i];
-
-            let eissortenInput: HTMLInputElement = document.createElement("input");
-            eissortenInput.type = "text";
-            eissortenInput.id = sorten[i];
-            eissortenInput.className = "styleName";
-            eissortenInput.max = "5";
-            eissortenInput.min = "0";
-            eissortenInput.value = "0";
-
-            wrapperDiv.appendChild(eissortenP);
-            wrapperDiv.appendChild(eissortenInput);
-
-            fieldSetBestellübersicht.appendChild(wrapperDiv);
-            console.log(sorten);
-
-        }*/
 
         /*Schleife für Kontaktdaten*/
         for (let i: number = 0; i < kontakt.length; i++) {
@@ -210,61 +211,105 @@ namespace Form {
             console.log(extras);
 
         }
+    }
 
-        //Funktion handleChange
-        function handleChange(): void {
-            let summe: number = 0;
-            let countSorten: number = 0;
-            //Kugelanzahl/ Sorte
-            //1 € pro Kugel: entsprechenden Wert der ausgewählten Menge addieren
-            for (let i: number = 0; i < inputSorten.length; i++) {
-                summe += parseInt(inputSorten[i].value);
-            }
-            //Toppinganzahl
-            for (let i: number = 0; i < inputExtras.length; i++) {
-                //prüfen, ob Topping ausgewählt ist --> 0,50 € addieren
-                if (inputExtras[i].checked) {
-                    summe += 0.5; }
-            }
-            displayTotalSum();
+    /* Change Funktion */
+    function change(): void {
 
 
+        let bestellübersichtP: HTMLElement = document.getElementById("BestellübersichtP");
+        bestellübersichtP.innerText = "";
 
-        } //Ende Funktion handleChange
-
-
-        //Funktion: Darstellung Summe und BEstellung --> funktioniert nicht 
-        function displayTotalSum(): void {
-
-            let bestellsumme: HTMLElement = document.getElementById("Summe");
-
-            bestellsumme.innerText = " ";
-
-            //Sorten Preisermittlung
-            for (let i: number = 0; i < inputSorten.length; i++) {
-                if (parseInt(inputSorten[i].value) > 0) {
-                    bestellsumme.innerText += sorten[i] + "" + inputSorten[i] + "€";
-                }
+        for (let i: number = 0; i < inputSorten.length; i++) {
+            if (inputSorten[i].checked) {
+                bestellübersichtP.innerText += sorten[i] + " " + "\n";
             }
 
-            //Topping gewählt: addiere 0,50 € zur Summe
-            for (let i: number = 0; i < inputExtras.length; i++) {
-                if (inputExtras[i].checked) {
-                    bestellsumme.innerText += extras[i] + "0,50" + "€";
-                }
-            }
+        }
 
-            //Variante gewählt: zeige Auswahl
-            for (let i: number = 0; i < inputVarianten.length; i++) {
-                if (inputVarianten[i].checked) {
-                    bestellsumme.innerText += varianten[i];
-                }
+        for (let i: number = 0; i < inputVarianten.length; i++) {
+            if (parseInt(inputVarianten[i].value) > 0) {
+                bestellübersichtP.innerText += varianten[i] + " " + ": " + (parseInt(inputVarianten[i].value) * 1) + "\n";
             }
         }
 
-}
+        for (let i: number = 0; i < inputExtras.length; i++) {
+            if (parseInt(inputExtras[i].value) > 0) {
+                bestellübersichtP.innerText += extras[i] + " " + "\n";
+            }
+        }
+
+
+        zeigeSumme();
+
+        console.log("Veränderung erkannt und bearbeitet");
+    }
+
+    /*Gesamtsumme anzeigen */
+
+    function zeigeSumme(): void {
+
+        let summeP: HTMLElement = document.getElementById("Summe");
+
+        let summe: number = 0;
+
+        for (let i: number = 0; i < inputSorten.length; i++) {
+            summe += (parseInt(inputSorten[i].value) * 0.5);
+        }
+        for (let i: number = 0; i < inputVarianten.length; i++) {
+            summe += (parseInt(inputVarianten[i].value) * 1);
+        }
+
+        for (let i: number = 0; i < inputExtras.length; i++) {
+            summe += (parseInt(inputExtras[i].value) * 0.5);
+        }
+
+        if (inputLieferOptionen[1].checked) {
+            summe += 2;
+        }
+
+        summeP.innerText = summe.toString() + "€";
+        console.log(summe);
 
     }
+
+
+    /* Prüfung der Input-Werte: Überprüfung von Postleitzahl, Telefonnummer, Name + sind Art, Versandart, Kugelgröße ausgewählt? */
+
+    function bestellungPrüfen(): void {
+
+        let name: HTMLInputElement = <HTMLInputElement>document.getElementById("Name");
+        let vorname: HTMLInputElement = <HTMLInputElement>document.getElementById("Vorname");
+        let straße: HTMLInputElement = <HTMLInputElement>document.getElementById("Straße");
+        let hausnummer: HTMLInputElement = <HTMLInputElement>document.getElementById("Hausnummer");
+        let postleitzahl: HTMLInputElement = <HTMLInputElement>document.getElementById("Postleitzahl");
+        let ort: HTMLInputElement = <HTMLInputElement>document.getElementById("Ort");
+        let telefonnummer: HTMLInputElement = <HTMLInputElement>document.getElementById("Telefonnummer");
+
+
+        if (hausnummer.value.length > 3) {
+            alert("Bitte überprüfen Sie die Eingabe Ihrer Hausnummer.");
+        }
+
+        if (postleitzahl.value.length != 5) {
+            alert("Bitte überprüfen Sie die Eingabe Ihrer Postleitzahl.");
+        }
+
+        if (isNaN(Number(telefonnummer.value)) == true) {
+            alert("Bitte überprüfen Sie die Eingabe Ihrer Telefonnummer.");
+        }
+        else {
+            alert("Danke für Ihre Bestellung!");
+        }
+
+
+
+
+
+    }
+
+
+}
 
 
 
