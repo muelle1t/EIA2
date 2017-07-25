@@ -31,7 +31,7 @@ var Aquarium;
             Aquarium.crc2.beginPath();
             Aquarium.crc2.fillStyle = this.color;
             //crc2.arc(_x + 7, _y, 20, 0, 2 * Math.PI);
-            //crc2.ellipse(this.x + 5, this.y, 20, 15, 0, Math.PI * 2, 0);
+            Aquarium.crc2.ellipse(this.x + 5, this.y, 20, 15, 0, Math.PI * 2, 0);
             Aquarium.crc2.closePath();
             Aquarium.crc2.fill();
             Aquarium.crc2.stroke();
