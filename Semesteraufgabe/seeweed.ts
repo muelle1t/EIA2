@@ -1,4 +1,4 @@
-namespace Semesteraufgabe {
+namespace Aquarium {
     export class Seeweed {
         x: number;
         y: number;

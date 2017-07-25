@@ -1,19 +1,30 @@
-namespace Semesteraufgabe {
-    export class RegularFish extends Fish {
+namespace Aquarium {
+    export class RegularFish {
         x: number;
         y: number;
+        radius: number = 10;
+        winkel: number = 0;
+        p: number;
+        width: number;
+        height: number;
         color: string;
+        direction: number;
         
         
-        constructor(_x: number, _y: number) {
-            super(_x, _y);
+        constructor(_x: number, _y: number, _color: string) {
+            this.x = _x;
+            this.y = _y;
+            this.width = 50;
+            this.height = 52;
             this.setRandomStyle();
-            this.setRandomFirstPosition();
+            this.color = _color;
+            this.setRandomDirection();
+            
             }
         
         update(): void {
             this.drawRegularFish();
-            this.setRandomFirstPosition();
+            
             this.move();
             }
         
@@ -59,32 +70,34 @@ namespace Semesteraufgabe {
 
     }
 move(): void {
-            this.x += Math.random() * 5 - 2;
-            this.y += Math.random() * 9 - 5;
+            this.x += Math.random() * 4 - 2;
+            this.y += Math.random() * 4 - 2;
+    
            
-                        
-            
-            if (this.x < 0) {
-                this.x = 1000;
-                }
-            if (this.y < 0) {
-                this.y = 700;
-                }
-            if (this.y > 700) {
-                this.y = 0;
-                }
-            }
+             }
         
 setRandomStyle(): void {
             this.color = "hsl(" + Math.random() * 360 + ", 70%, 50%)";
             }
-    
-setRandomFirstPosition(): void {
-           this.x += Math.random() * 10;
-           this.y += Math.random() * 5;     
-}
         
+setRandomDirection(): void {
+            this.direction = Math.round((Math.random() * 50) + 1000);
+            }
+    
+
+        
+        // Teil der Boundingbox, hier wird die "Box" definiert, in die geklickt werden kann
+        hit(x: number, y: number): boolean {
+            //verschieben von der hitbox ins zentrum
+            let middleXAx: number = this.x - this.width / 2;
+            let middleYAx: number = this.y - this.height / 2;
+            let hit: boolean = false;
+            if (x <= middleXAx + this.width && x >= middleXAx &&
+                y <= middleYAx + this.height && y >= middleYAx) {
+                hit = true;
+            }
+            return hit;
         }
+
     }
-
-
+}
