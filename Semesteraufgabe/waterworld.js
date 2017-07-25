@@ -50,7 +50,6 @@ var Aquarium;
             let x = Math.random() * 900;
             let y = Math.random() * 450;
             let _color;
-            //            let p: number = Math.round((Math.random()             
             let rf = new Aquarium.RegularFish(x, y, _color);
             rf.setRandomStyle();
             rf.drawRegularFish();

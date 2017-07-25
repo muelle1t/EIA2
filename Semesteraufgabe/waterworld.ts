@@ -92,7 +92,7 @@ namespace Aquarium {
             let x: number = Math.random() * 900;
             let y: number = Math.random() * 450;
             let _color: string;
-            //            let p: number = Math.round((Math.random()             
+                         
             let rf: RegularFish = new RegularFish(x, y, _color);
             rf.setRandomStyle();
             rf.drawRegularFish();
