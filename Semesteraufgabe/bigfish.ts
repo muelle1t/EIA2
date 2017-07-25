@@ -4,6 +4,14 @@ namespace Aquarium {
 
         x: number;
         y: number;
+        xTarget: number;
+        yTarget: number;
+        speed: number;
+        targetRegularFish: RegularFish;
+        xDirection: number;
+        yDirection: number;
+        active: boolean;
+        eatenFish: number = 0;
 
 
 
@@ -12,25 +20,46 @@ namespace Aquarium {
 
             this.x = _x;
             this.y = _y;
+            this.speed = 5;
+            this.setRandomTargetPosition();
+            this.active = true;
 
+        }
 
+        update(): void {
+            if (this.active == true) {
+                this.setRandomTargetPosition();
+                this.move(); //bewegt sich
+                //this.eatRegularFish(); 
+            }
+            this.drawBigFish(); // zeichnet Bösen Fish
+        }
 
-
-
+        stop(): void {
+            this.active = false;
 
         }
 
 
+        // Ein zufälliges Ziel wird aus dem Array bestimmt
+        setRandomTargetPosition(): void {
 
+            if (allFish.length == 0) {
+                this.stop();
+            }
+            else {
 
+                let n: number = Math.floor(Math.random() * (allFish.length - 1));
+                
+                //allFish.shift();
+                this.targetRegularFish = allFish[n];
+                
+                this.xTarget = allFish[n].x;
+                this.yTarget = allFish[n].y;
 
+                
+            }
 
-        update(): void {
-
-            this.move(); //bewegt sich
-
-
-            this.drawBigFish(); // zeichnet monster
         }
 
         drawBigFish(): void {
@@ -61,7 +90,7 @@ namespace Aquarium {
             crc2.arc(this.x + 20, this.y - 7, 2, 0, 2 * Math.PI);
             crc2.closePath();
             crc2.fill();
-            
+
             //Augenbraue
             crc2.beginPath();
             crc2.fillStyle = "#000000";
@@ -86,16 +115,52 @@ namespace Aquarium {
 
         }
 
+eatRegularFish(): void {
 
+            //ankommen am Ziel durch Berechnung der Differenz der aktuellen Position und der Position des Sweets (maxDistance= kleiner Puffer)
+            let maxDistance: number = 10;
+            let xDiff: number = this.xTarget - this.x;
+            let yDiff: number = this.yTarget - this.y;
 
-        move(): void {
+            if (Math.abs(xDiff) <= maxDistance && Math.abs(yDiff) <= maxDistance) {
+                // fressen               
+                allFish.splice(allFish.indexOf(this.targetRegularFish), 1);
+                // neues Ziel
+                this.setRandomTargetPosition();
 
-            this.x += Math.random() * 4 - 2;
-            this.y += Math.random() * 4 - 2;
+                this.eatenFish += 1;
+            }
+            // nach 5 gefressenen Fischen ist Spiel vorbei
+            if (this.eatenFish == 5) {
+
+                this.stop();
+                alert("Game over! Please Start a New Game!");
+            }
+        }
+        
+        // dem Monster wird mittgeteilt, ob sein Ziel schon vor dem fressen vernichtet wurde, falls ja, neues Ziel
+        // Aufruf bei jedem klick
+        fishLost(_i: RegularFish): void {
+            if (_i == this.targetRegularFish) {
+                this.setRandomTargetPosition();
+            }
+        }
+
+       move(): void {
+
+            let xDiff: number = this.xTarget - this.x;
+            let yDiff: number = this.yTarget - this.y;
+            if (Math.abs(xDiff) < 0.5 && Math.abs(yDiff) < 0.5)
+                this.setRandomTargetPosition();
+            else {
+                this.x += xDiff * this.speed;
+                this.y += yDiff * this.speed;
         }
 
 
-    }
 
+
+    }
+}
 
 }

@@ -78,7 +78,9 @@ namespace Aquarium {
         
         placeRegularFish();
         
-        drawBigFish();       
+        drawBigFish(); 
+        
+        window.setTimeout(animatefish, 100);
        
 }
     
@@ -88,21 +90,27 @@ function placeRegularFish(): void {
         for (let i: number = 0; i < n; i++) {
             let x: number = Math.random() * 900;
             let y: number = Math.random() * 450;
+            let _color: string;
 //            let p: number = Math.round((Math.random() * 3) + 0);
             
-            let rf: RegularFish = new RegularFish(x, y, "hsl(" + Math.random() * 360 + ", 70%, 50%)");
+            let rf: RegularFish = new RegularFish(x, y, _color);
+            rf.setRandomStyle();
             rf.drawRegularFish();
             rf.move();
             rf.setRandomDirection();
             allFish.push(rf);
+            
                     
             }
+    
+              
         window.setTimeout(animatefish, 100);
         }
     
 function drawBigFish(): void {
         let bady: BigFish = new BigFish(300, 100);
-        bady.drawBigFish();
+        
+        bady.update();
 
     }
 
@@ -114,29 +122,16 @@ function animatefish(): void {
         for (let i: number = 0; i < allFish.length; i++) {
             let fish: RegularFish = (allFish[i]);
             
-            allFish[i].update();
-                      
-                                              
-           }
-        
-        window.setTimeout(animatefish, 100);
-    }
-    
-function animateBady(): void {
-        crc2.putImageData(imgData, 0, 0); // generieren des abgespeicherten Bildes
-        
-        //Schwimmverhalten regulärer Fische
-        for (let i: number = 0; i < 2; i++) {
-            let fish: RegularFish = (allFish[i]);
             
             allFish[i].update();
                       
-                                              
+                                            
            }
-        
-        window.setTimeout(animateBady, 100);
+        drawBigFish(); 
+     
+        window.setTimeout(animatefish, 100);
     }
-
+    
 
 
 

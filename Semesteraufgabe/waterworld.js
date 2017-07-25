@@ -43,13 +43,16 @@ var Aquarium;
         imgData = Aquarium.crc2.getImageData(0, 0, canvas.width, canvas.height);
         placeRegularFish();
         drawBigFish();
+        window.setTimeout(animatefish, 100);
     }
     function placeRegularFish() {
         for (let i = 0; i < n; i++) {
             let x = Math.random() * 900;
             let y = Math.random() * 450;
+            let _color;
             //            let p: number = Math.round((Math.random() * 3) + 0);
-            let rf = new Aquarium.RegularFish(x, y, "hsl(" + Math.random() * 360 + ", 70%, 50%)");
+            let rf = new Aquarium.RegularFish(x, y, _color);
+            rf.setRandomStyle();
             rf.drawRegularFish();
             rf.move();
             rf.setRandomDirection();
@@ -59,7 +62,7 @@ var Aquarium;
     }
     function drawBigFish() {
         let bady = new Aquarium.BigFish(300, 100);
-        bady.drawBigFish();
+        bady.update();
     }
     function animatefish() {
         Aquarium.crc2.putImageData(imgData, 0, 0); // generieren des abgespeicherten Bildes
@@ -68,16 +71,8 @@ var Aquarium;
             let fish = (Aquarium.allFish[i]);
             Aquarium.allFish[i].update();
         }
+        drawBigFish();
         window.setTimeout(animatefish, 100);
-    }
-    function animateBady() {
-        Aquarium.crc2.putImageData(imgData, 0, 0); // generieren des abgespeicherten Bildes
-        //Schwimmverhalten regulärer Fische
-        for (let i = 0; i < 2; i++) {
-            let fish = (Aquarium.allFish[i]);
-            Aquarium.allFish[i].update();
-        }
-        window.setTimeout(animateBady, 100);
     }
     function drawRock(_x, _y) {
         Aquarium.crc2.beginPath();
