@@ -20,17 +20,18 @@ namespace Aquarium {
 
             this.x = _x;
             this.y = _y;
-            this.speed = 3;
-            this.setStartPosition();
+            this.speed = 2;
+            //this.setStartPosition();
             //this.setRandomTargetPosition();
 
         }
         
 update(): void {
-                this.move(); //bewegt sich
-                this.setStartPosition();
-                //this.setRandomTargetPosition();
                 this.drawBigFish(); // zeichnet Bösen Fish
+                this.move(); //bewegt sich
+                //this.setStartPosition();
+                this.setRandomTargetPosition();
+                
                 
                 //this.eatRegularFish(); 
             
@@ -46,24 +47,31 @@ update(): void {
         
         
         // Ein zufälliges Ziel wird aus dem Array bestimmt
-//        setRandomTargetPosition(): void {
-//
-//
-//                let n: number = Math.floor(Math.random() * (allFish.length - 1));
-//                
-//                //allFish.shift();
-//                this.targetRegularFish = allFish[n];
-//                
-//                this.xTarget = allFish[n].x;
-//                this.yTarget = allFish[n].y;
-//
-//        }
-  move(): void {
+        setRandomTargetPosition(): void {
 
-            this.x += Math.random() * 4 - 2;
-            this.y = 400;
+
+                let n: number = Math.floor(Math.random() * (allFish.length - 1));
+                
+                //allFish.shift();
+                this.targetRegularFish = allFish[n];
+                
+                this.xTarget = allFish[n].x;
+                this.yTarget = allFish[n].y;
+
+        }
         
-}
+  move(): void {
+            let xDiff: number = this.xTarget - this.x;
+            let yDiff: number = this.yTarget - this.y;
+      
+            if (Math.abs(xDiff) < 0.5 && Math.abs(yDiff) < 0.5)
+                this.setRandomTargetPosition();
+            else {
+                this.x += xDiff * this.speed;
+                this.y += yDiff * this.speed;
+            }
+        }
+        
 drawBigFish(): void {
             //Flosse hinten
             crc2.beginPath();
