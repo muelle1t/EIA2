@@ -14,6 +14,7 @@ var Aquarium;
     Aquarium.allFish = [];
     let canvas;
     canvas = document.getElementsByTagName("canvas")[0];
+    var gameEnd = false;
     function init(_event) {
         let canvas;
         canvas = document.getElementsByTagName("canvas")[0];
@@ -42,15 +43,14 @@ var Aquarium;
         // Canvas Bild abspeichern
         imgData = Aquarium.crc2.getImageData(0, 0, canvas.width, canvas.height);
         placeRegularFish();
-        drawBigFish();
-        window.setTimeout(animatefish, 100);
+        updateBigFish();
     }
     function placeRegularFish() {
         for (let i = 0; i < n; i++) {
             let x = Math.random() * 900;
             let y = Math.random() * 450;
             let _color;
-            //            let p: number = Math.round((Math.random() * 3) + 0);
+            //            let p: number = Math.round((Math.random()             
             let rf = new Aquarium.RegularFish(x, y, _color);
             rf.setRandomStyle();
             rf.drawRegularFish();
@@ -60,9 +60,12 @@ var Aquarium;
         }
         window.setTimeout(animatefish, 100);
     }
-    function drawBigFish() {
+    function updateBigFish() {
         let bady = new Aquarium.BigFish(300, 100);
-        bady.update();
+        if (!gameEnd) {
+            bady.update();
+            window.setTimeout(updateBigFish, 100);
+        }
     }
     function animatefish() {
         Aquarium.crc2.putImageData(imgData, 0, 0); // generieren des abgespeicherten Bildes
@@ -71,7 +74,6 @@ var Aquarium;
             let fish = (Aquarium.allFish[i]);
             Aquarium.allFish[i].update();
         }
-        drawBigFish();
         window.setTimeout(animatefish, 100);
     }
     function drawRock(_x, _y) {

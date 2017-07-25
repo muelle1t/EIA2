@@ -17,13 +17,14 @@ namespace Aquarium {
     let n: number = 15;
     export let allFish: RegularFish[] = [];
     //let allFood: Food[] = [];
-    
+
     export let bady: BigFish;
 
-     let canvas: HTMLCanvasElement;
-        canvas = document.getElementsByTagName("canvas")[0];
-        
-     
+    let canvas: HTMLCanvasElement;
+    canvas = document.getElementsByTagName("canvas")[0];
+
+    var gameEnd: boolean = false;
+
 
 
 
@@ -70,71 +71,75 @@ namespace Aquarium {
 
         drawWater(0, 0);
 
-        
+
         // Canvas Bild abspeichern
         imgData = crc2.getImageData(0, 0, canvas.width, canvas.height);
-        
-       
-        
+
+
+
         placeRegularFish();
-        
-        drawBigFish(); 
-        
-        window.setTimeout(animatefish, 100);
-       
-}
-    
-function placeRegularFish(): void {
-       
+
+        updateBigFish();
+
+
+
+    }
+
+    function placeRegularFish(): void {
+
 
         for (let i: number = 0; i < n; i++) {
             let x: number = Math.random() * 900;
             let y: number = Math.random() * 450;
             let _color: string;
-//            let p: number = Math.round((Math.random() * 3) + 0);
-            
+            //            let p: number = Math.round((Math.random()             
             let rf: RegularFish = new RegularFish(x, y, _color);
             rf.setRandomStyle();
             rf.drawRegularFish();
             rf.move();
             rf.setRandomDirection();
             allFish.push(rf);
-            
-                    
-            }
-    
-              
-        window.setTimeout(animatefish, 100);
+
+
         }
+
+
+        window.setTimeout(animatefish, 100);
+    }
+
     
-function drawBigFish(): void {
+    function updateBigFish(): void {
         let bady: BigFish = new BigFish(300, 100);
+
+        if (!gameEnd) {
+                bady.update();
+                window.setTimeout(updateBigFish, 100);
+            }
+
         
-        bady.update();
 
     }
 
 
-function animatefish(): void {
+    function animatefish(): void {
         crc2.putImageData(imgData, 0, 0); // generieren des abgespeicherten Bildes
         
+               
         //Schwimmverhalten regulärer Fische
         for (let i: number = 0; i < allFish.length; i++) {
             let fish: RegularFish = (allFish[i]);
-            
-            
+
+
             allFish[i].update();
-                      
-                                            
-           }
-        drawBigFish(); 
-     
+
+
+        }
+        
+                
         window.setTimeout(animatefish, 100);
     }
-    
 
-
-
+   
     function drawRock(_x: number, _y: number): void {
         crc2.beginPath();
         crc2.strokeStyle = "#8c8c8c";
@@ -240,7 +245,7 @@ function animatefish(): void {
 
         crc2.beginPath();
         crc2.moveTo(_x, _y - outerRadius);
-        
+
         for (var i: number = 0; i < spikes; i++) {
             x = _x + Math.cos(rot) * outerRadius;
             y = _y + Math.sin(rot) * outerRadius;
@@ -258,7 +263,7 @@ function animatefish(): void {
         crc2.fill();
     }
 
-    
+
 
     function drawWater(_x: number, _y: number): void {
         crc2.fillStyle = "rgb(179, 179, 255, 0.5)";

@@ -61,18 +61,6 @@ var Aquarium;
         setRandomDirection() {
             this.direction = Math.round((Math.random() * 50) + 1000);
         }
-        // Teil der Boundingbox, hier wird die "Box" definiert, in die geklickt werden kann
-        hit(x, y) {
-            //verschieben von der hitbox ins zentrum
-            let middleXAx = this.x - this.width / 2;
-            let middleYAx = this.y - this.height / 2;
-            let hit = false;
-            if (x <= middleXAx + this.width && x >= middleXAx &&
-                y <= middleYAx + this.height && y >= middleYAx) {
-                hit = true;
-            }
-            return hit;
-        }
     }
     Aquarium.RegularFish = RegularFish;
 })(Aquarium || (Aquarium = {}));

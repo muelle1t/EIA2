@@ -20,49 +20,51 @@ namespace Aquarium {
 
             this.x = _x;
             this.y = _y;
-            this.speed = 5;
-            this.setRandomTargetPosition();
-            this.active = true;
+            this.speed = 3;
+            this.setStartPosition();
+            //this.setRandomTargetPosition();
 
         }
-
-        update(): void {
-            if (this.active == true) {
-                this.setRandomTargetPosition();
+        
+update(): void {
                 this.move(); //bewegt sich
+                this.setStartPosition();
+                //this.setRandomTargetPosition();
+                this.drawBigFish(); // zeichnet Bösen Fish
+                
                 //this.eatRegularFish(); 
-            }
-            this.drawBigFish(); // zeichnet Bösen Fish
+            
+                
         }
-
-        stop(): void {
-            this.active = false;
-
+        
+        setStartPosition(): void {
+            this.x = 300;
+            this.y = 200;
         }
-
-
+        
+        
+        
+        
         // Ein zufälliges Ziel wird aus dem Array bestimmt
-        setRandomTargetPosition(): void {
+//        setRandomTargetPosition(): void {
+//
+//
+//                let n: number = Math.floor(Math.random() * (allFish.length - 1));
+//                
+//                //allFish.shift();
+//                this.targetRegularFish = allFish[n];
+//                
+//                this.xTarget = allFish[n].x;
+//                this.yTarget = allFish[n].y;
+//
+//        }
+  move(): void {
 
-            if (allFish.length == 0) {
-                this.stop();
-            }
-            else {
-
-                let n: number = Math.floor(Math.random() * (allFish.length - 1));
-                
-                //allFish.shift();
-                this.targetRegularFish = allFish[n];
-                
-                this.xTarget = allFish[n].x;
-                this.yTarget = allFish[n].y;
-
-                
-            }
-
-        }
-
-        drawBigFish(): void {
+            this.x += Math.random() * 4 - 2;
+            this.y = 400;
+        
+}
+drawBigFish(): void {
             //Flosse hinten
             crc2.beginPath();
             crc2.strokeStyle = "#FF8000";
@@ -113,53 +115,7 @@ namespace Aquarium {
             crc2.stroke();
             crc2.fill();
 
-        }
-
-eatRegularFish(): void {
-
-            //ankommen am Ziel durch Berechnung der Differenz der aktuellen Position und der Position der kleinen Fische
-            let maxDistance: number = 10;
-            let xDiff: number = this.xTarget - this.x;
-            let yDiff: number = this.yTarget - this.y;
-
-            if (Math.abs(xDiff) <= maxDistance && Math.abs(yDiff) <= maxDistance) {
-                // fressen               
-                allFish.splice(allFish.indexOf(this.targetRegularFish), 1);
-                // neues Ziel
-                this.setRandomTargetPosition();
-
-                this.eatenFish += 1;
-            }
-            // nach 5 gefressenen Fischen ist Spiel vorbei
-            if (this.eatenFish == 5) {
-
-                this.stop();
-                alert("Game over! Please Start a New Game!");
-            }
-        }
-        
-        // dem bösen Fisch wird mittgeteilt, ob sein Ziel schon vor dem fressen vernichtet wurde, falls ja, neues Ziel
-        // Aufruf bei jedem klick
-        fishLost(_i: RegularFish): void {
-            if (_i == this.targetRegularFish) {
-                this.setRandomTargetPosition();
-            }
-        }
-
-       move(): void {
-
-            let xDiff: number = this.xTarget - this.x;
-            let yDiff: number = this.yTarget - this.y;
-            if (Math.abs(xDiff) < 0.5 && Math.abs(yDiff) < 0.5)
-                this.setRandomTargetPosition();
-            else {
-                this.x += xDiff * this.speed;
-                this.y += yDiff * this.speed;
-        }
-
-
-
-
+ 
     }
 }
 
