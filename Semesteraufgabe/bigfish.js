@@ -79,7 +79,7 @@ var Aquarium;
             Aquarium.crc2.fill();
         }
         eatRegularFish() {
-            //ankommen am Ziel durch Berechnung der Differenz der aktuellen Position und der Position des Sweets (maxDistance= kleiner Puffer)
+            //ankommen am Ziel durch Berechnung der Differenz der aktuellen Position und der Position der kleinen Fische
             let maxDistance = 10;
             let xDiff = this.xTarget - this.x;
             let yDiff = this.yTarget - this.y;
@@ -96,7 +96,7 @@ var Aquarium;
                 alert("Game over! Please Start a New Game!");
             }
         }
-        // dem Monster wird mittgeteilt, ob sein Ziel schon vor dem fressen vernichtet wurde, falls ja, neues Ziel
+        // dem bösen Fisch wird mittgeteilt, ob sein Ziel schon vor dem fressen vernichtet wurde, falls ja, neues Ziel
         // Aufruf bei jedem klick
         fishLost(_i) {
             if (_i == this.targetRegularFish) {

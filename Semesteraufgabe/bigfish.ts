@@ -117,7 +117,7 @@ namespace Aquarium {
 
 eatRegularFish(): void {
 
-            //ankommen am Ziel durch Berechnung der Differenz der aktuellen Position und der Position des Sweets (maxDistance= kleiner Puffer)
+            //ankommen am Ziel durch Berechnung der Differenz der aktuellen Position und der Position der kleinen Fische
             let maxDistance: number = 10;
             let xDiff: number = this.xTarget - this.x;
             let yDiff: number = this.yTarget - this.y;
@@ -138,7 +138,7 @@ eatRegularFish(): void {
             }
         }
         
-        // dem Monster wird mittgeteilt, ob sein Ziel schon vor dem fressen vernichtet wurde, falls ja, neues Ziel
+        // dem bösen Fisch wird mittgeteilt, ob sein Ziel schon vor dem fressen vernichtet wurde, falls ja, neues Ziel
         // Aufruf bei jedem klick
         fishLost(_i: RegularFish): void {
             if (_i == this.targetRegularFish) {
