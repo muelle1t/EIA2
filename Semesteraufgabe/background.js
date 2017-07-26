@@ -2,24 +2,29 @@ var Aquarium;
 (function (Aquarium) {
     class Background {
         constructor() {
-            Aquarium.myGradient.addColorStop(0, "#ccccff");
-            Aquarium.myGradient.addColorStop(1, "#000066");
-            Aquarium.crc2.fillStyle = Aquarium.myGradient; //wasser im Hintergrund
-            Aquarium.crc2.fillRect(0, 0, Aquarium.crc2.canvas.width, Aquarium.crc2.canvas.height);
-            Aquarium.crc2.fillStyle = "#F2F5A9"; //Sand
-            Aquarium.crc2.fillRect(0, 630, Aquarium.crc2.canvas.width, Aquarium.crc2.canvas.height / 10);
+            this.drawWater();
             this.drawRock(700, 650);
             this.drawSandcastle(400, 650);
             this.drawSeestar(450, 660, 5, 30, 10);
             this.drawSeestar(550, 670, 5, 30, 10);
             this.drawSeestar(750, 650, 5, 30, 10);
-            //Schleife für SeeBegrünung
-            for (var i = 0; i < 40; i++) {
-                let sw = new Aquarium.Seeweed();
-                sw.setRandomPosition();
-                sw.drawRandomSeeweed();
-            }
-        }
+            this.drawSeeweed(60, 650);
+            this.drawSeeweed(80, 650);
+            this.drawSeeweed(100, 650);
+            this.drawSeeweed(120, 650);
+            this.drawSeeweed(160, 650);
+            this.drawSeeweed(200, 650);
+            this.drawSeeweed(250, 650);
+            this.drawSeeweed(90, 680);
+            this.drawSeeweed(140, 700);
+            this.drawSeeweed(180, 670);
+            this.drawSeeweed(280, 680);
+            this.drawSeeweed(300, 650);
+            this.drawSeeweed(340, 670);
+            this.drawSeeweed(40, 670);
+            this.drawSeeweed(240, 680);
+            this.drawSeeweed(80, 680);
+        } //Ende constructor
         drawRock(_x, _y) {
             Aquarium.crc2.beginPath();
             Aquarium.crc2.strokeStyle = "#8c8c8c";
@@ -136,7 +141,30 @@ var Aquarium;
             Aquarium.crc2.fillStyle = "#ff6600";
             Aquarium.crc2.fill();
         }
+        drawSeeweed(_x, _y) {
+            Aquarium.crc2.beginPath();
+            Aquarium.crc2.fillStyle = "#088A08";
+            Aquarium.crc2.moveTo(_x, _y);
+            Aquarium.crc2.bezierCurveTo(_x, _y - 20, _x - 50, _y - 220, _x - 15, _y - 50);
+            Aquarium.crc2.closePath();
+            Aquarium.crc2.fill();
+            Aquarium.crc2.beginPath();
+            Aquarium.crc2.fillStyle = "#088A08";
+            Aquarium.crc2.moveTo(_x, _y);
+            Aquarium.crc2.bezierCurveTo(_x - 10, _y - 20, _x - 10, _y - 200, _x, _y - 50);
+            Aquarium.crc2.closePath();
+            Aquarium.crc2.fill();
+        }
+        drawWater() {
+            let myGradient = Aquarium.crc2.createLinearGradient(0, 0, 0, 150);
+            myGradient.addColorStop(0, "#ccccff");
+            myGradient.addColorStop(1, "#000066");
+            Aquarium.crc2.fillStyle = myGradient; //wasser im Hintergrund
+            Aquarium.crc2.fillRect(0, 0, Aquarium.crc2.canvas.width, Aquarium.crc2.canvas.height);
+            Aquarium.crc2.fillStyle = "#F2F5A9"; //Sand
+            Aquarium.crc2.fillRect(0, 630, Aquarium.crc2.canvas.width, Aquarium.crc2.canvas.height / 10);
+        }
     }
-    Aquarium.Background = Background;
-})(Aquarium || (Aquarium = {}));
+    Aquarium.Background = Background; // Ende Class
+})(Aquarium || (Aquarium = {})); // Ende Namespace
 //# sourceMappingURL=background.js.map

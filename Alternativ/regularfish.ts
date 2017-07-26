@@ -1,23 +1,30 @@
-namespace Aquarium {
-    export class RegularFish extends Fish {
+namespace AltAquarium {
+    export class RegularFish {
         x: number;
         y: number;
         radius: number = 10;
         winkel: number = 0;
+        p: number;
+        width: number;
+        height: number;
         color: string;
         direction: number;
         
         
         constructor(_x: number, _y: number, _color: string) {
-            super(_x, _y);
-            this.color = _color;
+            this.x = _x;
+            this.y = _y;
+            this.width = 50;
+            this.height = 52;
             this.setRandomStyle();
-            this.drawRegularFish();
+            this.color = _color;
+            this.setRandomDirection();
             
             }
         
         update(): void {
             this.drawRegularFish();
+            
             this.move();
             }
         
@@ -38,6 +45,7 @@ namespace Aquarium {
         //Körper
         crc2.beginPath();
         crc2.fillStyle = this.color;
+        //crc2.arc(_x + 7, _y, 20, 0, 2 * Math.PI);
         //crc2.ellipse(this.x + 5, this.y, 20, 15, 0, Math.PI * 2, 0);
         crc2.closePath();
         crc2.fill();
@@ -72,6 +80,10 @@ setRandomStyle(): void {
             this.color = "hsl(" + Math.random() * 360 + ", 70%, 50%)";
             }
         
+setRandomDirection(): void {
+            this.direction = Math.round((Math.random() * 50) + 1000);
+            }
+    
 
 
     }

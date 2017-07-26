@@ -1,42 +1,14 @@
 var Aquarium;
 (function (Aquarium) {
-    class BigFish {
+    class BigFish extends Aquarium.Fish {
         constructor(_x, _y) {
-            this.eatenFish = 0;
-            this.x = _x;
-            this.y = _y;
-            this.speed = 2;
-            //this.setStartPosition();
-            //this.setRandomTargetPosition();
-        }
-        update() {
-            this.drawBigFish(); // zeichnet Bösen Fish
-            this.move(); //bewegt sich
-            //this.setStartPosition();
-            this.setRandomTargetPosition();
-            //this.eatRegularFish(); 
-        }
-        setStartPosition() {
-            this.x = 300;
-            this.y = 200;
-        }
-        // Ein zufälliges Ziel wird aus dem Array bestimmt
-        setRandomTargetPosition() {
-            let n = Math.floor(Math.random() * (Aquarium.allFish.length - 1));
-            //allFish.shift();
-            this.targetRegularFish = Aquarium.allFish[n];
-            this.xTarget = Aquarium.allFish[n].x;
-            this.yTarget = Aquarium.allFish[n].y;
+            super(_x, _y);
+            this.drawBigFish();
+            this.move();
         }
         move() {
-            let xDiff = this.xTarget - this.x;
-            let yDiff = this.yTarget - this.y;
-            if (Math.abs(xDiff) < 0.5 && Math.abs(yDiff) < 0.5)
-                this.setRandomTargetPosition();
-            else {
-                this.x += xDiff * this.speed;
-                this.y += yDiff * this.speed;
-            }
+            this.x += Math.random() * 4 - 2;
+            this.y += Math.random() * 4 - 2;
         }
         drawBigFish() {
             //Flosse hinten
@@ -53,7 +25,6 @@ var Aquarium;
             Aquarium.crc2.beginPath();
             Aquarium.crc2.fillStyle = "#FF8000";
             Aquarium.crc2.arc(this.x + 7, this.y, 25, 0, 2 * Math.PI);
-            //crc2.ellipse(this.x + 5, this.y, 20, 15, 0, Math.PI * 2, 0);
             Aquarium.crc2.closePath();
             Aquarium.crc2.fill();
             Aquarium.crc2.stroke();

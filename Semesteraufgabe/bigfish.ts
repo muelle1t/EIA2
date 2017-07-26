@@ -1,78 +1,25 @@
 namespace Aquarium {
 
-    export class BigFish {
+    export class BigFish extends Fish {
 
         x: number;
         y: number;
-        xTarget: number;
-        yTarget: number;
-        speed: number;
-        targetRegularFish: RegularFish;
-        xDirection: number;
-        yDirection: number;
-        active: boolean;
-        eatenFish: number = 0;
-
-
-
-
+        direction: number;
+    
         constructor(_x: number, _y: number) {
-
-            this.x = _x;
-            this.y = _y;
-            this.speed = 2;
-            //this.setStartPosition();
-            //this.setRandomTargetPosition();
-
-        }
-        
-update(): void {
-                this.drawBigFish(); // zeichnet Bösen Fish
-                this.move(); //bewegt sich
-                //this.setStartPosition();
-                this.setRandomTargetPosition();
-                
-                
-                //this.eatRegularFish(); 
-            
-                
-        }
-        
-        setStartPosition(): void {
-            this.x = 300;
-            this.y = 200;
-        }
-        
-        
-        
-        
-        // Ein zufälliges Ziel wird aus dem Array bestimmt
-        setRandomTargetPosition(): void {
-
-
-                let n: number = Math.floor(Math.random() * (allFish.length - 1));
-                
-                //allFish.shift();
-                this.targetRegularFish = allFish[n];
-                
-                this.xTarget = allFish[n].x;
-                this.yTarget = allFish[n].y;
-
-        }
-        
-  move(): void {
-            let xDiff: number = this.xTarget - this.x;
-            let yDiff: number = this.yTarget - this.y;
-      
-            if (Math.abs(xDiff) < 0.5 && Math.abs(yDiff) < 0.5)
-                this.setRandomTargetPosition();
-            else {
-                this.x += xDiff * this.speed;
-                this.y += yDiff * this.speed;
+            super(_x, _y);
+            this.drawBigFish();
+            this.move();
             }
+
+                        
+        move(): void {
+            this.x += Math.random() * 4 - 2;
+            this.y += Math.random() * 4 - 2;
+
         }
-        
-drawBigFish(): void {
+
+        drawBigFish(): void {
             //Flosse hinten
             crc2.beginPath();
             crc2.strokeStyle = "#FF8000";
@@ -89,7 +36,6 @@ drawBigFish(): void {
             crc2.beginPath();
             crc2.fillStyle = "#FF8000";
             crc2.arc(this.x + 7, this.y, 25, 0, 2 * Math.PI);
-            //crc2.ellipse(this.x + 5, this.y, 20, 15, 0, Math.PI * 2, 0);
             crc2.closePath();
             crc2.fill();
             crc2.stroke();
@@ -123,8 +69,8 @@ drawBigFish(): void {
             crc2.stroke();
             crc2.fill();
 
- 
+
+        }
     }
-}
 
 }

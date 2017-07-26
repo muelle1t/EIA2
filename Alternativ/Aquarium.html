@@ -1,12 +1,11 @@
 <html>
 <head>
 <meta charset="utf-8" />
-<script src="background.js"></script>
+<script src="seeweed.js"></script>
+
 <script src="waterworld.js"></script>
 <script src="bigfish.js"></script>
 <script src="regularfish.js"></script>
-<script src="fish.js"></script>
-
 <link href="https://fonts.googleapis.com/css?family=Permanent+Marker" rel="stylesheet">
 <link rel="stylesheet" href="aquariumstyle.css" type="text/css" media="screen" />
 
@@ -14,10 +13,11 @@
 </head>
 <body>
 	<header>
-		<h1>Eat all the Fish</h1>
-		<button id="eat">Eat Fish</button>
+		<h1>Save the Fish</h1>
+		<button id="Start">Start</button>
 		<button id="New">New Game</button>
 	</header>
-	<canvas id="Aquarium" width="1000" height="700"></canvas>
-	
+	<canvas id="Aquarium" width="1000" height="700" style="text-align: center; z-index: 0;"></canvas>
+	<canvas id="Trash" width="1000" height="700" style="text-align: center; z-index: 1;"></canvas>
+		
 </body>

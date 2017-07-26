@@ -3,17 +3,7 @@ namespace Aquarium {
         constructor() {
 
 
-            myGradient.addColorStop(0, "#ccccff");
-            myGradient.addColorStop(1, "#000066");
-
-
-
-            crc2.fillStyle = myGradient; //wasser im Hintergrund
-            crc2.fillRect(0, 0, crc2.canvas.width, crc2.canvas.height);
-
-
-            crc2.fillStyle = "#F2F5A9"; //Sand
-            crc2.fillRect(0, 630, crc2.canvas.width, crc2.canvas.height / 10);
+            this.drawWater();
 
 
 
@@ -27,14 +17,25 @@ namespace Aquarium {
 
             this.drawSeestar(750, 650, 5, 30, 10);
 
-            //Schleife für SeeBegrünung
-            for (var i: number = 0; i < 40; i++) {
-                let sw: Seeweed = new Seeweed();
-                sw.setRandomPosition();
-                sw.drawRandomSeeweed();
-            }
+            this.drawSeeweed(60, 650);
+            this.drawSeeweed(80, 650);
+            this.drawSeeweed(100, 650);
+            this.drawSeeweed(120, 650);
+            this.drawSeeweed(160, 650);
+            this.drawSeeweed(200, 650);
+            this.drawSeeweed(250, 650);
+            this.drawSeeweed(90, 680);
+            this.drawSeeweed(140, 700);
+            this.drawSeeweed(180, 670);
+            this.drawSeeweed(280, 680);
+            this.drawSeeweed(300, 650);
+            this.drawSeeweed(340, 670);
+            this.drawSeeweed(40, 670);
+            this.drawSeeweed(240, 680);
+            this.drawSeeweed(80, 680);
 
-        }
+
+        } //Ende constructor
 
 
         drawRock(_x: number, _y: number): void {
@@ -134,6 +135,7 @@ namespace Aquarium {
             crc2.stroke();
         }
 
+
         drawSeestar(_x: number, _y: number, spikes: number, outerRadius: number, innerRadius: number): void {
 
             var rot: number = Math.PI / 2 * 3;
@@ -161,8 +163,40 @@ namespace Aquarium {
             crc2.fill();
         }
 
+        drawSeeweed(_x: number, _y: number): void {
+            crc2.beginPath();
+            crc2.fillStyle = "#088A08";
+            crc2.moveTo(_x, _y);
+            crc2.bezierCurveTo(_x, _y - 20, _x - 50, _y - 220, _x - 15, _y - 50);
+            crc2.closePath();
+            crc2.fill();
 
-    }
+            crc2.beginPath();
+            crc2.fillStyle = "#088A08";
+            crc2.moveTo(_x, _y);
+            crc2.bezierCurveTo(_x - 10, _y - 20, _x - 10, _y - 200, _x, _y - 50);
+            crc2.closePath();
+            crc2.fill();
+        }
 
 
-}
+
+
+
+        drawWater(): void {
+            let myGradient: any = crc2.createLinearGradient(0, 0, 0, 150);
+            myGradient.addColorStop(0, "#ccccff");
+            myGradient.addColorStop(1, "#000066");
+
+
+
+            crc2.fillStyle = myGradient; //wasser im Hintergrund
+            crc2.fillRect(0, 0, crc2.canvas.width, crc2.canvas.height);
+
+
+            crc2.fillStyle = "#F2F5A9"; //Sand
+            crc2.fillRect(0, 630, crc2.canvas.width, crc2.canvas.height / 10);
+        }
+} // Ende Class
+
+}// Ende Namespace
