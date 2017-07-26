@@ -11,30 +11,28 @@ namespace Aquarium {
     window.addEventListener("load", init);
 
     export let crc2: CanvasRenderingContext2D;
-     let canvas: HTMLCanvasElement;
+    let canvas: HTMLCanvasElement;
 
     let imgData: ImageData;
 
     let n: number = (Math.floor((Math.random() * 2) + 1)); //random Anzahl generierter Fische
 
-   let allFish: Fish[] = [];
-    
+    let allFish: Fish[] = [];
+
     export let myGradient: any = crc2.createLinearGradient(0, 0, 0, 150);
 
     function init(_event: Event): void {
-        
+
         canvas = document.getElementsByTagName("canvas")[0];
-        
+
         crc2 = canvas.getContext("2d");
-                
+
         let background: Background = new Background();
-        
+
 
         drawWater(0, 0);
-        
-        
 
-        // Canvas Bild abspeichern
+      // Canvas Bild abspeichern
         imgData = crc2.getImageData(0, 0, canvas.width, canvas.height);
 
 
@@ -44,14 +42,14 @@ namespace Aquarium {
             let y: number = Math.random() * 450;
             let _color: string;
 
-            let bigfish: BigFish = new BigFish(x, y);
-            bigfish.drawBigFish();
-            allFish.push(bigfish);
+            let bf: BigFish = new BigFish(x, y);
+            bf.drawBigFish();
+            allFish.push(bf);
 
-            let smallfish: RegularFish = new RegularFish(x, y, _color);
-            smallfish.drawRegularFish();
+            let rf: RegularFish = new RegularFish(x, y, _color);
+            rf.drawRegularFish();
 
-            allFish.push(smallfish);
+            allFish.push(rf);
 
         }
 
@@ -80,12 +78,12 @@ namespace Aquarium {
     //shootBalloon: Aus Array ersten Ballon herausnehmen, addMoreBalloons aufrufen
     function eatFish(_event: Event): void {
 
-        
+
         allFish.shift(); //abgeschossenen Ballon aus balloons entnehmen
         //addMoreBalloons();
 
     }
-    
+
     //Restart game: Seite neu laden
     function restartGame(_event: Event): void {
         location.reload(true);
@@ -98,7 +96,7 @@ namespace Aquarium {
         crc2.putImageData(imgData, 0, 0);
 
 
-        //Ballons: Updatefunktion aufrufen
+        //Updatefunktion aufrufen
         for (let i: number = 0; i < n; i++) {
             let f: Fish = allFish[i];
 

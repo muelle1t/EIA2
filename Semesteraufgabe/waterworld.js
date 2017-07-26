@@ -25,12 +25,12 @@ var Aquarium;
             let x = Math.random() * 900;
             let y = Math.random() * 450;
             let _color;
-            let bigfish = new Aquarium.BigFish(x, y);
-            bigfish.drawBigFish();
-            allFish.push(bigfish);
-            let smallfish = new Aquarium.RegularFish(x, y, _color);
-            smallfish.drawRegularFish();
-            allFish.push(smallfish);
+            let bf = new Aquarium.BigFish(x, y);
+            bf.drawBigFish();
+            allFish.push(bf);
+            let rf = new Aquarium.RegularFish(x, y, _color);
+            rf.drawRegularFish();
+            allFish.push(rf);
         }
         console.log("Fish", allFish);
         window.setTimeout(animate, 120);
@@ -56,7 +56,7 @@ var Aquarium;
     //animate
     function animate() {
         Aquarium.crc2.putImageData(imgData, 0, 0);
-        //Ballons: Updatefunktion aufrufen
+        //Updatefunktion aufrufen
         for (let i = 0; i < n; i++) {
             let f = allFish[i];
             f.update();
