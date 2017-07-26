@@ -20,12 +20,13 @@ var Aquarium;
     function init(_event) {
         canvas = document.getElementsByTagName("canvas")[0];
         Aquarium.crc2 = canvas.getContext("2d");
-        let background = new Aquarium.Background();
+        let background = new Aquarium.Background(); // der Hintergrund wird generiert
         drawWater(0, 0);
         // Canvas Bild abspeichern
         imgData = Aquarium.crc2.getImageData(0, 0, canvas.width, canvas.height);
+        //Fische werden gezeichnet und ins Array gepusht
         for (let i = 0; i < 15; i++) {
-            let x = Math.random() * 900;
+            let x = Math.random() * 900; //die Fische tauchen an unterschiedlichen start Positionen auf
             let y = Math.random() * 450;
             let _color;
             let bf = new Aquarium.BigFish(x, y, "#FF8000");
@@ -43,16 +44,17 @@ var Aquarium;
         eatButton.addEventListener("click", eatFish);
         eatButton.addEventListener("touch", eatFish);
         //Restart-Button
-        let restartButton = document.getElementById("restart");
-        restartButton.addEventListener("click", restartGame);
-        restartButton.addEventListener("touch", restartGame);
+        let restartButton = document.getElementById("new");
+        restartButton.addEventListener("click", newGame);
+        restartButton.addEventListener("touch", newGame);
     }
     //FUNKTIONEN     
+    //Funktion für Button
     function eatFish(_event) {
         Aquarium.allFish.shift(); //gefressenen Fish aus dem Array entfernen
     }
-    //Restart game: Seite neu laden
-    function restartGame(_event) {
+    //Funktion Seite neu laden
+    function newGame(_event) {
         location.reload(true);
     }
     //animate
@@ -65,6 +67,7 @@ var Aquarium;
         }
         window.setTimeout(animate, 120);
     }
+    // Das dient dazu damit es den Eindruck macht alles wäre unter wasser
     function drawWater(_x, _y) {
         Aquarium.crc2.fillStyle = "rgb(179, 179, 255, 0.5)";
         Aquarium.crc2.fillRect(_x, _y, 1000, 700);

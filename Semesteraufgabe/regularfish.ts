@@ -10,15 +10,15 @@ namespace Aquarium {
             this.x = _x;
             this.y = _y;
             this.color = _color;
-            this.setRandomStyle();
+            this.setRandomStyle(); // die Fische haben verschiedene Farben
             this.drawFish();
             
             }
         
         update(): void {
             this.setRandomStyle();
-            this.drawFish();
-            this.move();
+            this.drawFish(); // Fisch wird gezeichnet
+            this.move(); // Fisch bewegt sich minimal
             }
         
 
@@ -66,7 +66,7 @@ move(): void {
     
            
              }
-        
+ //Funktion für unterschiedliche Farben       
 setRandomStyle(): void {
             this.color = "hsl(" + Math.random() * 360 + ", 70%, 50%)";
             }

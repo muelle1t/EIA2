@@ -31,7 +31,7 @@ namespace Aquarium {
 
         crc2 = canvas.getContext("2d");
 
-        let background: Background = new Background();
+        let background: Background = new Background(); // der Hintergrund wird generiert
 
 
         drawWater(0, 0);
@@ -39,10 +39,10 @@ namespace Aquarium {
       // Canvas Bild abspeichern
         imgData = crc2.getImageData(0, 0, canvas.width, canvas.height);
 
-
+        //Fische werden gezeichnet und ins Array gepusht
         for (let i: number = 0; i < 15; i++) {
 
-            let x: number = Math.random() * 900;
+            let x: number = Math.random() * 900;//die Fische tauchen an unterschiedlichen start Positionen auf
             let y: number = Math.random() * 450;
             let _color: string;
 
@@ -72,16 +72,16 @@ namespace Aquarium {
         eatButton.addEventListener("touch", eatFish);
 
         //Restart-Button
-        let restartButton: HTMLButtonElement = <HTMLButtonElement>document.getElementById("restart");
-        restartButton.addEventListener("click", restartGame);
-        restartButton.addEventListener("touch", restartGame);
+        let restartButton: HTMLButtonElement = <HTMLButtonElement>document.getElementById("new");
+        restartButton.addEventListener("click", newGame);
+        restartButton.addEventListener("touch", newGame);
 
     }
 
 
 
     //FUNKTIONEN     
-    
+    //Funktion für Button
     function eatFish(_event: Event): void {
 
 
@@ -90,8 +90,8 @@ namespace Aquarium {
 
     }
 
-    //Restart game: Seite neu laden
-    function restartGame(_event: Event): void {
+    //Funktion Seite neu laden
+    function newGame(_event: Event): void {
         location.reload(true);
 
     }
@@ -113,7 +113,7 @@ namespace Aquarium {
         window.setTimeout(animate, 120);
 
     }
-
+    // Das dient dazu damit es den Eindruck macht alles wäre unter wasser
     function drawWater(_x: number, _y: number): void {
         crc2.fillStyle = "rgb(179, 179, 255, 0.5)";
         crc2.fillRect(_x, _y, 1000, 700);

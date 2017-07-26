@@ -2,9 +2,9 @@ var Aquarium;
 (function (Aquarium) {
     class BigFish extends Aquarium.RegularFish {
         constructor(_x, _y, _color) {
-            super(_x, _y, _color);
-            this.drawFish();
-            this.move();
+            super(_x, _y, _color); //enthalten in Superklasse
+            this.drawFish(); // Fisch wird gezeichnet
+            this.move(); // Fisch bewegt sich
         }
         move() {
             this.x += Math.random() * 4 - 2;

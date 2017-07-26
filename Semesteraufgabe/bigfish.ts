@@ -7,9 +7,9 @@ namespace Aquarium {
         direction: number;
     
         constructor(_x: number, _y: number, _color: string) {
-            super(_x, _y, _color);
-            this.drawFish();
-            this.move();
+            super(_x, _y, _color); //enthalten in Superklasse
+            this.drawFish(); // Fisch wird gezeichnet
+            this.move(); // Fisch bewegt sich
              }
 
                         
