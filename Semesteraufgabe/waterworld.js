@@ -50,7 +50,6 @@ var Aquarium;
     //FUNKTIONEN     
     function eatFish(_event) {
         Aquarium.allFish.shift(); //gefressenen Fish aus dem Array entfernen
-        //addMoreBalloons();
     }
     //Restart game: Seite neu laden
     function restartGame(_event) {

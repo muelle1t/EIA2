@@ -86,7 +86,7 @@ namespace Aquarium {
 
 
         allFish.shift(); //gefressenen Fish aus dem Array entfernen
-        //addMoreBalloons();
+        
 
     }
 
