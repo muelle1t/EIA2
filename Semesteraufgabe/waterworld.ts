@@ -5,7 +5,11 @@ Matrikelnr.: 254868
 Datum: 19.07.2017
 
 Hiermit versichere ich, dass ich diesen Code selbst geschrieben habe. 
-Er wurde nicht kopiert und auch nicht diktiert. */
+Er wurde nicht kopiert und auch nicht diktiert. 
+
+Leider ist die Abgabe funktionslos. Ich habe alles veruchst. Die Konsole zeigt mir an das RegularFish und BigFish kein Constructor ist und 
+obwohl ich auch danach gegoogelt habe leuchtet es mir einfach nicht ein. Aber ich wollte wenigstens etwas abgeben.*/
+
 namespace Aquarium {
 
     window.addEventListener("load", init);
@@ -17,7 +21,7 @@ namespace Aquarium {
 
     let n: number = (Math.floor((Math.random() * 2) + 1)); //random Anzahl generierter Fische
 
-    let allFish: Fish[] = [];
+    export let allFish: RegularFish[] = [];
 
     export let myGradient: any = crc2.createLinearGradient(0, 0, 0, 150);
 
@@ -36,18 +40,20 @@ namespace Aquarium {
         imgData = crc2.getImageData(0, 0, canvas.width, canvas.height);
 
 
-        for (let i: number = 0; i < n; i++) {
+        for (let i: number = 0; i < 15; i++) {
 
             let x: number = Math.random() * 900;
             let y: number = Math.random() * 450;
             let _color: string;
 
-            let bf: BigFish = new BigFish(x, y);
-            bf.drawBigFish();
+            let bf: BigFish = new BigFish(x, y, "#FF8000");
+            bf.drawFish();
             allFish.push(bf);
+            
+            console.log("Fish", BigFish);
 
             let rf: RegularFish = new RegularFish(x, y, _color);
-            rf.drawRegularFish();
+            rf.drawFish();
 
             allFish.push(rf);
 
@@ -60,7 +66,7 @@ namespace Aquarium {
 
         window.setTimeout(animate, 120);
 
-        //Shoot-Button
+        //Eat-Button
         let eatButton: HTMLButtonElement = <HTMLButtonElement>document.getElementById("eat");
         eatButton.addEventListener("click", eatFish);
         eatButton.addEventListener("touch", eatFish);
@@ -75,11 +81,11 @@ namespace Aquarium {
 
 
     //FUNKTIONEN     
-    //shootBalloon: Aus Array ersten Ballon herausnehmen, addMoreBalloons aufrufen
+    
     function eatFish(_event: Event): void {
 
 
-        allFish.shift(); //abgeschossenen Ballon aus balloons entnehmen
+        allFish.shift(); //gefressenen Fish aus dem Array entfernen
         //addMoreBalloons();
 
     }
@@ -98,7 +104,7 @@ namespace Aquarium {
 
         //Updatefunktion aufrufen
         for (let i: number = 0; i < n; i++) {
-            let f: Fish = allFish[i];
+            let f: RegularFish = allFish[i];
 
 
             f.update();

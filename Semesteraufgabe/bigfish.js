@@ -1,20 +1,20 @@
 var Aquarium;
 (function (Aquarium) {
-    class BigFish extends Aquarium.Fish {
-        constructor(_x, _y) {
-            super(_x, _y);
-            this.drawBigFish();
+    class BigFish extends Aquarium.RegularFish {
+        constructor(_x, _y, _color) {
+            super(_x, _y, _color);
+            this.drawFish();
             this.move();
         }
         move() {
             this.x += Math.random() * 4 - 2;
             this.y += Math.random() * 4 - 2;
         }
-        drawBigFish() {
+        drawFish() {
             //Flosse hinten
             Aquarium.crc2.beginPath();
-            Aquarium.crc2.strokeStyle = "#FF8000";
-            Aquarium.crc2.fillStyle = "#FF8000";
+            Aquarium.crc2.strokeStyle = this.color;
+            Aquarium.crc2.fillStyle = this.color;
             Aquarium.crc2.moveTo(this.x, this.y);
             Aquarium.crc2.lineTo(this.x - 30, this.y - 30);
             Aquarium.crc2.lineTo(this.x - 30, this.y + 30);
@@ -23,7 +23,7 @@ var Aquarium;
             Aquarium.crc2.fill();
             //Körper
             Aquarium.crc2.beginPath();
-            Aquarium.crc2.fillStyle = "#FF8000";
+            Aquarium.crc2.fillStyle = this.color;
             Aquarium.crc2.arc(this.x + 7, this.y, 25, 0, 2 * Math.PI);
             Aquarium.crc2.closePath();
             Aquarium.crc2.fill();

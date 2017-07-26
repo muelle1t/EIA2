@@ -1,28 +1,28 @@
 namespace Aquarium {
-    export class RegularFish extends Fish {
+    export class RegularFish {
         x: number;
         y: number;
-        radius: number = 10;
-        winkel: number = 0;
         color: string;
-        direction: number;
+       
         
         
         constructor(_x: number, _y: number, _color: string) {
-            super(_x, _y);
+            this.x = _x;
+            this.y = _y;
             this.color = _color;
             this.setRandomStyle();
-            this.drawRegularFish();
+            this.drawFish();
             
             }
         
         update(): void {
-            this.drawRegularFish();
+            this.setRandomStyle();
+            this.drawFish();
             this.move();
             }
         
 
-      drawRegularFish(): void {
+      drawFish(): void {
         //Flosse hinten
         crc2.beginPath();
         crc2.strokeStyle = this.color;
@@ -62,8 +62,7 @@ namespace Aquarium {
 
     }
 move(): void {
-            this.x += Math.random() * 4 - 2;
-            this.y += Math.random() * 4 - 2;
+            //abtsract
     
            
              }

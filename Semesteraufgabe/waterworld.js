@@ -5,14 +5,17 @@ Matrikelnr.: 254868
 Datum: 19.07.2017
 
 Hiermit versichere ich, dass ich diesen Code selbst geschrieben habe.
-Er wurde nicht kopiert und auch nicht diktiert. */
+Er wurde nicht kopiert und auch nicht diktiert.
+
+Leider ist die Abgabe funktionslos. Ich habe alles veruchst. Die Konsole zeigt mir an das RegularFish und BigFish kein Constructor ist und
+obwohl ich auch danach gegoogelt habe leuchtet es mir einfach nicht ein. Aber ich wollte wenigstens etwas abgeben.*/
 var Aquarium;
 (function (Aquarium) {
     window.addEventListener("load", init);
     let canvas;
     let imgData;
     let n = (Math.floor((Math.random() * 2) + 1)); //random Anzahl generierter Fische
-    let allFish = [];
+    Aquarium.allFish = [];
     Aquarium.myGradient = Aquarium.crc2.createLinearGradient(0, 0, 0, 150);
     function init(_event) {
         canvas = document.getElementsByTagName("canvas")[0];
@@ -21,20 +24,21 @@ var Aquarium;
         drawWater(0, 0);
         // Canvas Bild abspeichern
         imgData = Aquarium.crc2.getImageData(0, 0, canvas.width, canvas.height);
-        for (let i = 0; i < n; i++) {
+        for (let i = 0; i < 15; i++) {
             let x = Math.random() * 900;
             let y = Math.random() * 450;
             let _color;
-            let bf = new Aquarium.BigFish(x, y);
-            bf.drawBigFish();
-            allFish.push(bf);
+            let bf = new Aquarium.BigFish(x, y, "#FF8000");
+            bf.drawFish();
+            Aquarium.allFish.push(bf);
+            console.log("Fish", Aquarium.BigFish);
             let rf = new Aquarium.RegularFish(x, y, _color);
-            rf.drawRegularFish();
-            allFish.push(rf);
+            rf.drawFish();
+            Aquarium.allFish.push(rf);
         }
-        console.log("Fish", allFish);
+        console.log("Fish", Aquarium.allFish);
         window.setTimeout(animate, 120);
-        //Shoot-Button
+        //Eat-Button
         let eatButton = document.getElementById("eat");
         eatButton.addEventListener("click", eatFish);
         eatButton.addEventListener("touch", eatFish);
@@ -44,9 +48,8 @@ var Aquarium;
         restartButton.addEventListener("touch", restartGame);
     }
     //FUNKTIONEN     
-    //shootBalloon: Aus Array ersten Ballon herausnehmen, addMoreBalloons aufrufen
     function eatFish(_event) {
-        allFish.shift(); //abgeschossenen Ballon aus balloons entnehmen
+        Aquarium.allFish.shift(); //gefressenen Fish aus dem Array entfernen
         //addMoreBalloons();
     }
     //Restart game: Seite neu laden
@@ -58,7 +61,7 @@ var Aquarium;
         Aquarium.crc2.putImageData(imgData, 0, 0);
         //Updatefunktion aufrufen
         for (let i = 0; i < n; i++) {
-            let f = allFish[i];
+            let f = Aquarium.allFish[i];
             f.update();
         }
         window.setTimeout(animate, 120);

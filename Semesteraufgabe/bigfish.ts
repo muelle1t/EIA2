@@ -1,16 +1,16 @@
 namespace Aquarium {
 
-    export class BigFish extends Fish {
+    export class BigFish extends RegularFish {
 
         x: number;
         y: number;
         direction: number;
     
-        constructor(_x: number, _y: number) {
-            super(_x, _y);
-            this.drawBigFish();
+        constructor(_x: number, _y: number, _color: string) {
+            super(_x, _y, _color);
+            this.drawFish();
             this.move();
-            }
+             }
 
                         
         move(): void {
@@ -19,11 +19,11 @@ namespace Aquarium {
 
         }
 
-        drawBigFish(): void {
+        drawFish(): void {
             //Flosse hinten
             crc2.beginPath();
-            crc2.strokeStyle = "#FF8000";
-            crc2.fillStyle = "#FF8000";
+            crc2.strokeStyle = this.color;
+            crc2.fillStyle = this.color;
             crc2.moveTo(this.x, this.y);
             crc2.lineTo(this.x - 30, this.y - 30);
             crc2.lineTo(this.x - 30, this.y + 30);
@@ -34,7 +34,7 @@ namespace Aquarium {
 
             //Körper
             crc2.beginPath();
-            crc2.fillStyle = "#FF8000";
+            crc2.fillStyle = this.color;
             crc2.arc(this.x + 7, this.y, 25, 0, 2 * Math.PI);
             crc2.closePath();
             crc2.fill();
@@ -71,6 +71,6 @@ namespace Aquarium {
 
 
         }
-    }
+     }
 
 }

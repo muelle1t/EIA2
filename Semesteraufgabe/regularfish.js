@@ -1,19 +1,19 @@
 var Aquarium;
 (function (Aquarium) {
-    class RegularFish extends Aquarium.Fish {
+    class RegularFish {
         constructor(_x, _y, _color) {
-            super(_x, _y);
-            this.radius = 10;
-            this.winkel = 0;
+            this.x = _x;
+            this.y = _y;
             this.color = _color;
             this.setRandomStyle();
-            this.drawRegularFish();
+            this.drawFish();
         }
         update() {
-            this.drawRegularFish();
+            this.setRandomStyle();
+            this.drawFish();
             this.move();
         }
-        drawRegularFish() {
+        drawFish() {
             //Flosse hinten
             Aquarium.crc2.beginPath();
             Aquarium.crc2.strokeStyle = this.color;
@@ -48,8 +48,7 @@ var Aquarium;
             Aquarium.crc2.fill();
         }
         move() {
-            this.x += Math.random() * 4 - 2;
-            this.y += Math.random() * 4 - 2;
+            //abtsract
         }
         setRandomStyle() {
             this.color = "hsl(" + Math.random() * 360 + ", 70%, 50%)";
