@@ -1,8 +1,8 @@
 /*
-Aufgabe: Aufgabe 1
+Aufgabe: Aufgabe 0
 Name: Annkathrin Müller
 Matrikelnr.: 254868
-Datum: 18.03.2017
+Datum: 22.03.2018
 
 Hiermit versichere ich, dass ich diesen Code selbst geschrieben habe.
 Er wurde nicht kopiert und auch nicht diktiert.
