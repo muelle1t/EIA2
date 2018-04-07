@@ -41,4 +41,4 @@ document.addEventListener('DOMContentLoaded', function () {
         s.top = _y + "px";
     }
 });
-//# sourceMappingURL=aufgabe1.js.map
+//# sourceMappingURL=aufgabe1.1.js.map
