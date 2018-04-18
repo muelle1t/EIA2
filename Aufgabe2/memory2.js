@@ -11,8 +11,6 @@ var Aufgabe2;
     let amountCards;
     let removeCard;
     function init(_event) {
-        //        numberPlayers();
-        //        numberCards();
         askPlayer = prompt("Bitte die Anzahl der Spieler eingeben (min. 1, max. 4):");
         numPlayer = parseInt(askPlayer);
         console.log(numPlayer);
@@ -32,9 +30,10 @@ var Aufgabe2;
             console.log(info.textContent);
         }
     }
+    //Funktion für Karten
     function createCards() {
         let card = document.getElementById("brett");
-        let n = Math.round(Math.random() * contentCards.length);
+        let n = Math.round(Math.random() * contentCards.length); //random INhalt aus dem Array
         let randomNumber = Math.random();
         console.log(contentCards[6]);
         if (randomNumber <= 0.5) {
@@ -58,10 +57,10 @@ var Aufgabe2;
         }
         contentCards.splice(0, 1);
     }
+    //Funktion für die Anzahl der KArten
     function totalNumCards() {
         amountCards = numCards * 2;
         console.log(amountCards);
-        //Anzahl der Karten im Game Div
         for (let i = 0; i < amountCards; i++) {
             createCards();
         }
