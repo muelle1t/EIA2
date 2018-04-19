@@ -33,9 +33,9 @@ var Aufgabe2;
     //Funktion für Karten
     function createCards() {
         let card = document.getElementById("brett");
-        let n = Math.floor(Math.random() * contentCards.length); //random INhalt aus dem Array
+        let n = Math.round(Math.random() * contentCards.length); //random INhalt aus dem Array
         let randomNumber = Math.random();
-        console.log(contentCards[n]);
+        console.log(contentCards[6]);
         if (randomNumber <= 0.5) {
             let div = document.createElement("div");
             card.appendChild(div);

@@ -2,7 +2,7 @@ namespace Aufgabe2 {
 
     window.addEventListener("load", init);
 
-    let contentCards: string[] = ["Apfel", "Apfel", "Birne", "Birne",  "Zitrone", "Zitrone", "Avocado", "Avocado", "Orange", "Orange", "Ananas", "Ananas", "Erdbeere", "Erdbeere", "Wassermelone", "Wassermelone", "Papaya",  "Papaya", "Pfirsich", "Pfirsich"];
+    let contentCards: string[] = ["Apfel", "Apfel", "Birne", "Birne",  "Zitrone", "Zitrone", "Avocado", "Avocado", "Orange", "Orange", "Ananas", "Ananas", "Erdbeere", "Erdbeere", "Wassermelone", "Wassermelone", "Papaya", "Papaya", "Pfirsich", "Pfirsich"];
     console.log(contentCards);
 
     let cardsList: string[] = [];
@@ -55,10 +55,10 @@ namespace Aufgabe2 {
 
         let card: any = document.getElementById("brett");
 
-        let n: number = Math.floor(Math.random() * contentCards.length); //random INhalt aus dem Array
+        let n: number = Math.round(Math.random() * contentCards.length); //random INhalt aus dem Array
         let randomNumber: number = Math.random();
 
-        console.log(contentCards[n]);
+        console.log(contentCards[6]);
 
         if (randomNumber <= 0.5) { //closed
             let div: HTMLDivElement = document.createElement("div");
