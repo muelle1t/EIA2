@@ -83,7 +83,7 @@ namespace Aufgabe2 {
 
         }
 
-        contentCards.splice(0, 1);
+        contentCards.splice(n, 1);
 
     }
 //Funktion für die Anzahl der KArten

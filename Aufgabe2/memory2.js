@@ -55,7 +55,7 @@ var Aufgabe2;
             div.setAttribute("class", "taken");
             cardsList.push(card);
         }
-        contentCards.splice(0, 1);
+        contentCards.splice(n, 1);
     }
     //Funktion für die Anzahl der KArten
     function totalNumCards() {
