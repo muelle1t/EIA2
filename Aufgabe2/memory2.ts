@@ -2,7 +2,7 @@ namespace Aufgabe2 {
 
     window.addEventListener("load", init);
 
-    let contentCards: string[] = ["Apfel", "Birne", "Zitrone", "Avocado", "Orange", "Ananas", "Erdbeere", "Wassermelone", "Papaya", "Pfirsich"];
+    let contentCards: string[] = ["Apfel", "Apfel", "Birne", "Birne",  "Zitrone", "Zitrone", "Avocado", "Avocado", "Orange", "Orange", "Ananas", "Ananas", "Erdbeere", "Erdbeere", "Wassermelone", "Wassermelone", "Papaya", "Papaya", "Pfirsich", "Pfirsich"];
     console.log(contentCards);
 
     let cardsList: string[] = [];

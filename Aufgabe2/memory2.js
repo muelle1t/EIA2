@@ -1,7 +1,7 @@
 var Aufgabe2;
 (function (Aufgabe2) {
     window.addEventListener("load", init);
-    let contentCards = ["Apfel", "Birne", "Zitrone", "Avocado", "Orange", "Ananas", "Erdbeere", "Wassermelone", "Papaya", "Pfirsich"];
+    let contentCards = ["Apfel", "Apfel", "Birne", "Birne", "Zitrone", "Zitrone", "Avocado", "Avocado", "Orange", "Orange", "Ananas", "Ananas", "Erdbeere", "Erdbeere", "Wassermelone", "Wassermelone", "Papaya", "Papaya", "Pfirsich", "Pfirsich"];
     console.log(contentCards);
     let cardsList = [];
     let askPlayer;
