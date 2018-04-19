@@ -1,5 +1,5 @@
-var Aufgabe2;
-(function (Aufgabe2) {
+var Aufgabe3;
+(function (Aufgabe3) {
     window.addEventListener("load", init);
     let contentCards = ["Apfel", "Apfel", "Birne", "Birne", "Zitrone", "Zitrone", "Avocado", "Avocado", "Orange", "Orange", "Ananas", "Ananas", "Erdbeere", "Erdbeere", "Wassermelone", "Wassermelone", "Papaya", "Papaya", "Pfirsich", "Pfirsich"];
     console.log(contentCards);
@@ -65,5 +65,5 @@ var Aufgabe2;
             createCards();
         }
     }
-})(Aufgabe2 || (Aufgabe2 = {}));
-//# sourceMappingURL=memory2.js.map
+})(Aufgabe3 || (Aufgabe3 = {}));
+//# sourceMappingURL=memory3.js.map

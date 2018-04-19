@@ -1,4 +1,4 @@
-namespace Aufgabe2 {
+namespace Aufgabe3 {
 
     window.addEventListener("load", init);
 
