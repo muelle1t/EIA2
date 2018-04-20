@@ -33,7 +33,7 @@ var Aufgabe2;
     //Funktion für Karten
     function createCards() {
         let card = document.getElementById("brett");
-        let n = Math.floor(Math.random() * contentCards.length); //random INhalt aus dem Array
+        let n = Math.floor(Math.random() * contentCards.length); //zufälliger Inhalt aus dem Array
         let randomNumber = Math.random();
         console.log(contentCards[n]);
         if (randomNumber <= 0.5) {

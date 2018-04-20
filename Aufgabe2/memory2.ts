@@ -55,7 +55,7 @@ namespace Aufgabe2 {
 
         let card: any = document.getElementById("brett");
 
-        let n: number = Math.floor(Math.random() * contentCards.length); //random INhalt aus dem Array
+        let n: number = Math.floor(Math.random() * contentCards.length); //zufälliger Inhalt aus dem Array
         let randomNumber: number = Math.random();
 
         console.log(contentCards[n]);

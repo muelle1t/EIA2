@@ -55,7 +55,7 @@ namespace Aufgabe3 {
 
         let card: any = document.getElementById("brett");
 
-        let n: number = Math.round(Math.random() * contentCards.length); //random INhalt aus dem Array
+        let n: number = Math.floor(Math.random() * contentCards.length); //zufälliger Inhalt aus dem Array
         let randomNumber: number = Math.random();
 
         console.log(contentCards[6]);
@@ -65,6 +65,8 @@ namespace Aufgabe3 {
             card.appendChild(div);
             div.setAttribute("class", "closed");
             cardsList.push(card);
+            div.innerText = contentCards[n];
+            
         }
 
         if (randomNumber > 0.5 && randomNumber <= 0.75) { //open
@@ -79,6 +81,7 @@ namespace Aufgabe3 {
             let div: HTMLDivElement = document.createElement("div");
             card.appendChild(div);
             div.setAttribute("class", "taken");
+            div.innerText = contentCards[n];
             cardsList.push(card);
 
         }
@@ -89,7 +92,7 @@ namespace Aufgabe3 {
 //Funktion für die Anzahl der KArten
     function totalNumCards(): void {
 
-        amountCards = numCards * 2;
+        amountCards = numCards;
         console.log(amountCards);
 
         

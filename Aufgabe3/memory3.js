@@ -33,7 +33,7 @@ var Aufgabe3;
     //Funktion für Karten
     function createCards() {
         let card = document.getElementById("brett");
-        let n = Math.round(Math.random() * contentCards.length); //random INhalt aus dem Array
+        let n = Math.floor(Math.random() * contentCards.length); //zufälliger Inhalt aus dem Array
         let randomNumber = Math.random();
         console.log(contentCards[6]);
         if (randomNumber <= 0.5) {
@@ -41,6 +41,7 @@ var Aufgabe3;
             card.appendChild(div);
             div.setAttribute("class", "closed");
             cardsList.push(card);
+            div.innerText = contentCards[n];
         }
         if (randomNumber > 0.5 && randomNumber <= 0.75) {
             let div = document.createElement("div");
@@ -53,13 +54,14 @@ var Aufgabe3;
             let div = document.createElement("div");
             card.appendChild(div);
             div.setAttribute("class", "taken");
+            div.innerText = contentCards[n];
             cardsList.push(card);
         }
         contentCards.splice(0, 1);
     }
     //Funktion für die Anzahl der KArten
     function totalNumCards() {
-        amountCards = numCards * 2;
+        amountCards = numCards;
         console.log(amountCards);
         for (let i = 0; i < amountCards; i++) {
             createCards();

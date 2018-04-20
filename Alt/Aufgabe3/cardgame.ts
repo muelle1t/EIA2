@@ -63,7 +63,7 @@ namespace Aufgabe3_cardgame {
             document.getElementById("hand").appendChild(div);
             let s = div.style;
 
-            let n = Math.round(Math.random() * cards.length);
+            let n = Math.floor(Math.random() * cards.length);
             if (cards[n] == undefined) {
                 Math.round(Math.random() * cards.length - 1);
             }

@@ -50,10 +50,11 @@ div div {
 }
 
 .closed {
-	background-color: lightblue;
+	background-color: #0066ff;
+	color: #0066ff;
 }
 
 .taken {
-	border-style: dotted;
-	border-color: lightgrey;
+	display: none;
+	
 }
