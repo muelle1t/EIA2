@@ -59,7 +59,7 @@ namespace Aufgabe3 {
 
     //Funktion für Karten
     function createCards(): void {
-        let div: HTMLDivElement = document.createElement("div");
+        let div: HTMLElement = document.createElement("div");
         let card: any = document.getElementById("brett");
 
         let n: number = Math.floor(Math.random() * contentCards.length); //zufälliger Inhalt aus dem Array
@@ -77,7 +77,7 @@ namespace Aufgabe3 {
         //            let div: HTMLDivElement = document.createElement("div");
         //            card.appendChild(div);
         //            div.setAttribute("class", "open");
-        //            div.innerText = contentCards[n];
+        div.innerText = contentCards[n];
         //            cardsList.push(card);
         //
         //        }
@@ -102,6 +102,7 @@ namespace Aufgabe3 {
         for (let i: number = 0; i < numCards; i++) {
 
             createCards();
+            createCards();
 
         }
 
@@ -112,45 +113,51 @@ namespace Aufgabe3 {
 
         let clicked: HTMLElement = <HTMLElement>_event.target;
 
-        if (clicked.classList.contains("card")) {
-            numCardsOpen++;
-            if (clicked.classList.contains("closed")) {
-                clicked.classList.remove("closed");
-                clicked.classList.add("open");
-            }
+        if (clicked.className == "closed") { //öffnet beim click die Karte
+            clicked.className = "open";
         }
+        let cardContent: string;
+        if (clicked.className == "open" && numCardsOpen <= 2) { //wenn Karte geöffnet ist und die Anzahl der geöffneten KArten kleiner oder gleich ist
+            cardContent = clicked.textContent;                  //Karteninhalt entspricht dem Inhalt der geklickten Karte und wird in das neue Array gepusht
+            cardsList.push(cardContent);
+            console.log(cardsList);
+            numCardsOpen++;
+        }
+        console.log("OpenCards:" + numCardsOpen)
 
-        if (numCardsOpen == 2) {
+        if (numCardsOpen == 2) {//wenn zwei Karten geöffnet sind werden sie verglichen und schliesen sich nach 1500 ms
             setTimeout(compareCards, 1500);
         }
 
-        if (numCardsOpen > 2) {
-            clicked.classList.remove("open");
-            clicked.classList.add("closed");
+        if (numCardsOpen > 2) {// nur 2 Karten können geöffnet werden
+            clicked.className = "closed";
         }
     }
     function compareCards(): void {
-        let firstTry = document.getElementsByClassName("open")[0];
-        let secondTry = document.getElementsByClassName("open")[1];
 
-        console.log(firstTry);
-        console.log(secondTry);
+        let firstCard: any = document.getElementsByClassName("open")[0]; 
+        let secondCard: any = document.getElementsByClassName("open")[1];
 
-        if (firstTry.innerHTML == secondTry.innerHTML) {
+        console.log("Erste Karte:" + firstCard);
+        console.log("Zweite Karte:" + secondCard);
+        if (firstCard.innerHTML == secondCard.innerHTML) {
 
-            firstTry.setAttribute("class", "taken");
-            secondTry.setAttribute("class", "taken");
+            firstCard.setAttribute("class", "taken");
+            secondCard.setAttribute("class", "taken");
 
             numCardsOpen = 0;
 
         }
 
         else {
-            firstTry.setAttribute("class", "closed");
-            secondTry.setAttribute("class", "closed");
+            firstCard.setAttribute("class", "closed");
+            secondCard.setAttribute("class", "closed");
             numCardsOpen = 0;
         }
+
     }
+
+
 
 
 }

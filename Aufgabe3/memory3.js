@@ -48,7 +48,7 @@ var Aufgabe3;
         //            let div: HTMLDivElement = document.createElement("div");
         //            card.appendChild(div);
         //            div.setAttribute("class", "open");
-        //            div.innerText = contentCards[n];
+        div.innerText = contentCards[n];
         //            cardsList.push(card);
         //
         //        }
@@ -67,39 +67,43 @@ var Aufgabe3;
     function totalNumCards() {
         for (let i = 0; i < numCards; i++) {
             createCards();
+            createCards();
         }
     }
     //Funktion Karte öffnen
     function openCard(_event) {
         let clicked = _event.target;
-        if (clicked.classList.contains("card")) {
-            numCardsOpen++;
-            if (clicked.classList.contains("closed")) {
-                clicked.classList.remove("closed");
-                clicked.classList.add("open");
-            }
+        if (clicked.className == "closed") {
+            clicked.className = "open";
         }
+        let cardContent;
+        if (clicked.className == "open" && numCardsOpen <= 2) {
+            cardContent = clicked.textContent; //Karteninhalt entspricht dem Inhalt der geklickten Karte und wird in das neue Array gepusht
+            cardsList.push(cardContent);
+            console.log(cardsList);
+            numCardsOpen++;
+        }
+        console.log("OpenCards:" + numCardsOpen);
         if (numCardsOpen == 2) {
             setTimeout(compareCards, 1500);
         }
         if (numCardsOpen > 2) {
-            clicked.classList.remove("open");
-            clicked.classList.add("closed");
+            clicked.className = "closed";
         }
     }
     function compareCards() {
-        let firstTry = document.getElementsByClassName("open")[0];
-        let secondTry = document.getElementsByClassName("open")[1];
-        console.log(firstTry);
-        console.log(secondTry);
-        if (firstTry.innerHTML == secondTry.innerHTML) {
-            firstTry.setAttribute("class", "taken");
-            secondTry.setAttribute("class", "taken");
+        let firstCard = document.getElementsByClassName("open")[0];
+        let secondCard = document.getElementsByClassName("open")[1];
+        console.log("Erste Karte:" + firstCard);
+        console.log("Zweite Karte:" + secondCard);
+        if (firstCard.innerHTML == secondCard.innerHTML) {
+            firstCard.setAttribute("class", "taken");
+            secondCard.setAttribute("class", "taken");
             numCardsOpen = 0;
         }
         else {
-            firstTry.setAttribute("class", "closed");
-            secondTry.setAttribute("class", "closed");
+            firstCard.setAttribute("class", "closed");
+            secondCard.setAttribute("class", "closed");
             numCardsOpen = 0;
         }
     }

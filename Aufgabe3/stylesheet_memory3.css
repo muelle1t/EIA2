@@ -55,6 +55,8 @@ div div {
 }
 
 .taken {
-	display: none;
-	
+	color: #151515;
+	border-style: dotted;
+	border-color: lightgrey;
+		
 }
