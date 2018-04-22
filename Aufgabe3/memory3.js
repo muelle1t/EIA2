@@ -90,9 +90,11 @@ var Aufgabe3;
         if (numCardsOpen > 2) {
             clicked.className = "closed";
         }
+        //let takenCards = document.getElementsByClassName("taken");
+        //console.log("Taken CArds" + takenCards)
     }
     function compareCards() {
-        let firstCard = document.getElementsByClassName("open")[0];
+        let firstCard = document.getElementsByClassName("open")[0]; // die zwei offenen Karten werden geholt
         let secondCard = document.getElementsByClassName("open")[1];
         console.log("Erste Karte:" + firstCard);
         console.log("Zweite Karte:" + secondCard);
@@ -105,6 +107,12 @@ var Aufgabe3;
             firstCard.setAttribute("class", "closed");
             secondCard.setAttribute("class", "closed");
             numCardsOpen = 0;
+        }
+    }
+    function endGame() {
+        let takenCards = document.getElementsByClassName("taken");
+        if (takenCards.length == 0) {
+            alert("Herzlichen Glückwunsch! Du hast das Spiel erfolgreich beendet.");
         }
     }
 })(Aufgabe3 || (Aufgabe3 = {}));

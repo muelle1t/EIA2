@@ -40,7 +40,7 @@ namespace Aufgabe3 {
 
 
         console.log(_event);
-
+    
 
     }
 
@@ -132,15 +132,19 @@ namespace Aufgabe3 {
         if (numCardsOpen > 2) {// nur 2 Karten können geöffnet werden
             clicked.className = "closed";
         }
+        
+        //let takenCards = document.getElementsByClassName("taken");
+        //console.log("Taken CArds" + takenCards)
     }
     function compareCards(): void {
 
-        let firstCard: any = document.getElementsByClassName("open")[0]; 
+        let firstCard: any = document.getElementsByClassName("open")[0]; // die zwei offenen Karten werden geholt
         let secondCard: any = document.getElementsByClassName("open")[1];
 
         console.log("Erste Karte:" + firstCard);
         console.log("Zweite Karte:" + secondCard);
-        if (firstCard.innerHTML == secondCard.innerHTML) {
+
+        if (firstCard.innerHTML == secondCard.innerHTML) {//wenn der Karteninhalt der Karten gleich ist wird das Attribut auf taken gesetzt
 
             firstCard.setAttribute("class", "taken");
             secondCard.setAttribute("class", "taken");
@@ -154,9 +158,16 @@ namespace Aufgabe3 {
             secondCard.setAttribute("class", "closed");
             numCardsOpen = 0;
         }
-
+        
+                
     }
-
+    
+    function endGame(): void { //Alert klappt leider noch nicht
+        let takenCards = document.getElementsByClassName("taken");
+        if (takenCards.length == 0) {
+            alert("Herzlichen Glückwunsch! Du hast das Spiel erfolgreich beendet.");
+        }
+    }
 
 
 
