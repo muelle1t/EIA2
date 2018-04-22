@@ -9,7 +9,8 @@ var Aufgabe3;
     let numPlayer;
     let askCards;
     let numCards;
-    let removeCard;
+    //let removeCard: number;
+    let amountCards;
     let numCardsOpen = 0;
     let numTakenCards = 0;
     function init(_event) {
@@ -67,8 +68,9 @@ var Aufgabe3;
     }
     //Funktion für die Anzahl der KArten
     function totalNumCards() {
-        for (let i = 0; i < numCards; i++) {
-            createCards();
+        amountCards = numCards * 2;
+        console.log(amountCards);
+        for (let i = 0; i < amountCards; i++) {
             createCards();
         }
     }

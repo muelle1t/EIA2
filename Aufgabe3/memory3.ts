@@ -14,7 +14,9 @@ namespace Aufgabe3 {
     let askCards: string;
     let numCards: number;
 
-    let removeCard: number;
+        
+    //let removeCard: number;
+    let amountCards: number;
 
     let numCardsOpen: number = 0;
 
@@ -99,12 +101,15 @@ namespace Aufgabe3 {
 
     }
     //Funktion für die Anzahl der KArten
+    
     function totalNumCards(): void {
 
+        amountCards = numCards * 2;
+        console.log(amountCards);
 
-        for (let i: number = 0; i < numCards; i++) {
+        
+        for (let i: number = 0; i < amountCards; i++) {
 
-            createCards();
             createCards();
 
         }
@@ -128,7 +133,7 @@ namespace Aufgabe3 {
         }
         console.log("OpenCards:" + numCardsOpen)
 
-        if (numCardsOpen == 2) {//wenn zwei Karten geöffnet sind werden sie verglichen und schliesen sich nach 1500 ms
+        if (numCardsOpen == 2) {//wenn zwei Karten geöffnet sind werden sie verglichen und schliesen sich nach 1,5s
             setTimeout(compareCards, 1500);
         }
 
