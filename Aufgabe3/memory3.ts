@@ -2,7 +2,7 @@ namespace Aufgabe3 {
 
     window.addEventListener("load", init);
 
-    let contentCards: string[] = ["Apfel", "Apfel", "Birne", "Birne",  "Zitrone", "Zitrone", "Avocado", "Avocado", "Orange", "Orange", "Ananas", "Ananas", "Erdbeere", "Erdbeere", "Wassermelone", "Wassermelone", "Papaya", "Papaya", "Pfirsich", "Pfirsich"];
+    let contentCards: string[] = ["Apfel", "Apfel", "Birne", "Birne", "Zitrone", "Zitrone", "Avocado", "Avocado", "Orange", "Orange", "Ananas", "Ananas", "Erdbeere", "Erdbeere", "Wassermelone", "Wassermelone", "Papaya", "Papaya", "Pfirsich", "Pfirsich"];
     console.log(contentCards);
 
     let cardsList: string[] = [];
@@ -13,8 +13,9 @@ namespace Aufgabe3 {
     let askCards: string;
     let numCards: number;
 
-    let amountCards: number;
     let removeCard: number;
+
+    let numCardsOpen: number = 0;
 
 
     function init(_event: Event): void {
@@ -34,13 +35,19 @@ namespace Aufgabe3 {
 
         createInfo(numPlayer);
 
-    }
 
+
+
+
+        console.log(_event);
+
+
+    }
 
 
     //Funktion für die Infotafel
     function createInfo(_numPlayers: number): void {
-        let info = document.getElementById("info");
+        let info: HTMLElement = document.getElementById("info");
         for (let i: number = 1; i < _numPlayers + 1; i++) {
             let p: HTMLParagraphElement = document.createElement("p");
             p.innerText = "Spieler" + " " + i + ":" + " " + " 0 Punkte";
@@ -50,53 +57,49 @@ namespace Aufgabe3 {
         }
     }
 
-//Funktion für Karten
+    //Funktion für Karten
     function createCards(): void {
-
+        let div: HTMLDivElement = document.createElement("div");
         let card: any = document.getElementById("brett");
 
         let n: number = Math.floor(Math.random() * contentCards.length); //zufälliger Inhalt aus dem Array
         let randomNumber: number = Math.random();
 
-        console.log(contentCards[6]);
+        console.log(contentCards[n]);
 
-        if (randomNumber <= 0.5) { //closed
-            let div: HTMLDivElement = document.createElement("div");
-            card.appendChild(div);
-            div.setAttribute("class", "closed");
-            cardsList.push(card);
-            div.innerText = contentCards[n];
-            
-        }
+        //        if (randomNumber <= 0.5) { //        
+        //            card.appendChild(div);
+        div.setAttribute("class", "closed");
+        //            cardsList.push(card);
+        //        }
+        //
+        //        if (randomNumber > 0.5 && randomNumber <= 0.75) { //open
+        //            let div: HTMLDivElement = document.createElement("div");
+        //            card.appendChild(div);
+        //            div.setAttribute("class", "open");
+        //            div.innerText = contentCards[n];
+        //            cardsList.push(card);
+        //
+        //        }
+        //        else if (randomNumber > 0.75) { //taken
+        //            let div: HTMLDivElement = document.createElement("div");
+        //            card.appendChild(div);
+        //            div.setAttribute("class", "taken");
+        //            cardsList.push(card);
+        //
+        //        }
+        div.addEventListener("click", openCard);
 
-        if (randomNumber > 0.5 && randomNumber <= 0.75) { //open
-            let div: HTMLDivElement = document.createElement("div");
-            card.appendChild(div);
-            div.setAttribute("class", "open");
-            div.innerText = contentCards[n];
-            cardsList.push(card);
+        card.appendChild(div);
 
-        }
-        else if (randomNumber > 0.75) { //taken
-            let div: HTMLDivElement = document.createElement("div");
-            card.appendChild(div);
-            div.setAttribute("class", "taken");
-            div.innerText = contentCards[n];
-            cardsList.push(card);
-
-        }
-
-        contentCards.splice(0, 1);
+        contentCards.splice(n, 1);
 
     }
-//Funktion für die Anzahl der KArten
+    //Funktion für die Anzahl der KArten
     function totalNumCards(): void {
 
-        amountCards = numCards;
-        console.log(amountCards);
 
-        
-        for (let i: number = 0; i < amountCards; i++) {
+        for (let i: number = 0; i < numCards; i++) {
 
             createCards();
 
@@ -104,7 +107,50 @@ namespace Aufgabe3 {
 
     }
 
+    //Funktion Karte öffnen
+    function openCard(_event: Event): void {
 
+        let clicked: HTMLElement = <HTMLElement>_event.target;
+
+        if (clicked.classList.contains("card")) {
+            numCardsOpen++;
+            if (clicked.classList.contains("closed")) {
+                clicked.classList.remove("closed");
+                clicked.classList.add("open");
+            }
+        }
+
+        if (numCardsOpen == 2) {
+            setTimeout(compareCards, 1500);
+        }
+
+        if (numCardsOpen > 2) {
+            clicked.classList.remove("open");
+            clicked.classList.add("closed");
+        }
+    }
+    function compareCards(): void {
+        let firstTry = document.getElementsByClassName("open")[0];
+        let secondTry = document.getElementsByClassName("open")[1];
+
+        console.log(firstTry);
+        console.log(secondTry);
+
+        if (firstTry.innerHTML == secondTry.innerHTML) {
+
+            firstTry.setAttribute("class", "taken");
+            secondTry.setAttribute("class", "taken");
+
+            numCardsOpen = 0;
+
+        }
+
+        else {
+            firstTry.setAttribute("class", "closed");
+            secondTry.setAttribute("class", "closed");
+            numCardsOpen = 0;
+        }
+    }
 
 
 }
