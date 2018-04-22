@@ -6,6 +6,7 @@ namespace Aufgabe3 {
     console.log(contentCards);
 
     let cardsList: string[] = [];
+    let cardsTaken: string[] = [];
 
     let askPlayer: string;
     let numPlayer: number;
@@ -16,6 +17,8 @@ namespace Aufgabe3 {
     let removeCard: number;
 
     let numCardsOpen: number = 0;
+
+    let numTakenCards: number = 0;
 
 
     function init(_event: Event): void {
@@ -40,7 +43,7 @@ namespace Aufgabe3 {
 
 
         console.log(_event);
-    
+
 
     }
 
@@ -132,9 +135,8 @@ namespace Aufgabe3 {
         if (numCardsOpen > 2) {// nur 2 Karten können geöffnet werden
             clicked.className = "closed";
         }
-        
-        //let takenCards = document.getElementsByClassName("taken");
-        //console.log("Taken CArds" + takenCards)
+
+
     }
     function compareCards(): void {
 
@@ -148,6 +150,9 @@ namespace Aufgabe3 {
 
             firstCard.setAttribute("class", "taken");
             secondCard.setAttribute("class", "taken");
+            numTakenCards++;
+
+            console.log("CardsTaken:" + numTakenCards)
 
             numCardsOpen = 0;
 
@@ -158,13 +163,12 @@ namespace Aufgabe3 {
             secondCard.setAttribute("class", "closed");
             numCardsOpen = 0;
         }
-        
-                
+        endGame();
     }
-    
-    function endGame(): void { //Alert klappt leider noch nicht
-        let takenCards = document.getElementsByClassName("taken");
-        if (takenCards.length == 0) {
+
+    function endGame(): void {
+
+        if (numTakenCards == numCards) {
             alert("Herzlichen Glückwunsch! Du hast das Spiel erfolgreich beendet.");
         }
     }

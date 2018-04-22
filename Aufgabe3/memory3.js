@@ -4,12 +4,14 @@ var Aufgabe3;
     let contentCards = ["Apfel", "Apfel", "Birne", "Birne", "Zitrone", "Zitrone", "Avocado", "Avocado", "Orange", "Orange", "Ananas", "Ananas", "Erdbeere", "Erdbeere", "Wassermelone", "Wassermelone", "Papaya", "Papaya", "Pfirsich", "Pfirsich"];
     console.log(contentCards);
     let cardsList = [];
+    let cardsTaken = [];
     let askPlayer;
     let numPlayer;
     let askCards;
     let numCards;
     let removeCard;
     let numCardsOpen = 0;
+    let numTakenCards = 0;
     function init(_event) {
         askPlayer = prompt("Bitte die Anzahl der Spieler eingeben (min. 1, max. 4):");
         numPlayer = parseInt(askPlayer);
@@ -90,8 +92,6 @@ var Aufgabe3;
         if (numCardsOpen > 2) {
             clicked.className = "closed";
         }
-        //let takenCards = document.getElementsByClassName("taken");
-        //console.log("Taken CArds" + takenCards)
     }
     function compareCards() {
         let firstCard = document.getElementsByClassName("open")[0]; // die zwei offenen Karten werden geholt
@@ -101,6 +101,8 @@ var Aufgabe3;
         if (firstCard.innerHTML == secondCard.innerHTML) {
             firstCard.setAttribute("class", "taken");
             secondCard.setAttribute("class", "taken");
+            numTakenCards++;
+            console.log("CardsTaken:" + numTakenCards);
             numCardsOpen = 0;
         }
         else {
@@ -108,10 +110,10 @@ var Aufgabe3;
             secondCard.setAttribute("class", "closed");
             numCardsOpen = 0;
         }
+        endGame();
     }
     function endGame() {
-        let takenCards = document.getElementsByClassName("taken");
-        if (takenCards.length == 0) {
+        if (numTakenCards == numCards) {
             alert("Herzlichen Glückwunsch! Du hast das Spiel erfolgreich beendet.");
         }
     }
