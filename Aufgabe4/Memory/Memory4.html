@@ -12,17 +12,51 @@ Er wurde nicht kopiert und auch nicht diktiert. -->
     <head>
     	<meta charset="utf-8">
     	<link rel="stylesheet" href="stylesheet_memory4.css">
+    	<script type="text/javascript" src="memory_Interface.js"></script>
 		<script type="text/javascript" src="memory4.js"></script>
 		<title>Memory</title>
 	</head>
 	
 	<header>
-	<fieldset id="info">
-			<legend>Info</legend>
+	<header  id="input">
+
+	<fieldset>
+		<legend>Kartendeck</legend>
+		<select name="CardDeck" id="select">
+			<option value="dogs" selected="">Hunderassen</option>
+			<option value="disney">Disney Prinzessinnen</option>
+			<option value="fruits">Obst</option>
+		</select> 
+		
+		<input type="number" name="cardpairs" placeholder="Anzahl der Kartenpaare" min="1" max="10"/>
 	</fieldset>
+	
+	<fieldset>
+		<legend>Spieler</legend>
+		
+		<div id="name">
+			<input type="text" placeholder="Spielername" name="player"
+				maxlength="20" />
+		</div>
+		
+		<button id="addplayer"> + Spieler</button>
+		<button id="removeplayer"> - Spieler</button>
+		
+		<hr>
+		
+		<button type="button" id="start">Start</button>
+		
+	</fieldset>
+	
+	
+
+</header>
+
 	</header>
 	
+	
 	<body>
+  
 	<main>
 		<div id="brett">
 			<h2>Spiel</h2>

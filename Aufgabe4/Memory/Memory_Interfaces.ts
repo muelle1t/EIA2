@@ -17,10 +17,10 @@ namespace Aufgabe4 {
     // Definieren der einzelnen Kartendecks
     export let decks: CardPacket = {};
     deck = {
-        cardContent: ["Puddel", "Terrier", "Labrador", "Mops", "Dalmatiner", "Schäferhund", "Apenzeller", "Border Collie", "Shi Tzu", "Malteser", "Husky", "Dackel"],
+        cardContent: ["Puddel", "Terrier", "Labrador", "Mops", "Dalmatiner", "Schäferhund", "Border Collie", "Shi Tzu", "Husky", "Dackel"],
         cardColor: "green",
         cardFont: "sans-serif",
-        cardBatch: "12"
+        cardBatch: "10"
     };
 
     decks["dogs"] = deck;

@@ -4,10 +4,10 @@ var Aufgabe4;
     // Definieren der einzelnen Kartendecks
     Aufgabe4.decks = {};
     Aufgabe4.deck = {
-        cardContent: ["Puddel", "Terrier", "Labrador", "Mops", "Dalmatiner", "Schäferhund", "Apenzeller", "Border Collie", "Shi Tzu", "Malteser", "Husky", "Dackel"],
+        cardContent: ["Puddel", "Terrier", "Labrador", "Mops", "Dalmatiner", "Schäferhund", "Border Collie", "Shi Tzu", "Husky", "Dackel"],
         cardColor: "green",
         cardFont: "sans-serif",
-        cardBatch: "12"
+        cardBatch: "10"
     };
     Aufgabe4.decks["dogs"] = Aufgabe4.deck;
     Aufgabe4.deck = {

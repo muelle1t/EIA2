@@ -2,7 +2,7 @@ namespace Aufgabe4 {
 
     window.addEventListener("load", init);
 
-    let contentCards: string[] = ["Apfel", "Apfel", "Birne", "Birne", "Zitrone", "Zitrone", "Avocado", "Avocado", "Orange", "Orange", "Ananas", "Ananas", "Erdbeere", "Erdbeere", "Wassermelone", "Wassermelone", "Papaya", "Papaya", "Pfirsich", "Pfirsich"];
+    let contentCards: string[] = [ ];
     console.log(contentCards);
 
     let cardsList: string[] = [];
@@ -26,20 +26,7 @@ namespace Aufgabe4 {
     function init(_event: Event): void {
 
 
-        askPlayer = prompt("Bitte die Anzahl der Spieler eingeben (min. 1, max. 4):");
-        numPlayer = parseInt(askPlayer);
-
-        console.log(numPlayer);
-
-        askCards = prompt("Bitte die Anzahl der Kartenpaare eingeben (min. 5, max. 10):");
-        numCards = parseInt(askCards);
-
-        console.log(numCards);
-
-        totalNumCards();
-
-        createInfo(numPlayer);
-
+        
 
 
 

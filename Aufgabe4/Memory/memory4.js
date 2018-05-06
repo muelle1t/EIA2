@@ -1,7 +1,7 @@
 var Aufgabe4;
 (function (Aufgabe4) {
     window.addEventListener("load", init);
-    let contentCards = ["Apfel", "Apfel", "Birne", "Birne", "Zitrone", "Zitrone", "Avocado", "Avocado", "Orange", "Orange", "Ananas", "Ananas", "Erdbeere", "Erdbeere", "Wassermelone", "Wassermelone", "Papaya", "Papaya", "Pfirsich", "Pfirsich"];
+    let contentCards = [];
     console.log(contentCards);
     let cardsList = [];
     let cardsTaken = [];
@@ -14,14 +14,6 @@ var Aufgabe4;
     let numCardsOpen = 0;
     let numTakenCards = 0;
     function init(_event) {
-        askPlayer = prompt("Bitte die Anzahl der Spieler eingeben (min. 1, max. 4):");
-        numPlayer = parseInt(askPlayer);
-        console.log(numPlayer);
-        askCards = prompt("Bitte die Anzahl der Kartenpaare eingeben (min. 5, max. 10):");
-        numCards = parseInt(askCards);
-        console.log(numCards);
-        totalNumCards();
-        createInfo(numPlayer);
         console.log(_event);
     }
     //Funktion für die Infotafel
