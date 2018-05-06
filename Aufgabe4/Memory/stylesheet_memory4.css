@@ -1,0 +1,62 @@
+/*header*/
+header {
+	color: white;
+}
+
+/*body*/
+
+body {
+	font-family: 'Do Hyeon', sans-serif;
+	/*color: white;*/
+	background-color: #151515;
+}
+
+
+/*Infotafel*/
+fieldset {
+	margin-top: 1em;
+	margin-bottom: 1em;
+	}
+
+legend {
+	font-size: 1em;
+}
+
+p {
+	font-size : 1.3em;
+	margin: 0.4em;
+}
+h2 {
+	font-size: 1.3em;
+	color: white;
+}
+#brett {
+	width:94%;
+	height: auto;
+	margin: 3%;
+}
+div div {
+	
+    width: 12em;
+    height: 14em;
+    text-align: center;
+    font-size: 0.8em;
+    margin: 1em;
+    display: inline-block;
+}
+
+.open {
+	background-color: lightgray;
+}
+
+.closed {
+	background-color: #0066ff;
+	color: #0066ff;
+}
+
+.taken {
+	color: #151515;
+	border-style: dotted;
+	border-color: lightgrey;
+		
+}
