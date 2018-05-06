@@ -6,7 +6,8 @@ var Aufgabe4;
     let cardsList = [];
     let cardsTaken = [];
     let askPlayer;
-    let numPlayer;
+    let numPlayer = 1;
+    let playerScore = 0;
     let askCards;
     let numCards;
     //let removeCard: number;
@@ -14,16 +15,34 @@ var Aufgabe4;
     let numCardsOpen = 0;
     let numTakenCards = 0;
     function init(_event) {
-        console.log(_event);
+        document.getElementById("start").addEventListener("click", start);
+        document.getElementById("addplayer").addEventListener("click", addPlayer);
+        document.getElementById("removeplayer").addEventListener("click", removePlayer);
     }
     //Funktion für die Infotafel
-    function createInfo(_numPlayers) {
-        let info = document.getElementById("info");
-        for (let i = 1; i < _numPlayers + 1; i++) {
-            let p = document.createElement("p");
-            p.innerText = "Spieler" + " " + i + ":" + " " + " 0 Punkte";
-            info.appendChild(p);
-            console.log(info.textContent);
+    function addPlayer() {
+        if (numPlayer < 4) {
+            let player = document.createElement("input");
+            player.setAttribute("type", "text");
+            player.setAttribute("placeholder", "Spielernamen");
+            player.setAttribute("name", "player");
+            player.setAttribute("id", "player");
+            document.getElementById("names").appendChild(player);
+            numPlayer++;
+        }
+    }
+    function removePlayer() {
+        document.getElementById("player").remove();
+        numPlayer--;
+    }
+    function createStepper() { }
+    function start() {
+        let inputs = document.getElementsByTagName("input");
+        // Spieler Anzeige generieren
+        for (let i = 0; i < numPlayer; i++) {
+            let playerDiv = document.createElement("div");
+            document.getElementById("player-info").appendChild(playerDiv);
+            playerDiv.innerHTML = inputs[i].value + ": " + playerScore + " Punkte";
         }
     }
     //Funktion für Karten

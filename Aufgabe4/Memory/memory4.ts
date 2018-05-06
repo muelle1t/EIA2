@@ -2,19 +2,20 @@ namespace Aufgabe4 {
 
     window.addEventListener("load", init);
 
-    let contentCards: string[] = [ ];
+    let contentCards: string[] = [];
     console.log(contentCards);
 
     let cardsList: string[] = [];
     let cardsTaken: string[] = [];
 
     let askPlayer: string;
-    let numPlayer: number;
+    let numPlayer: number = 1;
+    let playerScore: number = 0;
 
     let askCards: string;
     let numCards: number;
 
-        
+
     //let removeCard: number;
     let amountCards: number;
 
@@ -25,28 +26,50 @@ namespace Aufgabe4 {
 
     function init(_event: Event): void {
 
+        document.getElementById("start").addEventListener("click", start);
+        document.getElementById("addplayer").addEventListener("click", addPlayer);
+        document.getElementById("removeplayer").addEventListener("click", removePlayer);
 
-        
-
-
-
-
-        console.log(_event);
 
 
     }
 
 
     //Funktion für die Infotafel
-    function createInfo(_numPlayers: number): void {
-        let info: HTMLElement = document.getElementById("info");
-        for (let i: number = 1; i < _numPlayers + 1; i++) {
-            let p: HTMLParagraphElement = document.createElement("p");
-            p.innerText = "Spieler" + " " + i + ":" + " " + " 0 Punkte";
+    function addPlayer(): void {
+        if (numPlayer < 4) { //Anzahl Spieler muss kleiner 4 sein
 
-            info.appendChild(p);
-            console.log(info.textContent);
+            let player: HTMLElement = document.createElement("input");
+
+            player.setAttribute("type", "text");
+            player.setAttribute("placeholder", "Spielernamen");
+            player.setAttribute("name", "player");
+            player.setAttribute("id", "player");
+            document.getElementById("names").appendChild(player);
+
+            numPlayer++;
+
         }
+
+    }
+
+    function removePlayer(): void {
+        document.getElementById("player").remove();
+        numPlayer--;
+    }
+
+    function createStepper(): void { }
+
+    function start(): void {
+        
+        let inputs: NodeListOf<HTMLInputElement> = document.getElementsByTagName("input");
+        
+        // Spieler Anzeige generieren
+        for (let i: number = 0; i < numPlayer; i++) {
+            let playerDiv: HTMLDivElement = document.createElement("div");
+            document.getElementById("player-info").appendChild(playerDiv);
+            playerDiv.innerHTML = inputs[i].value + ": " + playerScore + " Punkte";
+}
     }
 
     //Funktion für Karten
@@ -88,13 +111,13 @@ namespace Aufgabe4 {
 
     }
     //Funktion für die Anzahl der KArten
-    
+
     function totalNumCards(): void {
 
         amountCards = numCards * 2;
         console.log(amountCards);
 
-        
+
         for (let i: number = 0; i < amountCards; i++) {
 
             createCards();
