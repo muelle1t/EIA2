@@ -29,6 +29,7 @@ namespace Aufgabe4 {
         document.getElementById("start").addEventListener("click", start);
         document.getElementById("addplayer").addEventListener("click", addPlayer);
         document.getElementById("removeplayer").addEventListener("click", removePlayer);
+        
 
 
 
@@ -61,15 +62,15 @@ namespace Aufgabe4 {
     function createStepper(): void { }
 
     function start(): void {
-        
-        let inputs: NodeListOf<HTMLInputElement> = document.getElementsByTagName("input");
-        
+
+        let input: any = document.getElementById("player");
+
         // Spieler Anzeige generieren
         for (let i: number = 0; i < numPlayer; i++) {
             let playerDiv: HTMLDivElement = document.createElement("div");
-            document.getElementById("player-info").appendChild(playerDiv);
-            playerDiv.innerHTML = inputs[i].value + ": " + playerScore + " Punkte";
-}
+            document.getElementById("info").appendChild(playerDiv);
+            playerDiv.innerHTML = input[0].value + ": " + playerScore + " Punkte";
+        }
     }
 
     //Funktion für Karten

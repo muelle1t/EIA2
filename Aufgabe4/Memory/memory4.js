@@ -37,12 +37,12 @@ var Aufgabe4;
     }
     function createStepper() { }
     function start() {
-        let inputs = document.getElementsByTagName("input");
+        let input = document.getElementById("player");
         // Spieler Anzeige generieren
         for (let i = 0; i < numPlayer; i++) {
             let playerDiv = document.createElement("div");
-            document.getElementById("player-info").appendChild(playerDiv);
-            playerDiv.innerHTML = inputs[i].value + ": " + playerScore + " Punkte";
+            document.getElementById("info").appendChild(playerDiv);
+            playerDiv.innerHTML = input[0].value + ": " + playerScore + " Punkte";
         }
     }
     //Funktion für Karten
