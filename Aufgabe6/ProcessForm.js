@@ -1,5 +1,5 @@
-var Aufgabe06_Interfaces;
-(function (Aufgabe06_Interfaces) {
+var L04_Interfaces;
+(function (L04_Interfaces) {
     window.addEventListener("load", init);
     function init(_event) {
         console.log("Init");
@@ -28,15 +28,15 @@ var Aufgabe06_Interfaces;
         console.log(studi.age);
         console.log(studi["age"]);
         // Datensatz im assoziativen Array unter der Matrikelnummer speichern
-        Aufgabe06_Interfaces.studiHomoAssoc[matrikel] = studi;
+        L04_Interfaces.studiHomoAssoc[matrikel] = studi;
         // nur um das auch noch zu zeigen...
-        Aufgabe06_Interfaces.studiSimpleArray.push(studi);
+        L04_Interfaces.studiSimpleArray.push(studi);
         console.log(studi);
     }
     function searchstudent(_event) {
         let student = document.getElementsByTagName("input")[6];
         let savedstudent = student.value;
-        let studi = Aufgabe06_Interfaces.studiHomoAssoc[savedstudent];
+        let studi = L04_Interfaces.studiHomoAssoc[savedstudent];
         if (studi == undefined) {
             alert("Student nicht gefunden");
         }
@@ -49,8 +49,8 @@ var Aufgabe06_Interfaces;
         let output = document.getElementsByTagName("textarea")[0];
         output.value = "";
         // for-in-Schleife iteriert über die Schlüssel des assoziativen Arrays
-        for (let matrikel in Aufgabe06_Interfaces.studiHomoAssoc) {
-            let studi = Aufgabe06_Interfaces.studiHomoAssoc[matrikel];
+        for (let matrikel in L04_Interfaces.studiHomoAssoc) {
+            let studi = L04_Interfaces.studiHomoAssoc[matrikel];
             let line = matrikel + ": ";
             line += studi.name + ", " + studi.firstname + ", " + studi.age + " Jahre ";
             line += studi.gender ? "(M)" : "(F)";
@@ -58,11 +58,11 @@ var Aufgabe06_Interfaces;
         }
         // zusätzliche Konsolenausgaben zur Demonstration
         console.group("Simple Array");
-        console.log(Aufgabe06_Interfaces.studiSimpleArray);
+        console.log(L04_Interfaces.studiSimpleArray);
         console.groupEnd();
         console.group("Associatives Array (Object)");
-        console.log(Aufgabe06_Interfaces.studiHomoAssoc);
+        console.log(L04_Interfaces.studiHomoAssoc);
         console.groupEnd();
     }
-})(Aufgabe06_Interfaces || (Aufgabe06_Interfaces = {}));
+})(L04_Interfaces || (L04_Interfaces = {}));
 //# sourceMappingURL=ProcessForm.js.map

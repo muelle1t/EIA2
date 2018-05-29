@@ -1,26 +1,24 @@
 namespace Aufgabe06_Interfaces {
     window.addEventListener("load", init);
 
+    let address: string = "https://eia2-ak-server.herokuapp.com";
+
+    let inputs: NodeListOf<HTMLInputElement> = document.getElementsByTagName("input");
 
 
     function init(_event: Event): void {
         console.log("Init");
         let insertButton: HTMLButtonElement = <HTMLButtonElement>document.getElementById("insert");
         let refreshButton: HTMLButtonElement = <HTMLButtonElement>document.getElementById("refresh");
-        let searchButton: HTMLButtonElement = <HTMLButtonElement>document.getElementById("searchbutton");
+        let searchButton: HTMLButtonElement = <HTMLButtonElement>document.getElementById("checkSearch");
         insertButton.addEventListener("click", insert);
         refreshButton.addEventListener("click", refresh);
-        searchButton.addEventListener("click", searchstudent);
+        searchButton.addEventListener("click", search);
     }
 
     function insert(_event: Event): void {
-        let inputs: NodeListOf<HTMLInputElement> = document.getElementsByTagName("input");
         let genderButton: HTMLInputElement = <HTMLInputElement>document.getElementById("male");
         let matrikel: string = inputs[2].value;
-
-        let studycourse: HTMLSelectElement = document.getElementsByTagName("select")[0];
-
-
         let studi: Studi;
         studi = {
             name: inputs[0].value,
@@ -28,59 +26,59 @@ namespace Aufgabe06_Interfaces {
             matrikel: parseInt(matrikel),
             age: parseInt(inputs[3].value),
             gender: genderButton.checked,
-            course: studycourse.value
+            studiengang: document.getElementsByTagName("select").item(0).value
         };
+        let convert: string = JSON.stringify(studi);
+        console.log(convert);
 
-        console.log(studi);
-        console.log(studi.age);
-        console.log(studi["age"]);
-
-        // Datensatz im assoziativen Array unter der Matrikelnummer speichern
-        studiHomoAssoc[matrikel] = studi;
-
-        // nur um das auch noch zu zeigen...
-        studiSimpleArray.push(studi);
-
-        console.log(studi);
+        let xhr: XMLHttpRequest = new XMLHttpRequest();
+        xhr.open("GET", address + "?command=insert&data=" + convert, true);
+        xhr.addEventListener("readystatechange", handleStateChangeInsert);
+        xhr.send();
     }
 
-    function searchstudent(_event: Event): void {
-
-        let student = document.getElementsByTagName("input")[6];
-        let savedstudent = student.value;
-        let studi = studiHomoAssoc[savedstudent];
-
-
-
-        if (studi == undefined) {
-            alert("Student nicht gefunden");
-
-        }
-        else {
-            let output: HTMLTextAreaElement = document.getElementsByTagName("textarea")[0];
-            output.value = "Vorname:  " + studi.firstname + "\r\n" + "Name:  " + studi.name + "\r\n" + "Alter:  " + studi.age + "  Jahre" + "\r\n" + "Studiengang:  " + studi.course;
+    function handleStateChangeInsert(_event: ProgressEvent): void {
+        var xhr: XMLHttpRequest = (<XMLHttpRequest>_event.target);
+        if (xhr.readyState == XMLHttpRequest.DONE) {
+            alert(xhr.response);
         }
     }
+
 
     function refresh(_event: Event): void {
+        let xhr: XMLHttpRequest = new XMLHttpRequest();
+        xhr.open("GET", address + "?command=refresh", true);
+        xhr.addEventListener("readystatechange", handleStateChangeRefresh);
+        xhr.send();
+    }    
+    
+    function handleStateChangeRefresh(_event: ProgressEvent): void {
         let output: HTMLTextAreaElement = document.getElementsByTagName("textarea")[0];
         output.value = "";
-        // for-in-Schleife iteriert über die Schlüssel des assoziativen Arrays
-        for (let matrikel in studiHomoAssoc) {  // Besonderheit: Type-Annotation nicht erlaubt, ergibt sich aus der Interface-Definition
-            let studi: Studi = studiHomoAssoc[matrikel];
-            let line: string = matrikel + ": ";
-            line += studi.name + ", " + studi.firstname + ", " + studi.age + " Jahre ";
-            line += studi.gender ? "(M)" : "(F)";
-            output.value += line + "\n";
-        }
-
-        // zusätzliche Konsolenausgaben zur Demonstration
-        console.group("Simple Array");
-        console.log(studiSimpleArray);
-        console.groupEnd();
-
-        console.group("Associatives Array (Object)");
-        console.log(studiHomoAssoc);
-        console.groupEnd();
+        var xhr: XMLHttpRequest = (<XMLHttpRequest>_event.target);
+        if (xhr.readyState == XMLHttpRequest.DONE) {
+            output.value += xhr.response;
+        }           
     }
+    
+    function search(_event: Event): void {
+        let mtrkl: string = inputs[6].value;
+        
+        let xhr: XMLHttpRequest = new XMLHttpRequest();
+        xhr.open("GET", address + "?command=search&searchFor=" + mtrkl, true);
+        xhr.addEventListener("readystatechange", handleStateChangeSearch);
+        xhr.send();    
+    }
+    
+    function handleStateChangeSearch(_event: ProgressEvent): void {
+        let output: HTMLTextAreaElement = document.getElementsByTagName("textarea")[1];
+        output.value = "";
+        var xhr: XMLHttpRequest = (<XMLHttpRequest>_event.target);
+        if (xhr.readyState == XMLHttpRequest.DONE) {
+            output.value += xhr.response;
+        }           
+    }
+    
+            
+
 }
