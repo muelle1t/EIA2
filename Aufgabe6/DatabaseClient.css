@@ -14,4 +14,9 @@ input[type="radio"], input[type="checkbox"], input[type="number"], label {
 
 button {
 	margin:1em 0em;
+	
+}
+
+fieldset {
+	font-family: 'Arial', sans-serif;
 }
