@@ -1,7 +1,7 @@
 namespace Aufgabe06_Interfaces {
     window.addEventListener("load", init);
 
-    let address: string = "https://eia2-ak-server.herokuapp.com";
+    let address: string = "https://eia2-ak-server.herokuapp.com/";
 
     let inputs: NodeListOf<HTMLInputElement> = document.getElementsByTagName("input");
 

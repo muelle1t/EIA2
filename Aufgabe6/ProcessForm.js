@@ -1,20 +1,20 @@
-var L04_Interfaces;
-(function (L04_Interfaces) {
+var Aufgabe06_Interfaces;
+(function (Aufgabe06_Interfaces) {
     window.addEventListener("load", init);
+    let address = "https://eia2-ak-server.herokuapp.com/";
+    let inputs = document.getElementsByTagName("input");
     function init(_event) {
         console.log("Init");
         let insertButton = document.getElementById("insert");
         let refreshButton = document.getElementById("refresh");
-        let searchButton = document.getElementById("searchbutton");
+        let searchButton = document.getElementById("checkSearch");
         insertButton.addEventListener("click", insert);
         refreshButton.addEventListener("click", refresh);
-        searchButton.addEventListener("click", searchstudent);
+        searchButton.addEventListener("click", search);
     }
     function insert(_event) {
-        let inputs = document.getElementsByTagName("input");
         let genderButton = document.getElementById("male");
         let matrikel = inputs[2].value;
-        let studycourse = document.getElementsByTagName("select")[0];
         let studi;
         studi = {
             name: inputs[0].value,
@@ -22,47 +22,49 @@ var L04_Interfaces;
             matrikel: parseInt(matrikel),
             age: parseInt(inputs[3].value),
             gender: genderButton.checked,
-            course: studycourse.value
+            studiengang: document.getElementsByTagName("select").item(0).value
         };
-        console.log(studi);
-        console.log(studi.age);
-        console.log(studi["age"]);
-        // Datensatz im assoziativen Array unter der Matrikelnummer speichern
-        L04_Interfaces.studiHomoAssoc[matrikel] = studi;
-        // nur um das auch noch zu zeigen...
-        L04_Interfaces.studiSimpleArray.push(studi);
-        console.log(studi);
+        let convert = JSON.stringify(studi);
+        console.log(convert);
+        let xhr = new XMLHttpRequest();
+        xhr.open("GET", address + "?command=insert&data=" + convert, true);
+        xhr.addEventListener("readystatechange", handleStateChangeInsert);
+        xhr.send();
     }
-    function searchstudent(_event) {
-        let student = document.getElementsByTagName("input")[6];
-        let savedstudent = student.value;
-        let studi = L04_Interfaces.studiHomoAssoc[savedstudent];
-        if (studi == undefined) {
-            alert("Student nicht gefunden");
-        }
-        else {
-            let output = document.getElementsByTagName("textarea")[0];
-            output.value = "Vorname:  " + studi.firstname + "\r\n" + "Name:  " + studi.name + "\r\n" + "Alter:  " + studi.age + "  Jahre" + "\r\n" + "Studiengang:  " + studi.course;
+    function handleStateChangeInsert(_event) {
+        var xhr = _event.target;
+        if (xhr.readyState == XMLHttpRequest.DONE) {
+            alert(xhr.response);
         }
     }
     function refresh(_event) {
+        let xhr = new XMLHttpRequest();
+        xhr.open("GET", address + "?command=refresh", true);
+        xhr.addEventListener("readystatechange", handleStateChangeRefresh);
+        xhr.send();
+    }
+    function handleStateChangeRefresh(_event) {
         let output = document.getElementsByTagName("textarea")[0];
         output.value = "";
-        // for-in-Schleife iteriert über die Schlüssel des assoziativen Arrays
-        for (let matrikel in L04_Interfaces.studiHomoAssoc) {
-            let studi = L04_Interfaces.studiHomoAssoc[matrikel];
-            let line = matrikel + ": ";
-            line += studi.name + ", " + studi.firstname + ", " + studi.age + " Jahre ";
-            line += studi.gender ? "(M)" : "(F)";
-            output.value += line + "\n";
+        var xhr = _event.target;
+        if (xhr.readyState == XMLHttpRequest.DONE) {
+            output.value += xhr.response;
         }
-        // zusätzliche Konsolenausgaben zur Demonstration
-        console.group("Simple Array");
-        console.log(L04_Interfaces.studiSimpleArray);
-        console.groupEnd();
-        console.group("Associatives Array (Object)");
-        console.log(L04_Interfaces.studiHomoAssoc);
-        console.groupEnd();
     }
-})(L04_Interfaces || (L04_Interfaces = {}));
+    function search(_event) {
+        let mtrkl = inputs[6].value;
+        let xhr = new XMLHttpRequest();
+        xhr.open("GET", address + "?command=search&searchFor=" + mtrkl, true);
+        xhr.addEventListener("readystatechange", handleStateChangeSearch);
+        xhr.send();
+    }
+    function handleStateChangeSearch(_event) {
+        let output = document.getElementsByTagName("textarea")[1];
+        output.value = "";
+        var xhr = _event.target;
+        if (xhr.readyState == XMLHttpRequest.DONE) {
+            output.value += xhr.response;
+        }
+    }
+})(Aufgabe06_Interfaces || (Aufgabe06_Interfaces = {}));
 //# sourceMappingURL=ProcessForm.js.map
