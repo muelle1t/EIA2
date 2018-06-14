@@ -48,7 +48,19 @@ namespace Aufgabe9_Seaworld {
         drawSeeweed(240, 680);
         drawSeeweed(80, 680);
         
-        //Blasen Zufallsanordnung
+        
+
+        drawBigFish(200, 500);
+        drawBigFish(500, 250);
+        drawBigFish(800, 400);
+        drawBigFish(100, 100);
+
+        //drawSmallBubble(840, 950);
+
+
+        //drawBubble(700, 200);
+
+      //Blasen Zufallsanordnung
         for (var i: number = 0; i < 20; i++) {
             let bubble: number = Math.floor((Math.random() * 4) + 0);
             let _x: number = (Math.random() * (450 - 150)) + 150;
@@ -64,19 +76,7 @@ namespace Aufgabe9_Seaworld {
 
             }
 
-        }
-
-        drawFish(200, 500);
-        drawFish(500, 250);
-        drawFish(800, 400);
-        drawFish(100, 100);
-
-        //drawSmallBubble(840, 950);
-
-
-        //drawBubble(700, 200);
-
-        
+        }  
 
 
 
@@ -235,7 +235,7 @@ namespace Aufgabe9_Seaworld {
         crc2.fill();
     }
 
-    function drawFish(_x: number, _y: number): void {
+    function drawBigFish(_x: number, _y: number): void {
         //Flosse hinten
         crc2.beginPath();
         crc2.strokeStyle = "#f90261";
@@ -283,6 +283,7 @@ namespace Aufgabe9_Seaworld {
         crc2.beginPath();
         crc2.arc(_x - 5, _y - 40, 9, 0, Math.PI * 2);
         crc2.fillStyle = "#c6e6ff";
+        crc2.globalAlpha = 0.3;
         crc2.fill();
         crc2.closePath();
     }

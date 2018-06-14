@@ -38,6 +38,12 @@ var Aufgabe9_Seaworld;
         drawSeeweed(40, 670);
         drawSeeweed(240, 680);
         drawSeeweed(80, 680);
+        drawBigFish(200, 500);
+        drawBigFish(500, 250);
+        drawBigFish(800, 400);
+        drawBigFish(100, 100);
+        //drawSmallBubble(840, 950);
+        //drawBubble(700, 200);
         //Blasen Zufallsanordnung
         for (var i = 0; i < 20; i++) {
             let bubble = Math.floor((Math.random() * 4) + 0);
@@ -52,12 +58,6 @@ var Aufgabe9_Seaworld;
                     break;
             }
         }
-        drawFish(200, 500);
-        drawFish(500, 250);
-        drawFish(800, 400);
-        drawFish(100, 100);
-        //drawSmallBubble(840, 950);
-        //drawBubble(700, 200);
     }
     function drawBackground() {
         let myGradient = crc2.createLinearGradient(0, 0, 0, 250);
@@ -198,7 +198,7 @@ var Aufgabe9_Seaworld;
         crc2.fillStyle = "#e05504";
         crc2.fill();
     }
-    function drawFish(_x, _y) {
+    function drawBigFish(_x, _y) {
         //Flosse hinten
         crc2.beginPath();
         crc2.strokeStyle = "#f90261";
@@ -240,6 +240,7 @@ var Aufgabe9_Seaworld;
         crc2.beginPath();
         crc2.arc(_x - 5, _y - 40, 9, 0, Math.PI * 2);
         crc2.fillStyle = "#c6e6ff";
+        crc2.globalAlpha = 0.3;
         crc2.fill();
         crc2.closePath();
     }
