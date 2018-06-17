@@ -38,17 +38,33 @@ var Aufgabe9_Seaworld;
         drawSeeweed(40, 670);
         drawSeeweed(240, 680);
         drawSeeweed(80, 680);
-        drawBigFish(200, 500);
-        drawBigFish(500, 250);
-        drawBigFish(800, 400);
-        drawBigFish(100, 100);
+        //Fische Zufallsanordnung
+        for (var i = 0; i < 10; i++) {
+            let fish = Math.floor((Math.random() * 4) + 0);
+            let _x = (Math.random() * (900 - 50)) + 50;
+            let _y = (Math.random() * (600 - 50)) + 50;
+            switch (fish) {
+                case 0:
+                    drawBigFish(_x, _y);
+                    break;
+                case 1:
+                    drawFish(_x, _y);
+                    break;
+            }
+        }
+        //        drawBigFish(200, 500);
+        //        drawBigFish(500, 250);
+        //        drawBigFish(800, 400);
+        //        drawBigFish(100, 100);
+        //        
+        //        drawFish(300, 600);
         //drawSmallBubble(840, 950);
         //drawBubble(700, 200);
         //Blasen Zufallsanordnung
         for (var i = 0; i < 20; i++) {
             let bubble = Math.floor((Math.random() * 4) + 0);
-            let _x = (Math.random() * (450 - 150)) + 150;
-            let _y = (Math.random() * (400 - 100)) + 100;
+            let _x = (Math.random() * (550 - 450)) + 450;
+            let _y = (Math.random() * (600 - 100)) + 100;
             switch (bubble) {
                 case 0:
                     drawBigBubble(_x, _y);
@@ -230,6 +246,40 @@ var Aufgabe9_Seaworld;
         crc2.lineTo(_x + 15, _y + 5);
         crc2.lineTo(_x + 20, _y + 24);
         crc2.arcTo(_x + 20, _y + 24, _x + 30, _y + 12, 25);
+        crc2.closePath();
+        crc2.stroke();
+        crc2.fill();
+    }
+    function drawFish(_x, _y) {
+        //Flosse hinten
+        crc2.beginPath();
+        crc2.strokeStyle = "#00ffbb";
+        crc2.fillStyle = "#00ffbb";
+        crc2.moveTo(_x, _y);
+        crc2.lineTo(_x - 20, _y - 15);
+        crc2.lineTo(_x - 20, _y + 15);
+        crc2.closePath();
+        crc2.stroke();
+        crc2.fill();
+        //Körper
+        crc2.beginPath();
+        crc2.fillStyle = "#00ffbb";
+        crc2.ellipse(_x + 5, _y, 20, 15, 0, Math.PI * 2, 0);
+        crc2.closePath();
+        crc2.fill();
+        crc2.stroke();
+        //Auge
+        crc2.beginPath();
+        crc2.fillStyle = "#000000";
+        crc2.arc(_x + 15, _y - 5, 2, 0, 2 * Math.PI);
+        crc2.closePath();
+        crc2.fill();
+        //Mund
+        crc2.beginPath();
+        crc2.fillStyle = "#000000";
+        crc2.strokeStyle = "#000000";
+        crc2.moveTo(_x + 15, _y + 5);
+        crc2.lineTo(_x + 25, _y + 6);
         crc2.closePath();
         crc2.stroke();
         crc2.fill();
