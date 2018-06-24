@@ -8,7 +8,7 @@ namespace Aufgabe10 {
 
         move(): void {
             this.x += 2;
-            if (this.x > 1000) {
+            if (this.x > 1050) {
                this.x = - 10; 
             }
            

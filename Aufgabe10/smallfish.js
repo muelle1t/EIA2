@@ -3,7 +3,7 @@ var Aufgabe10;
     class SmallFish {
         move() {
             this.x += 1;
-            if (this.x > 1000) {
+            if (this.x > 1050) {
                 this.x = -10;
             }
         }
