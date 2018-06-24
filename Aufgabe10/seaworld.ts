@@ -16,7 +16,9 @@ namespace Aufgabe10 {
     let imagedata: ImageData;
     
     let bigFish: BigFish[] = [];
-    //let bubbles: Bubbles[] = [];
+    let smallFish: SmallFish[] = [];
+    let bigBubbles: BigBubble[] = [];
+    let smallBubbles: SmallBubble[] = [];
  
     
     function init(_event: Event): void {
@@ -57,22 +59,46 @@ namespace Aufgabe10 {
 
         // Hintergrundbild
         imagedata = crc2.getImageData(0, 0, 640, 360);
+        
+        for (let i: number = 0; i < n - 2; i++) {
+            let bb: BigBubble = new BigBubble();
+            bb.x = (Math.random() * (550 - 450)) + 450;
+            bb.y = (Math.random() * (600 - 100)) + 100;
+            
+            bigBubbles.push(bb);
+        }
+        
+        for (let i: number = 0; i < n - 2; i++) {
+            let sb: SmallBubble = new SmallBubble();
+            sb.x = (Math.random() * (550 - 450)) + 450;
+            sb.y = (Math.random() * (600 - 100)) + 100;
+            
+            smallBubbles.push(sb);
+        }
 
         for (let i: number = 0; i < n; i++) {
             let bf: BigFish = new BigFish();
-            bf.x = Math.random() * 900;
-            bf.y = Math.random() * 450;
+            bf.x = (Math.random() * (900 - 50)) + 50;
+            bf.y = (Math.random() * (600 - 50)) + 50;
+            
+            
+            
             bigFish.push(bf);
         }
+        
+        for (let i: number = 0; i < n; i++) {
+            let sf: SmallFish = new SmallFish();
+            sf.x = (Math.random() * (1000 - 70)) + 70;
+            sf.y = (Math.random() * (400 - 60)) + 60;
+            
+            
+            
+            smallFish.push(sf);
+        }
 
-//        for (let i: number = 0; i < n - 2; i++) {
-//            let bubble: Bubbles = new Bubbles();
-//            bubble.x = Math.random() * (100 - 550) + 300;
-//            bubble.y = Math.random() * 180;
-//            bubble.r = Math.random() * 10;
-//            bubbles.push(bubble);
-//        }
-        imagedata = crc2.getImageData(0, 0, 640, 360);
+        
+        imagedata = crc2.getImageData(0, 0, 1000, 700);
+        
         animate();
     }
 
@@ -80,36 +106,69 @@ namespace Aufgabe10 {
         
 
         crc2.putImageData(imagedata, 0, 0);
-
-        moveFishes();
-        //moveBubbles();
-        drawFishes();
-        //drawBubbles();
+        
+        moveBigBubbles();
+        drawBigBubbles();
+        
+        moveSmallBubbles();
+        drawSmallBubbles();
+        
+        moveBigFish();
+        moveSmallFish();
+        
+        drawBigFish();
+        drawSmallFish();
+        
+        
         
         window.setTimeout(animate, 20);
     }
+    
+    function moveBigBubbles(): void {
+        for (let i: number = 0; i < bigBubbles.length; i++) {
+            bigBubbles[i].move();
+        }
+    }
 
-    function moveFishes(): void {
+    function drawBigBubbles(): void {
+        for (let i: number = 0; i < bigBubbles.length; i++)
+            bigBubbles[i].drawBigBubble();
+    }
+    
+    function moveSmallBubbles(): void {
+        for (let i: number = 0; i < smallBubbles.length; i++) {
+            smallBubbles[i].move();
+        }
+    }
+
+    function drawSmallBubbles(): void {
+        for (let i: number = 0; i < smallBubbles.length; i++)
+            smallBubbles[i].drawSmallBubble();
+    }
+
+    function moveBigFish(): void {
         for (let i: number = 0; i < bigFish.length; i++) {
             bigFish[i].move();
         }
     }
 
-    function drawFishes(): void {
+    function drawBigFish(): void {
         for (let i: number = 0; i < bigFish.length; i++)
             bigFish[i].drawBigFish();
     }
+    
+    function moveSmallFish(): void {
+        for (let i: number = 0; i < smallFish.length; i++) {
+            smallFish[i].move();
+        }
+    }
 
-//    function moveBubbles(): void {
-//        for (let i: number = 0; i < bubbles.length; i++) {
-//            bubbles[i].move();
-//        }
-//    }
-//
-//    function drawBubbles(): void {
-//        for (let i: number = 0; i < bubbles.length; i++)
-//            bubbles[i].draw();
-//    }
+    function drawSmallFish(): void {
+        for (let i: number = 0; i < smallFish.length; i++)
+            smallFish[i].drawSmallFish();
+    }
+
+    
 
 
 

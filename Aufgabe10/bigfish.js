@@ -2,9 +2,9 @@ var Aufgabe10;
 (function (Aufgabe10) {
     class BigFish {
         move() {
-            this.x += Math.random() * 2;
-            if (this.x < 0) {
-                this.x = 1000;
+            this.x += 2;
+            if (this.x > 1000) {
+                this.x = -10;
             }
         }
         drawBigFish() {

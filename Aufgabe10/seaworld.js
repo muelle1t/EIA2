@@ -13,7 +13,8 @@ var Aufgabe10;
     let nBubbles = 20;
     let imagedata;
     let bigFish = [];
-    //let bubbles: Bubbles[] = [];
+    let smallFish = [];
+    let bigBubbles = [];
     function init(_event) {
         let canvas;
         canvas = document.getElementsByTagName("canvas")[0];
@@ -44,49 +45,64 @@ var Aufgabe10;
         drawSeeweed(80, 680);
         // Hintergrundbild
         imagedata = Aufgabe10.crc2.getImageData(0, 0, 640, 360);
+        for (let i = 0; i < n - 2; i++) {
+            let bb = new Aufgabe10.BigBubble();
+            bb.x = (Math.random() * (550 - 450)) + 450;
+            bb.y = (Math.random() * (600 - 100)) + 100;
+            bigBubbles.push(bb);
+        }
         for (let i = 0; i < n; i++) {
             let bf = new Aufgabe10.BigFish();
-            bf.x = Math.random() * 900;
-            bf.y = Math.random() * 450;
+            bf.x = (Math.random() * (900 - 50)) + 50;
+            bf.y = (Math.random() * (600 - 50)) + 50;
             bigFish.push(bf);
         }
-        //        for (let i: number = 0; i < n - 2; i++) {
-        //            let bubble: Bubbles = new Bubbles();
-        //            bubble.x = Math.random() * (100 - 550) + 300;
-        //            bubble.y = Math.random() * 180;
-        //            bubble.r = Math.random() * 10;
-        //            bubbles.push(bubble);
-        //        }
-        imagedata = Aufgabe10.crc2.getImageData(0, 0, 640, 360);
+        for (let i = 0; i < n; i++) {
+            let sf = new Aufgabe10.SmallFish();
+            sf.x = (Math.random() * (1000 - 70)) + 70;
+            sf.y = (Math.random() * (400 - 60)) + 60;
+            smallFish.push(sf);
+        }
+        imagedata = Aufgabe10.crc2.getImageData(0, 0, 1000, 700);
         animate();
     }
     function animate() {
         Aufgabe10.crc2.putImageData(imagedata, 0, 0);
-        moveFishes();
-        //moveBubbles();
-        drawFishes();
-        //drawBubbles();
+        moveBubbles();
+        drawBubbles();
+        moveBigFish();
+        moveSmallFish();
+        drawBigFish();
+        drawSmallFish();
         window.setTimeout(animate, 20);
     }
-    function moveFishes() {
+    function moveBubbles() {
+        for (let i = 0; i < bigBubbles.length; i++) {
+            bigBubbles[i].move();
+        }
+    }
+    function drawBubbles() {
+        for (let i = 0; i < bigBubbles.length; i++)
+            bigBubbles[i].drawBigBubble();
+    }
+    function moveBigFish() {
         for (let i = 0; i < bigFish.length; i++) {
             bigFish[i].move();
         }
     }
-    function drawFishes() {
+    function drawBigFish() {
         for (let i = 0; i < bigFish.length; i++)
             bigFish[i].drawBigFish();
     }
-    //    function moveBubbles(): void {
-    //        for (let i: number = 0; i < bubbles.length; i++) {
-    //            bubbles[i].move();
-    //        }
-    //    }
-    //
-    //    function drawBubbles(): void {
-    //        for (let i: number = 0; i < bubbles.length; i++)
-    //            bubbles[i].draw();
-    //    }
+    function moveSmallFish() {
+        for (let i = 0; i < smallFish.length; i++) {
+            smallFish[i].move();
+        }
+    }
+    function drawSmallFish() {
+        for (let i = 0; i < smallFish.length; i++)
+            smallFish[i].drawSmallFish();
+    }
     function drawBackground() {
         let myGradient = Aufgabe10.crc2.createLinearGradient(0, 0, 0, 250);
         myGradient.addColorStop(0, "#0058ea");

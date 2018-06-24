@@ -6,12 +6,15 @@ namespace Aufgabe10 {
         y: number;
         
     move(): void {
-        this.x += Math.random() * (-2) - 2;
-        if (this.x < -55) {
-            this.x = crc2.canvas.width;
-            this.y += Math.random() * (-1) - 3;
+            this.x += 1;
+            if (this.x > 1000) {
+               this.x = - 10; 
             }
-    }
+                       
+            
+
+
+        }
     
     drawSmallFish(): void {
         //Flosse hinten
