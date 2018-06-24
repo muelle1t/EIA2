@@ -46,11 +46,8 @@ var Aufgabe10;
         imagedata = Aufgabe10.crc2.getImageData(0, 0, 640, 360);
         for (let i = 0; i < n; i++) {
             let bf = new Aufgabe10.BigFish();
-            //bf.x = Math.random() * crc2.canvas.width;
-            //bf.y = Math.random() * 700;
-            //bf.r = Math.random() * 255;
-            //bf.g = Math.random() * 255;
-            //bf.b = Math.random() * 255;
+            bf.x = Math.random() * 900;
+            bf.y = Math.random() * 450;
             bigFish.push(bf);
         }
         //        for (let i: number = 0; i < n - 2; i++) {
