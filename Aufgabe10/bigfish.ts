@@ -3,9 +3,7 @@ namespace Aufgabe10 {
     export class BigFish {
         x: number;
         y: number;
-        r: number;
-        g: number;
-        b: number;
+        
 
 
         move(): void {

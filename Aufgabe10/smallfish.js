@@ -21,7 +21,7 @@ var Aufgabe10;
             //Körper
             Aufgabe10.crc2.beginPath();
             Aufgabe10.crc2.fillStyle = "#00ffbb";
-            crc2.ellipse(this.x + 5, this.y, 20, 15, 0, Math.PI * 2, 0);
+            Aufgabe10.crc2.ellipse(this.x + 5, this.y, 20, 15, 0, Math.PI * 2, 0);
             Aufgabe10.crc2.closePath();
             Aufgabe10.crc2.fill();
             Aufgabe10.crc2.stroke();

@@ -10,9 +10,12 @@ Er wurde nicht kopiert und auch nicht diktiert. */
 namespace Aufgabe10 {
     
     window.addEventListener("load", init);
+    
     export let crc2: CanvasRenderingContext2D;
-    let n: number = 9;
-    let nBubbles: number = 20;
+    
+    let n: number = 8;
+    let m: number = 6;
+    
     let imagedata: ImageData;
     
     let bigFish: BigFish[] = [];
@@ -60,7 +63,7 @@ namespace Aufgabe10 {
         // Hintergrundbild
         imagedata = crc2.getImageData(0, 0, 640, 360);
         
-        for (let i: number = 0; i < n - 2; i++) {
+        for (let i: number = 0; i < m; i++) {
             let bb: BigBubble = new BigBubble();
             bb.x = (Math.random() * (550 - 450)) + 450;
             bb.y = (Math.random() * (600 - 100)) + 100;
@@ -68,7 +71,7 @@ namespace Aufgabe10 {
             bigBubbles.push(bb);
         }
         
-        for (let i: number = 0; i < n - 2; i++) {
+        for (let i: number = 0; i < m; i++) {
             let sb: SmallBubble = new SmallBubble();
             sb.x = (Math.random() * (550 - 450)) + 450;
             sb.y = (Math.random() * (600 - 100)) + 100;
@@ -170,24 +173,6 @@ namespace Aufgabe10 {
 
     
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-    
 
     
     function drawBackground(): void {
@@ -351,4 +336,4 @@ namespace Aufgabe10 {
 
 
    
-} //namespace ende
+} //End namespace

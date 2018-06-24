@@ -9,12 +9,13 @@ Er wurde nicht kopiert und auch nicht diktiert. */
 var Aufgabe10;
 (function (Aufgabe10) {
     window.addEventListener("load", init);
-    let n = 9;
-    let nBubbles = 20;
+    let n = 8;
+    let m = 6;
     let imagedata;
     let bigFish = [];
     let smallFish = [];
     let bigBubbles = [];
+    let smallBubbles = [];
     function init(_event) {
         let canvas;
         canvas = document.getElementsByTagName("canvas")[0];
@@ -45,11 +46,17 @@ var Aufgabe10;
         drawSeeweed(80, 680);
         // Hintergrundbild
         imagedata = Aufgabe10.crc2.getImageData(0, 0, 640, 360);
-        for (let i = 0; i < n - 2; i++) {
+        for (let i = 0; i < m; i++) {
             let bb = new Aufgabe10.BigBubble();
             bb.x = (Math.random() * (550 - 450)) + 450;
             bb.y = (Math.random() * (600 - 100)) + 100;
             bigBubbles.push(bb);
+        }
+        for (let i = 0; i < m; i++) {
+            let sb = new Aufgabe10.SmallBubble();
+            sb.x = (Math.random() * (550 - 450)) + 450;
+            sb.y = (Math.random() * (600 - 100)) + 100;
+            smallBubbles.push(sb);
         }
         for (let i = 0; i < n; i++) {
             let bf = new Aufgabe10.BigFish();
@@ -68,22 +75,33 @@ var Aufgabe10;
     }
     function animate() {
         Aufgabe10.crc2.putImageData(imagedata, 0, 0);
-        moveBubbles();
-        drawBubbles();
+        moveBigBubbles();
+        drawBigBubbles();
+        moveSmallBubbles();
+        drawSmallBubbles();
         moveBigFish();
         moveSmallFish();
         drawBigFish();
         drawSmallFish();
         window.setTimeout(animate, 20);
     }
-    function moveBubbles() {
+    function moveBigBubbles() {
         for (let i = 0; i < bigBubbles.length; i++) {
             bigBubbles[i].move();
         }
     }
-    function drawBubbles() {
+    function drawBigBubbles() {
         for (let i = 0; i < bigBubbles.length; i++)
             bigBubbles[i].drawBigBubble();
+    }
+    function moveSmallBubbles() {
+        for (let i = 0; i < smallBubbles.length; i++) {
+            smallBubbles[i].move();
+        }
+    }
+    function drawSmallBubbles() {
+        for (let i = 0; i < smallBubbles.length; i++)
+            smallBubbles[i].drawSmallBubble();
     }
     function moveBigFish() {
         for (let i = 0; i < bigFish.length; i++) {
@@ -242,5 +260,5 @@ var Aufgabe10;
         Aufgabe10.crc2.fillStyle = "#e05504";
         Aufgabe10.crc2.fill();
     }
-})(Aufgabe10 || (Aufgabe10 = {})); //namespace ende
+})(Aufgabe10 || (Aufgabe10 = {})); //End namespace
 //# sourceMappingURL=seaworld.js.map
