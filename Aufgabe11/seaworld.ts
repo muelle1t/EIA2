@@ -20,10 +20,7 @@ namespace Aufgabe11 {
 
     let objects: MovingObjects[] = [];
 
-    let bigFish: BigFish[] = [];
-    let smallFish: SmallFish[] = [];
-    let bigBubbles: BigBubble[] = [];
-    let smallBubbles: SmallBubble[] = [];
+    
 
 
     function init(_event: Event): void {
@@ -83,7 +80,7 @@ namespace Aufgabe11 {
         let fy: number = _event.pageY;
 
         let flake: Food = new Food(fx, fy);
-        flake.r = Math.random() * 10;
+        
         objects.push(flake);
     }
 

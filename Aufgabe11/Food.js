@@ -5,17 +5,19 @@ var Aufgabe11;
             super(_x, _y);
         }
         move() {
-            this.y += 10;
-            if (this.y > 1320) {
-                this.y = 1320;
+            if (this.y == 690) {
+                this.y += 0;
+            }
+            else {
+                this.y += 1;
             }
         }
         draw() {
             Aufgabe11.crc2.beginPath();
-            Aufgabe11.crc2.fillRect(this.x - 5, this.y + 10, 100, 100);
+            Aufgabe11.crc2.fillRect(this.x - 5, this.y + 5, 5, 5);
             Aufgabe11.crc2.closePath();
             Aufgabe11.crc2.stroke();
-            Aufgabe11.crc2.fillStyle = "#eef442";
+            Aufgabe11.crc2.fillStyle = "#f48e41";
             Aufgabe11.crc2.fill();
         }
     }

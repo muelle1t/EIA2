@@ -13,10 +13,6 @@ var Aufgabe11;
     let m = 6;
     let imagedata;
     let objects = [];
-    let bigFish = [];
-    let smallFish = [];
-    let bigBubbles = [];
-    let smallBubbles = [];
     function init(_event) {
         let canvas;
         canvas = document.getElementsByTagName("canvas")[0];
@@ -54,7 +50,6 @@ var Aufgabe11;
         let fx = _event.pageX;
         let fy = _event.pageY;
         let flake = new Aufgabe11.Food(fx, fy);
-        flake.r = Math.random() * 10;
         objects.push(flake);
     }
     function animate() {
