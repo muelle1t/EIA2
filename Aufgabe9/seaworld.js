@@ -264,7 +264,7 @@ var Aufgabe9_Seaworld;
         //Körper
         crc2.beginPath();
         crc2.fillStyle = "#00ffbb";
-        crc2.ellipse(_x + 5, _y, 20, 15, 0, Math.PI * 2, 0);
+        //crc2.ellipse(_x + 5, _y, 20, 15, 0, Math.PI * 2, 0);
         crc2.closePath();
         crc2.fill();
         crc2.stroke();
