@@ -20,7 +20,9 @@ var Aquarium;
     function init(_event) {
         canvas = document.getElementsByTagName("canvas")[0];
         Aquarium.crc2 = canvas.getContext("2d");
-        let background = new Aquarium.Background(); // der Hintergrund wird generiert
+        //Hintergund aus Background Klasse
+        let bg = new Aquarium.Background;
+        bg.draw();
         drawWater(0, 0);
         // Canvas Bild abspeichern
         imgData = Aquarium.crc2.getImageData(0, 0, canvas.width, canvas.height);

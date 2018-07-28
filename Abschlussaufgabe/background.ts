@@ -1,40 +1,40 @@
 namespace Abschlussaufgabe {
 
+
     export class Background {
 
         public draw(): void {
 
             this.drawBackground();
-            
-           
+
+
             this.drawMountain2(150, 100);
             this.drawMountain1(100, 90);
             this.drawMountain1(250, 90);
-            
+
             this.drawBush(550, 220);
             this.drawBush(60, 380);
 
 
-            this.drawFlower1(100, 300);
-            this.drawFlower1(400, 310);
-            this.drawFlower2(90, 510);
-            this.drawFlower2(200, 350);
-            this.drawFlower1(550, 510);
-            this.drawFlower2(500, 380);
+//            this.drawFlower1(100, 300);
+//            this.drawFlower1(400, 310);
+//            this.drawFlower2(90, 510);
+//            this.drawFlower2(200, 350);
+//            this.drawFlower1(550, 510);
+//            this.drawFlower2(500, 380);
+            
+            
 
-
+            //this.drawTweety(60, 200);
             this.drawTree(750, 280);
 
             this.drawBabyBirds(758, 202);
             this.drawBabyBirds(750, 202);
             this.drawBabyBirds(742, 202);
             this.drawBirdsnest(750, 200);
+
             
-            this.drawWorm(350, 400);
-
         }
-
-
         drawBackground(): void {
 
             crc2.fillStyle = "#79D073"; //Wiese
@@ -45,25 +45,7 @@ namespace Abschlussaufgabe {
 
         }
 
-        //Wolken aus 3 Kreisen
-        drawCloud(_x: number, _y: number): void {
-            crc2.beginPath();
-            crc2.moveTo(_x, _y);
-            crc2.beginPath();
-            crc2.arc(_x, _y, 25, 0, Math.PI * 2);
-            crc2.fillStyle = "#FFFFFF";
-            crc2.fill();
-            crc2.closePath();
-            crc2.beginPath();
-            crc2.arc(_x + 25, _y - 15, 30, 0, Math.PI * 2);
-            crc2.fill();
-            crc2.closePath();
-            crc2.beginPath();
-            crc2.arc(_x + 35, _y - 3, 25, 0, Math.PI * 2);
-            crc2.fill();
-            crc2.closePath();
-
-        }
+        
 
         //Funktion: Baum 
         drawTree(_x: number, _y: number): void {
@@ -99,10 +81,6 @@ namespace Abschlussaufgabe {
             crc2.closePath();
 
         }
-
-
-
-
 
 
         // Berge aus Dreiecken mit weißen Spitzen
@@ -202,74 +180,7 @@ namespace Abschlussaufgabe {
 
         }
 
-        drawFlower1(_x: number, _y: number): void {
-            //grüner Stil          
-            crc2.beginPath();
-            crc2.fillStyle = "#04B404";
-            crc2.fillRect(_x, _y - 60, 6, 60);
-            crc2.closePath();
-            crc2.fill();
-
-            //Blüten
-            crc2.beginPath();
-            crc2.moveTo(_x, _y);
-            crc2.beginPath();
-            crc2.arc(_x - 7, _y - 60, 10, 0, Math.PI * 2);
-            crc2.fillStyle = "#FF0040";
-            crc2.fill();
-            crc2.closePath();
-            crc2.beginPath();
-            crc2.arc(_x + 7, _y - 60, 10, 0, Math.PI * 2);
-            crc2.fill();
-            crc2.closePath();
-            crc2.beginPath();
-            crc2.arc(_x, _y - 67, 10, 0, Math.PI * 2);
-            crc2.fill();
-            crc2.closePath();
-            crc2.beginPath();
-            crc2.arc(_x, _y - 53, 10, 0, Math.PI * 2);
-            crc2.fill();
-            crc2.closePath();
-            crc2.beginPath();
-            crc2.arc(_x, _y - 60, 7, 0, Math.PI * 2);
-            crc2.fillStyle = "#F4FA58";
-            crc2.fill();
-
-        }
-
-        drawFlower2(_x: number, _y: number): void {
-            //grüner Stil
-            crc2.beginPath();
-            crc2.fillStyle = "#04B404";
-            crc2.fillRect(_x, _y - 60, 6, 60);
-            crc2.closePath();
-            crc2.fill();
-
-            //Blüten
-            crc2.beginPath();
-            crc2.moveTo(_x, _y);
-            crc2.beginPath();
-            crc2.arc(_x - 7, _y - 60, 10, 0, Math.PI * 2);
-            crc2.fillStyle = "#FFFFFF";
-            crc2.fill();
-            crc2.closePath();
-            crc2.beginPath();
-            crc2.arc(_x + 7, _y - 60, 10, 0, Math.PI * 2);
-            crc2.fill();
-            crc2.closePath();
-            crc2.beginPath();
-            crc2.arc(_x, _y - 67, 10, 0, Math.PI * 2);
-            crc2.fill();
-            crc2.closePath();
-            crc2.beginPath();
-            crc2.arc(_x, _y - 53, 10, 0, Math.PI * 2);
-            crc2.fill();
-            crc2.closePath();
-            crc2.beginPath();
-            crc2.arc(_x, _y - 60, 10, 0, Math.PI * 2);
-            crc2.fillStyle = "#F4FA58";
-            crc2.fill();
-        }
+        
 
         drawBush(_x: number, _y: number): void {
 
@@ -293,64 +204,6 @@ namespace Abschlussaufgabe {
             crc2.fill();
         }
 
-        drawWorm(_x: number, _y: number): void {
-
-            //Wurm
-            crc2.beginPath();
-            crc2.strokeStyle = "#F5A9E1";
-            crc2.fillStyle = "#F5A9E1";
-            crc2.arc(_x + 7, _y - 15, 9, 0, Math.PI * 2);
-            crc2.arc(_x + 7, _y - 20, 9, 0, Math.PI * 2);
-            crc2.arc(_x + 7, _y - 25, 9, 0, Math.PI * 2);
-            crc2.arc(_x + 7, _y - 30, 9, 0, Math.PI * 2);
-            crc2.arc(_x + 7, _y - 35, 9, 0, Math.PI * 2);
-            crc2.arc(_x + 7, _y - 40, 9, 0, Math.PI * 2);
-            crc2.arc(_x + 7, _y - 45, 8, 0, Math.PI * 2);
-            crc2.arc(_x + 7, _y - 50, 7, 0, Math.PI * 2);
-            crc2.arc(_x + 7, _y - 55, 6, 0, Math.PI * 2);
-            crc2.fill();
-            crc2.closePath();
-            
-            //Erde 
-            crc2.beginPath();
-            crc2.strokeStyle = "#61210B";
-            crc2.fillStyle = "#61210B";
-            crc2.arc(_x - 7, _y - 10, 7, 0, Math.PI * 2);
-            crc2.arc(_x, _y - 10, 7, 0, Math.PI * 2);
-            crc2.arc(_x + 7, _y - 10, 7, 0, Math.PI * 2);
-            crc2.arc(_x + 14, _y - 10, 7, 0, Math.PI * 2);
-            crc2.arc(_x + 21, _y - 10, 7, 0, Math.PI * 2);
-            crc2.fill();
-            crc2.closePath();
-            
-             //Augen
-            crc2.beginPath();
-            crc2.strokeStyle = "#000000";
-            crc2.fillStyle = "#000000";
-            crc2.arc(_x + 4, _y - 50, 2, 0, Math.PI * 2);
-            crc2.arc(_x + 10, _y - 50, 2, 0, Math.PI * 2);
-            crc2.fill();
-            crc2.closePath();
-            
-            //Mund
-            crc2.beginPath();
-            crc2.strokeStyle = "#000000";
-            crc2.arc(_x + 7, _y - 40, 4, 0, Math.PI);
-            crc2.stroke();
-            crc2.closePath();
-            
-            
-
-            
-        }
         
     }
 }
-
-
-
-
-
-
-
-

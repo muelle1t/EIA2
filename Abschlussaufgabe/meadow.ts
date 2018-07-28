@@ -7,70 +7,91 @@ Datum: 01.07.2018
 Hiermit versichere ich, dass ich diesen Code selbst geschrieben habe. 
 Er wurde nicht kopiert und auch nicht diktiert. */
 
-namespace Abschlussaufgabe2 {
+namespace Abschlussaufgabe {
 
     window.addEventListener("load", init);
 
     export let crc2: CanvasRenderingContext2D;
-    let canvas: HTMLCanvasElement;
-    export let lost: CanvasRenderingContext2D;
-    export let won: CanvasRenderingContext2D;
-    
+
+    export let tweety: CanvasRenderingContext2D;
+    export let bugs: CanvasRenderingContext2D;
+    export let heart: CanvasRenderingContext2D;
+    export let bee: CanvasRenderingContext2D;
+
+
 
     let n: number = (Math.random() * 4) + 1;
     let m: number = 8;
 
     let imagedata: ImageData;
 
-    let numHeart: number = 3;
+    let numLives: number = 4;
 
 
 
     let poison: Bee[] = [];
     export let food: Food[] = [];
 
-    var moved = false;
-    var gameEnd = false;
-    var lastBee: Bee;
+    var moved: boolean = false;
+    let gameEnd: boolean = false;
+
 
 
 
 
     function init(_event: Event): void {
 
-        
+        //Background Canvas
+        let canvas: HTMLCanvasElement;
         canvas = document.getElementsByTagName("canvas")[0];
         console.log(canvas);
         crc2 = canvas.getContext("2d");
         console.log(crc2);
-        
-        
-       
-        
-        
+
+        //Tweety Canvas
+        let tweetyCanvas: HTMLCanvasElement;
+        tweetyCanvas = document.getElementsByTagName("canvas")[2];
+        tweety = tweetyCanvas.getContext("2d");
+
+        //Tweety Futter Canvas
+        let foodCanvas: HTMLCanvasElement;
+        foodCanvas = document.getElementsByTagName("canvas")[1];
+        bugs = foodCanvas.getContext("2d");
+
+        //Herzen Canvas
+        let heartCanvas: HTMLCanvasElement;
+        heartCanvas = document.getElementsByTagName("canvas")[3];
+        heart = heartCanvas.getContext("2d");
+
+        //Bienen Canvas
+        let beeCanvas: HTMLCanvasElement;
+        beeCanvas = document.getElementsByTagName("canvas")[4];
+        bee = beeCanvas.getContext("2d");
+
+
+
 
         //Hintergund aus Background Klasse
         let bg: Background = new Background;
         bg.draw();
 
-        // Hintergrundbild
-        imagedata = crc2.getImageData(0, 0, 640, 360);
-        console.log(imagedata);
 
 
-
+        //Bienen werden erstellt und ins Array gepusht
         for (let i: number = 0; i < m; i++) {
             let b: Bee = new Bee((Math.random() * (900 - 50)) + 50, (Math.random() * (500 - 10)) + 10);
 
             poison.push(b);
         }
-
+        
+        //Fliegen werden erstellt und ins Array gepusht
         for (let i: number = 0; i < n; i++) {
             let f: Fly = new Fly((Math.random() * (1000 - 70)) + 70, (Math.random() * (500 - 20)) + 20);
 
             food.push(f);
         }
 
+        //Marienkäfer werden erstellt und ins Array gepusht
         for (let i: number = 0; i < n; i++) {
             let lb: Ladybug = new Ladybug((Math.random() * (1000 - 70)) + 70, (Math.random() * (500 - 20)) + 20);
 
@@ -80,21 +101,18 @@ namespace Abschlussaufgabe2 {
 
 
 
-        imagedata = crc2.getImageData(0, 0, 1000, 500);
-
-        animate();
-        
-        
 
         let t: Bird = new Bird(40, 150);
-        function updateTweety(): void {
+        
+        function updateTweety(): void {//Funktion Tweety
             if (!gameEnd) {
+                tweety.clearRect(0, 0, 1000, 500);
                 t.drawTweety();
                 setTimeout(updateTweety, 1);
             }
         }
 
-        function getMousePos(canvas: any, evt: any) {
+        function getMousePos(canvas: any, evt: any) { //Funktion zum bestimmen der Maus Position
             var rect = canvas.getBoundingClientRect();
             return {
                 x: evt.clientX - rect.left,
@@ -102,7 +120,7 @@ namespace Abschlussaufgabe2 {
             };
         }
 
-        canvas.addEventListener("mousemove", function(evt) {
+        tweetyCanvas.addEventListener("mousemove", function(evt) { //Funktion hängt Tweety an den Cursor
             var mousePos = getMousePos(canvas, evt);
             if (!moved) {
                 updateTweety();
@@ -113,21 +131,37 @@ namespace Abschlussaufgabe2 {
             checkBeeTouched(mousePos.x, mousePos.y);
             console.log(food.length);
 
+            if (food.length == 0) {//wenn das food Array leer ist, ist das Spiel gewonnen
+                GameWon();
+            }
+
+            if (numLives == 0) {//wenn mehr als 4 Bienen "gegessen" werden ist das Spiel verloren
+                GameLost();
+            }
 
         },
             true);
+
+        imagedata = crc2.getImageData(0, 0, 1000, 500);
+
+        animate();
+
+
     }
 
 
-
-    function animate(): void {
+    
+    function animate(): void {//Animation Bienen, Fliegen und Marienkäfer
 
 
 
         crc2.putImageData(imagedata, 0, 0);
+        bee.clearRect(0, 0, 1000, 500);
 
         movePoison();
         drawPoison();
+
+        bugs.clearRect(0, 0, 1000, 500);
 
         moveFood();
         drawFood();
@@ -159,9 +193,9 @@ namespace Abschlussaufgabe2 {
         }
 
     }
-    
 
-    function checkFlyEaten(_x: number, _y: number): void {
+
+    function checkFlyEaten(_x: number, _y: number): void {//Fliegen und Marienkäfer werden "gegessen" und aus dem Array entnommen
         for (let i: number = 0; i < food.length; i++) {
             if (Math.abs(food[i].x - _x) < 10 && Math.abs(food[i].y - _y) < 10) {
                 console.log("fly eaten");
@@ -176,7 +210,7 @@ namespace Abschlussaufgabe2 {
         }
     }
 
-    function checkBeeTouched(_x: number, _y: number): void {
+    function checkBeeTouched(_x: number, _y: number): void {//Bienen werden "gegessen" und aus dem Array entnommen
         for (let i: number = 0; i < poison.length; i++) {
             if (Math.abs(poison[i].x - _x) < 9 && Math.abs(poison[i].y - _y) < 9) {
                 console.log("poison eaten");
@@ -186,44 +220,58 @@ namespace Abschlussaufgabe2 {
                     let newBee: Bee = new Bee(poison[j].x, poison[j].y);
                     newBee.draw();
                 }
-                numHeart--;
-                drawHearts();
+                numLives--;
             }
         }
 
     }
 
-    function drawHearts(): void {
-
-        for (let i: number = 0; i < numHeart; i++) {
-
-            let h1: Heart = new Heart(60, 50);
-            let h2: Heart = new Heart(60, 100);
-            let h3: Heart = new Heart(60, 200);
-
-        }
-
-    }
 
 
 
-    function GameWon() {
-        if (food.length == 0) {
-            
-            crc2.clearRect(0, 0, 1000, 500);
-            let winningScreen: Won = new Won;
-        }
+    function GameWon(): void {
+        gameEnd = true;
+        tweety.clearRect(0, 0, 1000, 500);
+        tweety.fillStyle = "#F4FA58";
+        tweety.beginPath();
+        tweety.rect(0, 0, 1000, 500);
+        tweety.globalAlpha = 0.8;
+        tweety.closePath();
+        tweety.fill();
+
+
+        tweety.fillStyle = "#000000";
+        tweety.font = "30px Arial";
+        tweety.textAlign = "center";
+        tweety.fillText("Hey! You helped Tweety collect all the bugs.", 1000 / 2, 500 / 2 - 55);
+        tweety.fillText("Now she can go back to her family.", 1000 / 2, 500 / 2 + 20);
+        tweety.fillText(" ", 1000 / 2, 500 / 2 - 20);
+        tweety.fillText("Thanks for your help!", 1000 / 2, 500 / 2 + 55);
+
         console.log("Spiel gewonnen");
 
 
     }
 
-    function GameLost() {
+    function GameLost(): void {
 
-        if (numHeart == 0) {
-            crc2.clearRect(0, 0, 1000, 500);
-            let loosingscreen: Lost = new Lost;
-        }
+        gameEnd = true;
+        tweety.clearRect(0, 0, 1000, 500);
+        tweety.fillStyle = "#000000";
+        tweety.beginPath();
+        tweety.rect(0, 0, 1000, 500);
+        tweety.globalAlpha = 0.8;
+        tweety.closePath();
+        tweety.fill();
+
+
+        tweety.fillStyle = "#FF0000";
+        tweety.font = "30px Arial";
+        tweety.textAlign = "center";
+        tweety.fillText("You Lost!", 1000 / 2, 500 / 2 - 55);
+        tweety.fillText("Tweety was stung by to many bees.", 1000 / 2, 500 / 2 + 20);
+        tweety.fillText(" ", 1000 / 2, 500 / 2 - 20);
+        tweety.fillText("Just reaload the page and you can help Tweety, again.", 1000 / 2, 500 / 2 + 55);
 
         console.log("Spiel verloren");
     }

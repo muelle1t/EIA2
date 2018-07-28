@@ -1,7 +1,7 @@
 var Aquarium;
 (function (Aquarium) {
     class Background {
-        constructor() {
+        draw() {
             this.drawWater();
             this.drawRock(700, 650);
             this.drawSandcastle(400, 650);
@@ -24,7 +24,7 @@ var Aquarium;
             this.drawSeeweed(40, 670);
             this.drawSeeweed(240, 680);
             this.drawSeeweed(80, 680);
-        } //Ende constructor
+        }
         drawRock(_x, _y) {
             Aquarium.crc2.beginPath();
             Aquarium.crc2.strokeStyle = "#8c8c8c";
@@ -165,6 +165,6 @@ var Aquarium;
             Aquarium.crc2.fillRect(0, 630, Aquarium.crc2.canvas.width, Aquarium.crc2.canvas.height / 10);
         }
     }
-    Aquarium.Background = Background; // Ende Class
-})(Aquarium || (Aquarium = {})); // Ende Namespace
+    Aquarium.Background = Background;
+})(Aquarium || (Aquarium = {}));
 //# sourceMappingURL=background.js.map

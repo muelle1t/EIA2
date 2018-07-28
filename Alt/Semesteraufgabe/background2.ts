@@ -1,8 +1,9 @@
 namespace Aquarium {
+    
+    export class Background2 {
+        
+         public draw(): void() {
 
-    export class Background {
-
-        public draw(): void {
 
             this.drawWater();
 
@@ -36,9 +37,9 @@ namespace Aquarium {
             this.drawSeeweed(80, 680);
 
 
-        }
-
-
+        } //Ende 
+    
+    
         drawRock(_x: number, _y: number): void {
             crc2.beginPath();
             crc2.strokeStyle = "#8c8c8c";
@@ -198,15 +199,6 @@ namespace Aquarium {
             crc2.fillStyle = "#F2F5A9"; //Sand
             crc2.fillRect(0, 630, crc2.canvas.width, crc2.canvas.height / 10);
         }
+} // Ende Class
 
-    }
-}
-
-
-
-
-
-
-
-
-
+}// Ende Namespace

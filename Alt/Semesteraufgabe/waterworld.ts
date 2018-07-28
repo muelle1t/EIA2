@@ -31,7 +31,9 @@ namespace Aquarium {
 
         crc2 = canvas.getContext("2d");
 
-        let background: Background = new Background(); // der Hintergrund wird generiert
+         //Hintergund aus Background Klasse
+        let bg: Background = new Background;
+        bg.draw();
 
 
         drawWater(0, 0);

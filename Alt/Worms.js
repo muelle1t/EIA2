@@ -4,19 +4,13 @@ var Abschlussaufgabe;
         constructor() {
             console.log("A New Worm has appeared!");
         }
-        randomSize() {
-            //abstract
-        }
         randomPosition() {
             //abstract
         }
-        drawGhost() {
+        drawWorm() {
             //abstract
         }
         update() {
-            //abstract
-        }
-        move() {
             //abstract
         }
     }

@@ -8,42 +8,24 @@ var Abschlussaufgabe;
             this.drawMountain1(250, 90);
             this.drawBush(550, 220);
             this.drawBush(60, 380);
-            this.drawFlower1(100, 300);
-            this.drawFlower1(400, 310);
-            this.drawFlower2(90, 510);
-            this.drawFlower2(200, 350);
-            this.drawFlower1(550, 510);
-            this.drawFlower2(500, 380);
+            //            this.drawFlower1(100, 300);
+            //            this.drawFlower1(400, 310);
+            //            this.drawFlower2(90, 510);
+            //            this.drawFlower2(200, 350);
+            //            this.drawFlower1(550, 510);
+            //            this.drawFlower2(500, 380);
+            //this.drawTweety(60, 200);
             this.drawTree(750, 280);
             this.drawBabyBirds(758, 202);
             this.drawBabyBirds(750, 202);
             this.drawBabyBirds(742, 202);
             this.drawBirdsnest(750, 200);
-            this.drawWorm(350, 400);
         }
         drawBackground() {
             Abschlussaufgabe.crc2.fillStyle = "#79D073"; //Wiese
             Abschlussaufgabe.crc2.fillRect(0, 0, Abschlussaufgabe.crc2.canvas.width, Abschlussaufgabe.crc2.canvas.height);
             Abschlussaufgabe.crc2.fillStyle = "#58ACFA"; //Himmel
             Abschlussaufgabe.crc2.fillRect(0, 0, Abschlussaufgabe.crc2.canvas.width, Abschlussaufgabe.crc2.canvas.height / 4);
-        }
-        //Wolken aus 3 Kreisen
-        drawCloud(_x, _y) {
-            Abschlussaufgabe.crc2.beginPath();
-            Abschlussaufgabe.crc2.moveTo(_x, _y);
-            Abschlussaufgabe.crc2.beginPath();
-            Abschlussaufgabe.crc2.arc(_x, _y, 25, 0, Math.PI * 2);
-            Abschlussaufgabe.crc2.fillStyle = "#FFFFFF";
-            Abschlussaufgabe.crc2.fill();
-            Abschlussaufgabe.crc2.closePath();
-            Abschlussaufgabe.crc2.beginPath();
-            Abschlussaufgabe.crc2.arc(_x + 25, _y - 15, 30, 0, Math.PI * 2);
-            Abschlussaufgabe.crc2.fill();
-            Abschlussaufgabe.crc2.closePath();
-            Abschlussaufgabe.crc2.beginPath();
-            Abschlussaufgabe.crc2.arc(_x + 35, _y - 3, 25, 0, Math.PI * 2);
-            Abschlussaufgabe.crc2.fill();
-            Abschlussaufgabe.crc2.closePath();
         }
         //Funktion: Baum 
         drawTree(_x, _y) {
@@ -155,70 +137,6 @@ var Abschlussaufgabe;
             Abschlussaufgabe.crc2.fill();
             Abschlussaufgabe.crc2.closePath();
         }
-        drawFlower1(_x, _y) {
-            //grüner Stil          
-            Abschlussaufgabe.crc2.beginPath();
-            Abschlussaufgabe.crc2.fillStyle = "#04B404";
-            Abschlussaufgabe.crc2.fillRect(_x, _y - 60, 6, 60);
-            Abschlussaufgabe.crc2.closePath();
-            Abschlussaufgabe.crc2.fill();
-            //Blüten
-            Abschlussaufgabe.crc2.beginPath();
-            Abschlussaufgabe.crc2.moveTo(_x, _y);
-            Abschlussaufgabe.crc2.beginPath();
-            Abschlussaufgabe.crc2.arc(_x - 7, _y - 60, 10, 0, Math.PI * 2);
-            Abschlussaufgabe.crc2.fillStyle = "#FF0040";
-            Abschlussaufgabe.crc2.fill();
-            Abschlussaufgabe.crc2.closePath();
-            Abschlussaufgabe.crc2.beginPath();
-            Abschlussaufgabe.crc2.arc(_x + 7, _y - 60, 10, 0, Math.PI * 2);
-            Abschlussaufgabe.crc2.fill();
-            Abschlussaufgabe.crc2.closePath();
-            Abschlussaufgabe.crc2.beginPath();
-            Abschlussaufgabe.crc2.arc(_x, _y - 67, 10, 0, Math.PI * 2);
-            Abschlussaufgabe.crc2.fill();
-            Abschlussaufgabe.crc2.closePath();
-            Abschlussaufgabe.crc2.beginPath();
-            Abschlussaufgabe.crc2.arc(_x, _y - 53, 10, 0, Math.PI * 2);
-            Abschlussaufgabe.crc2.fill();
-            Abschlussaufgabe.crc2.closePath();
-            Abschlussaufgabe.crc2.beginPath();
-            Abschlussaufgabe.crc2.arc(_x, _y - 60, 7, 0, Math.PI * 2);
-            Abschlussaufgabe.crc2.fillStyle = "#F4FA58";
-            Abschlussaufgabe.crc2.fill();
-        }
-        drawFlower2(_x, _y) {
-            //grüner Stil
-            Abschlussaufgabe.crc2.beginPath();
-            Abschlussaufgabe.crc2.fillStyle = "#04B404";
-            Abschlussaufgabe.crc2.fillRect(_x, _y - 60, 6, 60);
-            Abschlussaufgabe.crc2.closePath();
-            Abschlussaufgabe.crc2.fill();
-            //Blüten
-            Abschlussaufgabe.crc2.beginPath();
-            Abschlussaufgabe.crc2.moveTo(_x, _y);
-            Abschlussaufgabe.crc2.beginPath();
-            Abschlussaufgabe.crc2.arc(_x - 7, _y - 60, 10, 0, Math.PI * 2);
-            Abschlussaufgabe.crc2.fillStyle = "#FFFFFF";
-            Abschlussaufgabe.crc2.fill();
-            Abschlussaufgabe.crc2.closePath();
-            Abschlussaufgabe.crc2.beginPath();
-            Abschlussaufgabe.crc2.arc(_x + 7, _y - 60, 10, 0, Math.PI * 2);
-            Abschlussaufgabe.crc2.fill();
-            Abschlussaufgabe.crc2.closePath();
-            Abschlussaufgabe.crc2.beginPath();
-            Abschlussaufgabe.crc2.arc(_x, _y - 67, 10, 0, Math.PI * 2);
-            Abschlussaufgabe.crc2.fill();
-            Abschlussaufgabe.crc2.closePath();
-            Abschlussaufgabe.crc2.beginPath();
-            Abschlussaufgabe.crc2.arc(_x, _y - 53, 10, 0, Math.PI * 2);
-            Abschlussaufgabe.crc2.fill();
-            Abschlussaufgabe.crc2.closePath();
-            Abschlussaufgabe.crc2.beginPath();
-            Abschlussaufgabe.crc2.arc(_x, _y - 60, 10, 0, Math.PI * 2);
-            Abschlussaufgabe.crc2.fillStyle = "#F4FA58";
-            Abschlussaufgabe.crc2.fill();
-        }
         drawBush(_x, _y) {
             Abschlussaufgabe.crc2.beginPath();
             Abschlussaufgabe.crc2.strokeStyle = "#21610B";
@@ -236,48 +154,6 @@ var Abschlussaufgabe;
             Abschlussaufgabe.crc2.fillRect(_x - 10, _y - 5, 60, 20);
             Abschlussaufgabe.crc2.closePath();
             Abschlussaufgabe.crc2.fill();
-        }
-        drawWorm(_x, _y) {
-            //Wurm
-            Abschlussaufgabe.crc2.beginPath();
-            Abschlussaufgabe.crc2.strokeStyle = "#F5A9E1";
-            Abschlussaufgabe.crc2.fillStyle = "#F5A9E1";
-            Abschlussaufgabe.crc2.arc(_x + 7, _y - 15, 9, 0, Math.PI * 2);
-            Abschlussaufgabe.crc2.arc(_x + 7, _y - 20, 9, 0, Math.PI * 2);
-            Abschlussaufgabe.crc2.arc(_x + 7, _y - 25, 9, 0, Math.PI * 2);
-            Abschlussaufgabe.crc2.arc(_x + 7, _y - 30, 9, 0, Math.PI * 2);
-            Abschlussaufgabe.crc2.arc(_x + 7, _y - 35, 9, 0, Math.PI * 2);
-            Abschlussaufgabe.crc2.arc(_x + 7, _y - 40, 9, 0, Math.PI * 2);
-            Abschlussaufgabe.crc2.arc(_x + 7, _y - 45, 8, 0, Math.PI * 2);
-            Abschlussaufgabe.crc2.arc(_x + 7, _y - 50, 7, 0, Math.PI * 2);
-            Abschlussaufgabe.crc2.arc(_x + 7, _y - 55, 6, 0, Math.PI * 2);
-            Abschlussaufgabe.crc2.fill();
-            Abschlussaufgabe.crc2.closePath();
-            //Erde 
-            Abschlussaufgabe.crc2.beginPath();
-            Abschlussaufgabe.crc2.strokeStyle = "#61210B";
-            Abschlussaufgabe.crc2.fillStyle = "#61210B";
-            Abschlussaufgabe.crc2.arc(_x - 7, _y - 10, 7, 0, Math.PI * 2);
-            Abschlussaufgabe.crc2.arc(_x, _y - 10, 7, 0, Math.PI * 2);
-            Abschlussaufgabe.crc2.arc(_x + 7, _y - 10, 7, 0, Math.PI * 2);
-            Abschlussaufgabe.crc2.arc(_x + 14, _y - 10, 7, 0, Math.PI * 2);
-            Abschlussaufgabe.crc2.arc(_x + 21, _y - 10, 7, 0, Math.PI * 2);
-            Abschlussaufgabe.crc2.fill();
-            Abschlussaufgabe.crc2.closePath();
-            //Augen
-            Abschlussaufgabe.crc2.beginPath();
-            Abschlussaufgabe.crc2.strokeStyle = "#000000";
-            Abschlussaufgabe.crc2.fillStyle = "#000000";
-            Abschlussaufgabe.crc2.arc(_x + 4, _y - 50, 2, 0, Math.PI * 2);
-            Abschlussaufgabe.crc2.arc(_x + 10, _y - 50, 2, 0, Math.PI * 2);
-            Abschlussaufgabe.crc2.fill();
-            Abschlussaufgabe.crc2.closePath();
-            //Mund
-            Abschlussaufgabe.crc2.beginPath();
-            Abschlussaufgabe.crc2.strokeStyle = "#000000";
-            Abschlussaufgabe.crc2.arc(_x + 7, _y - 40, 4, 0, Math.PI);
-            Abschlussaufgabe.crc2.stroke();
-            Abschlussaufgabe.crc2.closePath();
         }
     }
     Abschlussaufgabe.Background = Background;

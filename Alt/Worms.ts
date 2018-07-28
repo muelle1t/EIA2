@@ -4,8 +4,7 @@ namespace Abschlussaufgabe {
         
         x: number;
         y: number;
-        height: number;
-        width: number;
+        
         
         
 
@@ -17,18 +16,13 @@ namespace Abschlussaufgabe {
             
             }
         
-        randomSize(): void {
-            
-           //abstract
-            
-            }
-        
+               
         randomPosition(): void {
             //abstract
             
             }
         
-        drawGhost(): void {
+        drawWorm(): void {
             
             //abstract
             
@@ -38,9 +32,7 @@ namespace Abschlussaufgabe {
             //abstract
             }
         
-        move(): void {
-            //abstract
-            }
+        
         
         
         
