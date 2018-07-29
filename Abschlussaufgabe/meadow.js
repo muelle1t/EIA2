@@ -90,6 +90,65 @@ var Abschlussaufgabe;
                 GameLost();
             }
         }, true);
+        function getTouchPos(canvas, evt) {
+            var rect = canvas.getBoundingClientRect();
+            return {
+                x: evt.clientX - rect.left,
+                y: evt.clientY - rect.top
+            };
+        }
+        tweetyCanvas.addEventListener("mousemove", function (evt) {
+            var mousePos = getMousePos(canvas, evt);
+            if (!moved) {
+                updateTweety();
+            }
+            moved = true;
+            t.move(mousePos.x, mousePos.y);
+            checkFlyEaten(mousePos.x, mousePos.y);
+            checkBeeTouched(mousePos.x, mousePos.y);
+            console.log(Abschlussaufgabe.food.length);
+            if (Abschlussaufgabe.food.length == 0) {
+                GameWon();
+            }
+            if (numLives == 0) {
+                GameLost();
+            }
+        }, true);
+        //Touch Event fürs Handy
+        tweetyCanvas.addEventListener("touchstart", function (e) {
+            const canvasTouchPosX = e.touches.item(0).clientX - document.querySelector('canvas').clientLeft;
+            const canvasTouchPosy = e.touches.item(0).clientY - document.querySelector('canvas').clientTop;
+            if (!moved) {
+                updateTweety();
+            }
+            t.move(canvasTouchPosX, canvasTouchPosy);
+            checkFlyEaten(canvasTouchPosX, canvasTouchPosy);
+            checkBeeTouched(canvasTouchPosX, canvasTouchPosy);
+            if (Abschlussaufgabe.food.length == 0) {
+                GameWon();
+            }
+            if (numLives == 0) {
+                GameLost();
+            }
+            console.log(canvasTouchPosX);
+        });
+        tweetyCanvas.addEventListener("touchmove", function (e) {
+            const canvasTouchPosX = e.touches.item(0).clientX - document.querySelector('canvas').clientLeft;
+            const canvasTouchPosy = e.touches.item(0).clientY - document.querySelector('canvas').clientTop;
+            if (!moved) {
+                updateTweety();
+            }
+            t.move(canvasTouchPosX, canvasTouchPosy);
+            checkFlyEaten(canvasTouchPosX, canvasTouchPosy);
+            checkBeeTouched(canvasTouchPosX, canvasTouchPosy);
+            if (Abschlussaufgabe.food.length == 0) {
+                GameWon();
+            }
+            if (numLives == 0) {
+                GameLost();
+            }
+            console.log(canvasTouchPosX);
+        });
         imagedata = Abschlussaufgabe.crc2.getImageData(0, 0, 1000, 500);
         animate();
     }

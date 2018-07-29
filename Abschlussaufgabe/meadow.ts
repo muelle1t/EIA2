@@ -139,7 +139,88 @@ namespace Abschlussaufgabe {
         },
             true);
 
+        function getTouchPos(canvas: any, evt: any) { //Funktion zum bestimmen der Maus Position
+            var rect = canvas.getBoundingClientRect();
+            return {
+                x: evt.clientX - rect.left,
+                y: evt.clientY - rect.top
+            };
+        }
+
+        tweetyCanvas.addEventListener("mousemove", function(evt) { //Funktion hängt Tweety an den Cursor
+            var mousePos = getMousePos(canvas, evt);
+            if (!moved) {
+                updateTweety();
+            }
+            moved = true;
+            t.move(mousePos.x, mousePos.y);
+            checkFlyEaten(mousePos.x, mousePos.y);
+            checkBeeTouched(mousePos.x, mousePos.y);
+            console.log(food.length);
+
+            if (food.length == 0) {//wenn das food Array leer ist, ist das Spiel gewonnen
+                GameWon();
+            }
+
+            if (numLives == 0) {//wenn mehr als 4 Bienen "gegessen" werden ist das Spiel verloren
+                GameLost();
+            }
+
+        },
+            true);
         
+        //Touch Event fürs Handy
+        tweetyCanvas.addEventListener("touchstart", function(e: TouchEvent) {
+
+            const canvasTouchPosX = e.touches.item(0).clientX - document.querySelector('canvas').clientLeft;
+            const canvasTouchPosy = e.touches.item(0).clientY - document.querySelector('canvas').clientTop;
+            
+            if (!moved) {
+                updateTweety();
+            }
+            
+            t.move(canvasTouchPosX, canvasTouchPosy);
+            checkFlyEaten(canvasTouchPosX, canvasTouchPosy);
+            checkBeeTouched(canvasTouchPosX, canvasTouchPosy);
+           
+
+            if (food.length == 0) {//wenn das food Array leer ist, ist das Spiel gewonnen
+                GameWon();
+            }
+
+            if (numLives == 0) {//wenn mehr als 4 Bienen "gegessen" werden ist das Spiel verloren
+                GameLost();
+            }
+            console.log(canvasTouchPosX);
+        });
+
+        tweetyCanvas.addEventListener("touchmove", function(e: TouchEvent) {
+
+            const canvasTouchPosX = e.touches.item(0).clientX - document.querySelector('canvas').clientLeft;
+            const canvasTouchPosy = e.touches.item(0).clientY - document.querySelector('canvas').clientTop;
+
+            
+            if (!moved) {
+                updateTweety();
+            }
+            
+            t.move(canvasTouchPosX, canvasTouchPosy);
+            checkFlyEaten(canvasTouchPosX, canvasTouchPosy);
+            checkBeeTouched(canvasTouchPosX, canvasTouchPosy);
+           
+
+            if (food.length == 0) {//wenn das food Array leer ist, ist das Spiel gewonnen
+                GameWon();
+            }
+
+            if (numLives == 0) {//wenn mehr als 4 Bienen "gegessen" werden ist das Spiel verloren
+                GameLost();
+            }
+            console.log(canvasTouchPosX);
+        });
+
+        
+
       
        
 
