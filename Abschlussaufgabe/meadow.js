@@ -1,8 +1,8 @@
 /*
-Aufgabe: Aufgabe 11
+Aufgabe: Abschlussaufgabe
 Name: Annkathrin Müller
 Matrikelnr.: 254868
-Datum: 01.07.2018
+Datum: 29.07.2018
 
 Hiermit versichere ich, dass ich diesen Code selbst geschrieben habe.
 Er wurde nicht kopiert und auch nicht diktiert. */
