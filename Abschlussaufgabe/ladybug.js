@@ -11,6 +11,14 @@ var Abschlussaufgabe;
             }
         }
         draw() {
+            //Flügel
+            Abschlussaufgabe.bugs.beginPath();
+            Abschlussaufgabe.bugs.moveTo(this.x, this.y);
+            Abschlussaufgabe.bugs.ellipse(this.x + 4, this.y - 8, 3, 5, 45 * Math.PI/180, Math.PI * 2, 0);
+            Abschlussaufgabe.bugs.ellipse(this.x + 2, this.y - 8, 3, 5, 45 * Math.PI/-180, Math.PI * 2, 0);
+            Abschlussaufgabe.bugs.fillStyle = "#CEF6F5";
+            Abschlussaufgabe.bugs.closePath();
+            Abschlussaufgabe.bugs.fill();
             //Körper
             Abschlussaufgabe.bugs.beginPath();
             Abschlussaufgabe.bugs.arc(this.x + 5, this.y + 2, 9, 0, Math.PI, true);
@@ -47,14 +55,6 @@ var Abschlussaufgabe;
             Abschlussaufgabe.bugs.closePath();
             Abschlussaufgabe.bugs.fill();
             Abschlussaufgabe.bugs.stroke();
-            //Flügel
-            Abschlussaufgabe.bugs.beginPath();
-            Abschlussaufgabe.bugs.moveTo(this.x, this.y);
-            Abschlussaufgabe.bugs.ellipse(this.x + 4, this.y - 8, 3, 5, 45 * Math.PI/180, Math.PI * 2, 0);
-            Abschlussaufgabe.bugs.ellipse(this.x + 2, this.y - 8, 3, 5, 45 * Math.PI/-180, Math.PI * 2, 0);
-            Abschlussaufgabe.bugs.fillStyle = "#CEF6F5";
-            Abschlussaufgabe.bugs.closePath();
-            Abschlussaufgabe.bugs.fill();
         }
     }
     Abschlussaufgabe.Ladybug = Ladybug;
