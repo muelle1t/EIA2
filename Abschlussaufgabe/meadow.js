@@ -32,10 +32,6 @@ var Abschlussaufgabe;
         let tweetyCanvas;
         tweetyCanvas = document.getElementsByTagName("canvas")[2];
         Abschlussaufgabe.tweety = tweetyCanvas.getContext("2d");
-        //Herzen Canvas
-        let heartCanvas;
-        heartCanvas = document.getElementsByTagName("canvas")[3];
-        Abschlussaufgabe.heart = heartCanvas.getContext("2d");
         //Bienen Canvas
         let beeCanvas;
         beeCanvas = document.getElementsByTagName("canvas")[4];

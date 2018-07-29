@@ -12,10 +12,8 @@ namespace Abschlussaufgabe {
     window.addEventListener("load", init);
 
     export let crc2: CanvasRenderingContext2D;
-
     export let tweety: CanvasRenderingContext2D;
     export let bugs: CanvasRenderingContext2D;
-    export let heart: CanvasRenderingContext2D;
     export let bee: CanvasRenderingContext2D;
 
 
@@ -57,12 +55,6 @@ namespace Abschlussaufgabe {
         let tweetyCanvas: HTMLCanvasElement;
         tweetyCanvas = document.getElementsByTagName("canvas")[2];
         tweety = tweetyCanvas.getContext("2d");
-
-        
-        //Herzen Canvas
-        let heartCanvas: HTMLCanvasElement;
-        heartCanvas = document.getElementsByTagName("canvas")[3];
-        heart = heartCanvas.getContext("2d");
 
         //Bienen Canvas
         let beeCanvas: HTMLCanvasElement;
