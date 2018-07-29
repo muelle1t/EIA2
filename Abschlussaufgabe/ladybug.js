@@ -50,8 +50,8 @@ var Abschlussaufgabe;
             //Flügel
             Abschlussaufgabe.bugs.beginPath();
             Abschlussaufgabe.bugs.moveTo(this.x, this.y);
-            //bugs.ellipse(this.x + 4, this.y - 8, 3, 5, 45 * Math.PI/180, Math.PI * 2, 0);
-            //bugs.ellipse(this.x + 2, this.y - 8, 3, 5, 45 * Math.PI/-180, Math.PI * 2, 0);
+            Abschlussaufgabe.bugs.ellipse(this.x + 4, this.y - 8, 3, 5, 45 * Math.PI/180, Math.PI * 2, 0);
+            Abschlussaufgabe.bugs.ellipse(this.x + 2, this.y - 8, 3, 5, 45 * Math.PI/-180, Math.PI * 2, 0);
             Abschlussaufgabe.bugs.fillStyle = "#CEF6F5";
             Abschlussaufgabe.bugs.closePath();
             Abschlussaufgabe.bugs.fill();

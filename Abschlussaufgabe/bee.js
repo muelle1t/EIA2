@@ -12,7 +12,7 @@ var Abschlussaufgabe;
         draw() {
             Abschlussaufgabe.bee.beginPath();
             Abschlussaufgabe.bee.moveTo(this.x, this.y);
-            //bee.ellipse(this.x, this.y, 10, 5, 0, Math.PI * 2, 0);
+            Abschlussaufgabe.bee.ellipse(this.x, this.y, 10, 5, 0, Math.PI * 2, 0);
             Abschlussaufgabe.bee.arc(this.x - 5, this.y, 5, 0, Math.PI * 2);
             Abschlussaufgabe.bee.fillStyle = "#FFFF00";
             Abschlussaufgabe.bee.closePath();
@@ -56,8 +56,8 @@ var Abschlussaufgabe;
             //Flügel
             Abschlussaufgabe.bee.beginPath();
             Abschlussaufgabe.bee.moveTo(this.x, this.y);
-            //bee.ellipse(this.x + 4, this.y - 8, 3, 5, 45 * Math.PI/180, Math.PI * 2, 0);
-            //bee.ellipse(this.x + 2, this.y - 8, 3, 5, 45 * Math.PI/-180, Math.PI * 2, 0);
+            Abschlussaufgabe.bee.ellipse(this.x + 4, this.y - 8, 3, 5, 45 * Math.PI/180, Math.PI * 2, 0);
+            Abschlussaufgabe.bee.ellipse(this.x + 2, this.y - 8, 3, 5, 45 * Math.PI/-180, Math.PI * 2, 0);
             Abschlussaufgabe.bee.fillStyle = "#CEF6F5";
             Abschlussaufgabe.bee.closePath();
             Abschlussaufgabe.bee.fill();
