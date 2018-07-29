@@ -47,17 +47,18 @@ namespace Abschlussaufgabe {
         console.log(canvas);
         crc2 = canvas.getContext("2d");
         console.log(crc2);
+        
+        //Tweety Futter Canvas
+        let foodCanvas: HTMLCanvasElement;
+        foodCanvas = document.getElementsByTagName("canvas")[1];
+        bugs = foodCanvas.getContext("2d");
 
         //Tweety Canvas
         let tweetyCanvas: HTMLCanvasElement;
         tweetyCanvas = document.getElementsByTagName("canvas")[2];
         tweety = tweetyCanvas.getContext("2d");
 
-        //Tweety Futter Canvas
-        let foodCanvas: HTMLCanvasElement;
-        foodCanvas = document.getElementsByTagName("canvas")[1];
-        bugs = foodCanvas.getContext("2d");
-
+        
         //Herzen Canvas
         let heartCanvas: HTMLCanvasElement;
         heartCanvas = document.getElementsByTagName("canvas")[3];
@@ -127,8 +128,8 @@ namespace Abschlussaufgabe {
             }
             moved = true;
             t.move(mousePos.x, mousePos.y);
-            checkFlyEaten(mousePos.x, mousePos.y);
-            checkBeeTouched(mousePos.x, mousePos.y);
+            eatFly(mousePos.x, mousePos.y);
+            eatBee(mousePos.x, mousePos.y);
             console.log(food.length);
 
             if (food.length == 0) {//wenn das food Array leer ist, ist das Spiel gewonnen
@@ -157,8 +158,8 @@ namespace Abschlussaufgabe {
             }
             moved = true;
             t.move(mousePos.x, mousePos.y);
-            checkFlyEaten(mousePos.x, mousePos.y);
-            checkBeeTouched(mousePos.x, mousePos.y);
+            eatFly(mousePos.x, mousePos.y);
+            eatBee(mousePos.x, mousePos.y);
             console.log(food.length);
 
             if (food.length == 0) {//wenn das food Array leer ist, ist das Spiel gewonnen
@@ -183,8 +184,8 @@ namespace Abschlussaufgabe {
             }
 
             t.move(canvasTouchPosX, canvasTouchPosy);
-            checkFlyEaten(canvasTouchPosX, canvasTouchPosy);
-            checkBeeTouched(canvasTouchPosX, canvasTouchPosy);
+            eatFly(canvasTouchPosX, canvasTouchPosy);
+            eatBee(canvasTouchPosX, canvasTouchPosy);
 
 
             if (food.length == 0) {//wenn das food Array leer ist, ist das Spiel gewonnen
@@ -208,8 +209,8 @@ namespace Abschlussaufgabe {
             }
 
             t.move(canvasTouchPosX, canvasTouchPosy);
-            checkFlyEaten(canvasTouchPosX, canvasTouchPosy);
-            checkBeeTouched(canvasTouchPosX, canvasTouchPosy);
+            eatFly(canvasTouchPosX, canvasTouchPosy);
+            eatBee(canvasTouchPosX, canvasTouchPosy);
 
 
             if (food.length == 0) {//wenn das food Array leer ist, ist das Spiel gewonnen
@@ -280,11 +281,11 @@ namespace Abschlussaufgabe {
     }
 
 
-    function checkFlyEaten(_x: number, _y: number): void {//Fliegen und Marienkäfer werden "gegessen" und aus dem Array entnommen
+    function eatFly(_x: number, _y: number): void {//Fliegen und Marienkäfer werden "gegessen" und aus dem Array entnommen
         for (let i: number = 0; i < food.length; i++) {
             if (Math.abs(food[i].x - _x) < 10 && Math.abs(food[i].y - _y) < 10) {
                 console.log("fly eaten");
-                //food[i].redraw();
+                
                 food.splice(i, 1);
 
 
@@ -292,11 +293,11 @@ namespace Abschlussaufgabe {
         }
     }
 
-    function checkBeeTouched(_x: number, _y: number): void {//Bienen werden "gegessen" und aus dem Array entnommen
+    function eatBee(_x: number, _y: number): void {//Bienen werden "gegessen" und aus dem Array entnommen
         for (let i: number = 0; i < poison.length; i++) {
             if (Math.abs(poison[i].x - _x) < 8 && Math.abs(poison[i].y - _y) < 8) {
                 console.log("poison eaten");
-                //poison[i].redraw();
+                
                 poison.splice(i, 1);
 
                 numLives--;

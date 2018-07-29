@@ -83,11 +83,7 @@ namespace Abschlussaufgabe {
                 }
 
         }
-                redraw(): void {
-                    bee.clearRect(0, 0, 1000, 500);
-                    bee.beginPath();
-                    bee.closePath();
-                }
+
             }
         }
 

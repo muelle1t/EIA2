@@ -68,11 +68,6 @@ var Abschlussaufgabe;
                 this.x = 1010;
             }
         }
-        redraw() {
-            Abschlussaufgabe.bee.clearRect(0, 0, 1000, 500);
-            Abschlussaufgabe.bee.beginPath();
-            Abschlussaufgabe.bee.closePath();
-        }
     }
     Abschlussaufgabe.Bee = Bee;
 })(Abschlussaufgabe || (Abschlussaufgabe = {}));
