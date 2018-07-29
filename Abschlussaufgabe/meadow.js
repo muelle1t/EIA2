@@ -162,9 +162,9 @@ var Abschlussaufgabe;
         Abschlussaufgabe.tweety.fillStyle = "#000000";
         Abschlussaufgabe.tweety.font = "30px Arial";
         Abschlussaufgabe.tweety.textAlign = "center";
-        Abschlussaufgabe.tweety.fillText("Hey! You helped Tweety collect all the bugs.", 1000 / 2, 500 / 2 - 55);
-        Abschlussaufgabe.tweety.fillText("Now she can go back to her family.", 1000 / 2, 500 / 2 + 20);
-        Abschlussaufgabe.tweety.fillText(" ", 1000 / 2, 500 / 2 - 20);
+        Abschlussaufgabe.tweety.fillText("You helped Tweety collect all the bugs.", 1000 / 2, 500 / 2 - 55);
+        Abschlussaufgabe.tweety.fillText("Now she can go back to her family.", 1000 / 2, 500 / 2 - 20);
+        Abschlussaufgabe.tweety.fillText(" ", 1000 / 2, 500 / 2 + 20);
         Abschlussaufgabe.tweety.fillText("Thanks for your help!", 1000 / 2, 500 / 2 + 55);
         console.log("Spiel gewonnen");
     }
@@ -181,9 +181,9 @@ var Abschlussaufgabe;
         Abschlussaufgabe.tweety.font = "30px Arial";
         Abschlussaufgabe.tweety.textAlign = "center";
         Abschlussaufgabe.tweety.fillText("You Lost!", 1000 / 2, 500 / 2 - 55);
-        Abschlussaufgabe.tweety.fillText("Tweety was stung by to many bees.", 1000 / 2, 500 / 2 + 20);
-        Abschlussaufgabe.tweety.fillText(" ", 1000 / 2, 500 / 2 - 20);
-        Abschlussaufgabe.tweety.fillText("Just reaload the page and you can help Tweety, again.", 1000 / 2, 500 / 2 + 55);
+        Abschlussaufgabe.tweety.fillText("Tweety was stung by to many bees.", 1000 / 2, 500 / 2 - 20);
+        Abschlussaufgabe.tweety.fillText(" ", 1000 / 2, 500 / 2 + 20);
+        Abschlussaufgabe.tweety.fillText("Just reload the page and you can help Tweety, again.", 1000 / 2, 500 / 2 + 55);
         console.log("Spiel verloren");
     }
 })(Abschlussaufgabe || (Abschlussaufgabe = {})); //End namespace

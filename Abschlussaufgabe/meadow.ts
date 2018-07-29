@@ -34,11 +34,8 @@ namespace Abschlussaufgabe {
 
     var moved: boolean = false;
     let gameEnd: boolean = false;
-
-
-
-
-
+    
+    
     function init(_event: Event): void {
 
         //Background Canvas
@@ -83,7 +80,7 @@ namespace Abschlussaufgabe {
 
             poison.push(b);
         }
-        
+
         //Fliegen werden erstellt und ins Array gepusht
         for (let i: number = 0; i < n; i++) {
             let f: Fly = new Fly((Math.random() * (1000 - 70)) + 70, (Math.random() * (500 - 20)) + 20);
@@ -103,7 +100,7 @@ namespace Abschlussaufgabe {
 
 
         let t: Bird = new Bird(40, 150);
-        
+
         function updateTweety(): void {//Funktion Tweety
             if (!gameEnd) {
                 tweety.clearRect(0, 0, 1000, 500);
@@ -111,7 +108,7 @@ namespace Abschlussaufgabe {
                 setTimeout(updateTweety, 1);
             }
         }
-
+        
         function getMousePos(canvas: any, evt: any) { //Funktion zum bestimmen der Maus Position
             var rect = canvas.getBoundingClientRect();
             return {
@@ -142,6 +139,10 @@ namespace Abschlussaufgabe {
         },
             true);
 
+        
+      
+       
+
         imagedata = crc2.getImageData(0, 0, 1000, 500);
 
         animate();
@@ -150,7 +151,7 @@ namespace Abschlussaufgabe {
     }
 
 
-    
+
     function animate(): void {//Animation Bienen, Fliegen und Marienkäfer
 
 
@@ -243,9 +244,9 @@ namespace Abschlussaufgabe {
         tweety.fillStyle = "#000000";
         tweety.font = "30px Arial";
         tweety.textAlign = "center";
-        tweety.fillText("Hey! You helped Tweety collect all the bugs.", 1000 / 2, 500 / 2 - 55);
-        tweety.fillText("Now she can go back to her family.", 1000 / 2, 500 / 2 + 20);
-        tweety.fillText(" ", 1000 / 2, 500 / 2 - 20);
+        tweety.fillText("You helped Tweety collect all the bugs.", 1000 / 2, 500 / 2 - 55);
+        tweety.fillText("Now she can go back to her family.", 1000 / 2, 500 / 2 - 20);
+        tweety.fillText(" ", 1000 / 2, 500 / 2 + 20);
         tweety.fillText("Thanks for your help!", 1000 / 2, 500 / 2 + 55);
 
         console.log("Spiel gewonnen");
@@ -269,9 +270,9 @@ namespace Abschlussaufgabe {
         tweety.font = "30px Arial";
         tweety.textAlign = "center";
         tweety.fillText("You Lost!", 1000 / 2, 500 / 2 - 55);
-        tweety.fillText("Tweety was stung by to many bees.", 1000 / 2, 500 / 2 + 20);
-        tweety.fillText(" ", 1000 / 2, 500 / 2 - 20);
-        tweety.fillText("Just reaload the page and you can help Tweety, again.", 1000 / 2, 500 / 2 + 55);
+        tweety.fillText("Tweety was stung by to many bees.", 1000 / 2, 500 / 2 - 20);
+        tweety.fillText(" ", 1000 / 2, 500 / 2 + 20);
+        tweety.fillText("Just reload the page and you can help Tweety, again.", 1000 / 2, 500 / 2 + 55);
 
         console.log("Spiel verloren");
     }
