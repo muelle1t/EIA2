@@ -35,6 +35,9 @@ namespace Abschlussaufgabe {
     var moved: boolean = false;
     let gameEnd: boolean = false;
     
+    alert("Hurry up! Tweety needs your help. Collect all Bugs but watch out for the Bees. They sting!")
+
+    
     
     function init(_event: Event): void {
 

@@ -17,6 +17,7 @@ var Abschlussaufgabe;
     Abschlussaufgabe.food = [];
     var moved = false;
     let gameEnd = false;
+    alert("Hurry up! Tweety needs your help. Collect all Bugs but watch out for the Bees. They sting!");
     function init(_event) {
         //Background Canvas
         let canvas;
