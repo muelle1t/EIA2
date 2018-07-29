@@ -4,7 +4,7 @@ namespace Abschlussaufgabe {
 
         x: number;
         y: number;
-        food: Food;
+        
 
         constructor(_x: number, _y: number) {
 
