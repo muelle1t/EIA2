@@ -58,7 +58,7 @@ namespace Abschlussaufgabe {
 
         //Bienen Canvas
         let beeCanvas: HTMLCanvasElement;
-        beeCanvas = document.getElementsByTagName("canvas")[4];
+        beeCanvas = document.getElementsByTagName("canvas")[3];
         bee = beeCanvas.getContext("2d");
 
 

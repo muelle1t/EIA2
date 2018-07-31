@@ -34,7 +34,7 @@ var Abschlussaufgabe;
         Abschlussaufgabe.tweety = tweetyCanvas.getContext("2d");
         //Bienen Canvas
         let beeCanvas;
-        beeCanvas = document.getElementsByTagName("canvas")[4];
+        beeCanvas = document.getElementsByTagName("canvas")[3];
         Abschlussaufgabe.bee = beeCanvas.getContext("2d");
         //Hintergund aus Background Klasse
         let bg = new Abschlussaufgabe.Background;
