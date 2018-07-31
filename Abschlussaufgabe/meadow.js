@@ -1,8 +1,8 @@
 /*
-Aufgabe: Abschlussaufgabe
+Aufgabe: Aufgabe 11
 Name: Annkathrin Müller
 Matrikelnr.: 254868
-Datum: 29.07.2018
+Datum: 01.07.2018
 
 Hiermit versichere ich, dass ich diesen Code selbst geschrieben habe.
 Er wurde nicht kopiert und auch nicht diktiert. */
@@ -17,6 +17,7 @@ var Abschlussaufgabe;
     Abschlussaufgabe.food = [];
     var moved = false;
     let gameEnd = false;
+    alert("Hurry up! Tweety needs your help. Collect all Bugs but watch out for the Bees. They sting!");
     function init(_event) {
         //Background Canvas
         let canvas;
@@ -24,37 +25,40 @@ var Abschlussaufgabe;
         console.log(canvas);
         Abschlussaufgabe.crc2 = canvas.getContext("2d");
         console.log(Abschlussaufgabe.crc2);
-        //Tweety Futter Canvas
-        let foodCanvas;
-        foodCanvas = document.getElementsByTagName("canvas")[1];
-        Abschlussaufgabe.bugs = foodCanvas.getContext("2d");
         //Tweety Canvas
         let tweetyCanvas;
         tweetyCanvas = document.getElementsByTagName("canvas")[2];
         Abschlussaufgabe.tweety = tweetyCanvas.getContext("2d");
+        //Tweety Futter Canvas
+        let foodCanvas;
+        foodCanvas = document.getElementsByTagName("canvas")[1];
+        Abschlussaufgabe.bugs = foodCanvas.getContext("2d");
+        //Herzen Canvas
+        let heartCanvas;
+        heartCanvas = document.getElementsByTagName("canvas")[3];
+        Abschlussaufgabe.heart = heartCanvas.getContext("2d");
         //Bienen Canvas
         let beeCanvas;
-        beeCanvas = document.getElementsByTagName("canvas")[3];
+        beeCanvas = document.getElementsByTagName("canvas")[4];
         Abschlussaufgabe.bee = beeCanvas.getContext("2d");
         //Hintergund aus Background Klasse
         let bg = new Abschlussaufgabe.Background;
         bg.draw();
         //Bienen werden erstellt und ins Array gepusht
         for (let i = 0; i < m; i++) {
-            let b = new Abschlussaufgabe.Bee((Math.random() * (900 - 50)) + 50, (Math.random() * (500 - 50)) + 50);
+            let b = new Abschlussaufgabe.Bee((Math.random() * (900 - 50)) + 50, (Math.random() * (500 - 10)) + 10);
             poison.push(b);
         }
         //Fliegen werden erstellt und ins Array gepusht
         for (let i = 0; i < n; i++) {
-            let f = new Abschlussaufgabe.Fly((Math.random() * (1000 - 70)) + 70, (Math.random() * (500 - 50)) + 50);
+            let f = new Abschlussaufgabe.Fly((Math.random() * (1000 - 70)) + 70, (Math.random() * (500 - 20)) + 20);
             Abschlussaufgabe.food.push(f);
         }
         //Marienkäfer werden erstellt und ins Array gepusht
         for (let i = 0; i < n; i++) {
-            let lb = new Abschlussaufgabe.Ladybug((Math.random() * (1000 - 70)) + 70, (Math.random() * (500 - 50)) + 50);
+            let lb = new Abschlussaufgabe.Ladybug((Math.random() * (1000 - 70)) + 70, (Math.random() * (500 - 20)) + 20);
             Abschlussaufgabe.food.push(lb);
         }
-        alert("Hurry up! Tweety needs your help. Collect all the bugs but watch out for the bees. They sting!");
         let t = new Abschlussaufgabe.Bird(40, 150);
         function updateTweety() {
             if (!gameEnd) {
@@ -77,8 +81,8 @@ var Abschlussaufgabe;
             }
             moved = true;
             t.move(mousePos.x, mousePos.y);
-            eatFly(mousePos.x, mousePos.y);
-            eatBee(mousePos.x, mousePos.y);
+            checkFlyEaten(mousePos.x, mousePos.y);
+            checkBeeTouched(mousePos.x, mousePos.y);
             console.log(Abschlussaufgabe.food.length);
             if (Abschlussaufgabe.food.length == 0) {
                 GameWon();
@@ -101,8 +105,8 @@ var Abschlussaufgabe;
             }
             moved = true;
             t.move(mousePos.x, mousePos.y);
-            eatFly(mousePos.x, mousePos.y);
-            eatBee(mousePos.x, mousePos.y);
+            checkFlyEaten(mousePos.x, mousePos.y);
+            checkBeeTouched(mousePos.x, mousePos.y);
             console.log(Abschlussaufgabe.food.length);
             if (Abschlussaufgabe.food.length == 0) {
                 GameWon();
@@ -119,8 +123,8 @@ var Abschlussaufgabe;
                 updateTweety();
             }
             t.move(canvasTouchPosX, canvasTouchPosy);
-            eatFly(canvasTouchPosX, canvasTouchPosy);
-            eatBee(canvasTouchPosX, canvasTouchPosy);
+            checkFlyEaten(canvasTouchPosX, canvasTouchPosy);
+            checkBeeTouched(canvasTouchPosX, canvasTouchPosy);
             if (Abschlussaufgabe.food.length == 0) {
                 GameWon();
             }
@@ -136,8 +140,8 @@ var Abschlussaufgabe;
                 updateTweety();
             }
             t.move(canvasTouchPosX, canvasTouchPosy);
-            eatFly(canvasTouchPosX, canvasTouchPosy);
-            eatBee(canvasTouchPosX, canvasTouchPosy);
+            checkFlyEaten(canvasTouchPosX, canvasTouchPosy);
+            checkBeeTouched(canvasTouchPosX, canvasTouchPosy);
             if (Abschlussaufgabe.food.length == 0) {
                 GameWon();
             }
@@ -179,19 +183,29 @@ var Abschlussaufgabe;
             Abschlussaufgabe.food[i].move();
         }
     }
-    function eatFly(_x, _y) {
+    function checkFlyEaten(_x, _y) {
         for (let i = 0; i < Abschlussaufgabe.food.length; i++) {
             if (Math.abs(Abschlussaufgabe.food[i].x - _x) < 10 && Math.abs(Abschlussaufgabe.food[i].y - _y) < 10) {
                 console.log("fly eaten");
+                Abschlussaufgabe.food[i].redraw();
                 Abschlussaufgabe.food.splice(i, 1);
+                for (var j = 0; j < Abschlussaufgabe.food.length; j++) {
+                    let newFood = new Abschlussaufgabe.Food(Abschlussaufgabe.food[j].x, Abschlussaufgabe.food[j].y);
+                    newFood.draw();
+                }
             }
         }
     }
-    function eatBee(_x, _y) {
+    function checkBeeTouched(_x, _y) {
         for (let i = 0; i < poison.length; i++) {
-            if (Math.abs(poison[i].x - _x) < 8 && Math.abs(poison[i].y - _y) < 8) {
+            if (Math.abs(poison[i].x - _x) < 9 && Math.abs(poison[i].y - _y) < 9) {
                 console.log("poison eaten");
+                poison[i].redraw();
                 poison.splice(i, 1);
+                for (var j; j < poison.length; j++) {
+                    let newBee = new Abschlussaufgabe.Bee(poison[j].x, poison[j].y);
+                    newBee.draw();
+                }
                 numLives--;
             }
         }

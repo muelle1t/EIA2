@@ -11,6 +11,11 @@ var Abschlussaufgabe;
         draw() {
             //Abstract
         }
+        redraw() {
+            Abschlussaufgabe.bugs.clearRect(0, 0, 1000, 500);
+            Abschlussaufgabe.bugs.beginPath();
+            Abschlussaufgabe.bugs.closePath();
+        }
     }
     Abschlussaufgabe.Food = Food;
 })(Abschlussaufgabe || (Abschlussaufgabe = {}));

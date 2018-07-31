@@ -1,8 +1,8 @@
 /*
-Aufgabe: Abschlussaufgabe
+Aufgabe: Aufgabe 11
 Name: Annkathrin Müller
 Matrikelnr.: 254868
-Datum: 29.07.2018
+Datum: 01.07.2018
 
 Hiermit versichere ich, dass ich diesen Code selbst geschrieben habe. 
 Er wurde nicht kopiert und auch nicht diktiert. */
@@ -12,8 +12,10 @@ namespace Abschlussaufgabe {
     window.addEventListener("load", init);
 
     export let crc2: CanvasRenderingContext2D;
+
     export let tweety: CanvasRenderingContext2D;
     export let bugs: CanvasRenderingContext2D;
+    export let heart: CanvasRenderingContext2D;
     export let bee: CanvasRenderingContext2D;
 
 
@@ -32,11 +34,11 @@ namespace Abschlussaufgabe {
 
     var moved: boolean = false;
     let gameEnd: boolean = false;
+    
+    alert("Hurry up! Tweety needs your help. Collect all Bugs but watch out for the Bees. They sting!");
 
-
-
-
-
+    
+    
     function init(_event: Event): void {
 
         //Background Canvas
@@ -45,20 +47,25 @@ namespace Abschlussaufgabe {
         console.log(canvas);
         crc2 = canvas.getContext("2d");
         console.log(crc2);
-        
-        //Tweety Futter Canvas
-        let foodCanvas: HTMLCanvasElement;
-        foodCanvas = document.getElementsByTagName("canvas")[1];
-        bugs = foodCanvas.getContext("2d");
 
         //Tweety Canvas
         let tweetyCanvas: HTMLCanvasElement;
         tweetyCanvas = document.getElementsByTagName("canvas")[2];
         tweety = tweetyCanvas.getContext("2d");
 
+        //Tweety Futter Canvas
+        let foodCanvas: HTMLCanvasElement;
+        foodCanvas = document.getElementsByTagName("canvas")[1];
+        bugs = foodCanvas.getContext("2d");
+
+        //Herzen Canvas
+        let heartCanvas: HTMLCanvasElement;
+        heartCanvas = document.getElementsByTagName("canvas")[3];
+        heart = heartCanvas.getContext("2d");
+
         //Bienen Canvas
         let beeCanvas: HTMLCanvasElement;
-        beeCanvas = document.getElementsByTagName("canvas")[3];
+        beeCanvas = document.getElementsByTagName("canvas")[4];
         bee = beeCanvas.getContext("2d");
 
 
@@ -72,26 +79,26 @@ namespace Abschlussaufgabe {
 
         //Bienen werden erstellt und ins Array gepusht
         for (let i: number = 0; i < m; i++) {
-            let b: Bee = new Bee((Math.random() * (900 - 50)) + 50, (Math.random() * (500 - 50)) + 50);
+            let b: Bee = new Bee((Math.random() * (900 - 50)) + 50, (Math.random() * (500 - 10)) + 10);
 
             poison.push(b);
         }
 
         //Fliegen werden erstellt und ins Array gepusht
         for (let i: number = 0; i < n; i++) {
-            let f: Fly = new Fly((Math.random() * (1000 - 70)) + 70, (Math.random() * (500 - 50)) + 50);
+            let f: Fly = new Fly((Math.random() * (1000 - 70)) + 70, (Math.random() * (500 - 20)) + 20);
 
             food.push(f);
         }
 
         //Marienkäfer werden erstellt und ins Array gepusht
         for (let i: number = 0; i < n; i++) {
-            let lb: Ladybug = new Ladybug((Math.random() * (1000 - 70)) + 70, (Math.random() * (500 - 50)) + 50);
+            let lb: Ladybug = new Ladybug((Math.random() * (1000 - 70)) + 70, (Math.random() * (500 - 20)) + 20);
 
             food.push(lb);
         }
 
-        alert("Hurry up! Tweety needs your help. Collect all the bugs but watch out for the bees. They sting!");
+
 
 
 
@@ -104,7 +111,7 @@ namespace Abschlussaufgabe {
                 setTimeout(updateTweety, 1);
             }
         }
-
+        
         function getMousePos(canvas: any, evt: any) { //Funktion zum bestimmen der Maus Position
             var rect = canvas.getBoundingClientRect();
             return {
@@ -120,8 +127,8 @@ namespace Abschlussaufgabe {
             }
             moved = true;
             t.move(mousePos.x, mousePos.y);
-            eatFly(mousePos.x, mousePos.y);
-            eatBee(mousePos.x, mousePos.y);
+            checkFlyEaten(mousePos.x, mousePos.y);
+            checkBeeTouched(mousePos.x, mousePos.y);
             console.log(food.length);
 
             if (food.length == 0) {//wenn das food Array leer ist, ist das Spiel gewonnen
@@ -150,8 +157,8 @@ namespace Abschlussaufgabe {
             }
             moved = true;
             t.move(mousePos.x, mousePos.y);
-            eatFly(mousePos.x, mousePos.y);
-            eatBee(mousePos.x, mousePos.y);
+            checkFlyEaten(mousePos.x, mousePos.y);
+            checkBeeTouched(mousePos.x, mousePos.y);
             console.log(food.length);
 
             if (food.length == 0) {//wenn das food Array leer ist, ist das Spiel gewonnen
@@ -164,21 +171,21 @@ namespace Abschlussaufgabe {
 
         },
             true);
-
+        
         //Touch Event fürs Handy
         tweetyCanvas.addEventListener("touchstart", function(e: TouchEvent) {
 
             const canvasTouchPosX = e.touches.item(0).clientX - document.querySelector('canvas').clientLeft;
             const canvasTouchPosy = e.touches.item(0).clientY - document.querySelector('canvas').clientTop;
-
+            
             if (!moved) {
                 updateTweety();
             }
-
+            
             t.move(canvasTouchPosX, canvasTouchPosy);
-            eatFly(canvasTouchPosX, canvasTouchPosy);
-            eatBee(canvasTouchPosX, canvasTouchPosy);
-
+            checkFlyEaten(canvasTouchPosX, canvasTouchPosy);
+            checkBeeTouched(canvasTouchPosX, canvasTouchPosy);
+           
 
             if (food.length == 0) {//wenn das food Array leer ist, ist das Spiel gewonnen
                 GameWon();
@@ -195,15 +202,15 @@ namespace Abschlussaufgabe {
             const canvasTouchPosX = e.touches.item(0).clientX - document.querySelector('canvas').clientLeft;
             const canvasTouchPosy = e.touches.item(0).clientY - document.querySelector('canvas').clientTop;
 
-
+            
             if (!moved) {
                 updateTweety();
             }
-
+            
             t.move(canvasTouchPosX, canvasTouchPosy);
-            eatFly(canvasTouchPosX, canvasTouchPosy);
-            eatBee(canvasTouchPosX, canvasTouchPosy);
-
+            checkFlyEaten(canvasTouchPosX, canvasTouchPosy);
+            checkBeeTouched(canvasTouchPosX, canvasTouchPosy);
+           
 
             if (food.length == 0) {//wenn das food Array leer ist, ist das Spiel gewonnen
                 GameWon();
@@ -215,10 +222,10 @@ namespace Abschlussaufgabe {
             console.log(canvasTouchPosX);
         });
 
+        
 
-
-
-
+      
+       
 
         imagedata = crc2.getImageData(0, 0, 1000, 500);
 
@@ -273,25 +280,31 @@ namespace Abschlussaufgabe {
     }
 
 
-    function eatFly(_x: number, _y: number): void {//Fliegen und Marienkäfer werden "gegessen" und aus dem Array entnommen
+    function checkFlyEaten(_x: number, _y: number): void {//Fliegen und Marienkäfer werden "gegessen" und aus dem Array entnommen
         for (let i: number = 0; i < food.length; i++) {
             if (Math.abs(food[i].x - _x) < 10 && Math.abs(food[i].y - _y) < 10) {
                 console.log("fly eaten");
-                
+                food[i].redraw();
                 food.splice(i, 1);
 
-
+                for (var j: number = 0; j < food.length; j++) {
+                    let newFood: Food = new Food(food[j].x, food[j].y);
+                    newFood.draw();
+                }
             }
         }
     }
 
-    function eatBee(_x: number, _y: number): void {//Bienen werden "gegessen" und aus dem Array entnommen
+    function checkBeeTouched(_x: number, _y: number): void {//Bienen werden "gegessen" und aus dem Array entnommen
         for (let i: number = 0; i < poison.length; i++) {
-            if (Math.abs(poison[i].x - _x) < 8 && Math.abs(poison[i].y - _y) < 8) {
+            if (Math.abs(poison[i].x - _x) < 9 && Math.abs(poison[i].y - _y) < 9) {
                 console.log("poison eaten");
-                
+                poison[i].redraw();
                 poison.splice(i, 1);
-
+                for (var j: number; j < poison.length; j++) {
+                    let newBee: Bee = new Bee(poison[j].x, poison[j].y);
+                    newBee.draw();
+                }
                 numLives--;
             }
         }
